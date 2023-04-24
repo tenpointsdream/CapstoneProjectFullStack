@@ -2,6 +2,7 @@ package cogent.com.controller;
 
 import cogent.com.entity.User;
 import cogent.com.repository.UserRepository;
+import cogent.com.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +44,6 @@ public class UserController {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
-
 
 
 
