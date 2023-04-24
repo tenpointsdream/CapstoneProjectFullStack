@@ -1,12 +1,13 @@
 package cogent.com.controller;
 
 import cogent.com.entity.User;
+import cogent.com.util.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -20,5 +21,14 @@ public class UserController {
         User user = userService.addUser(userDTO);
         return ResponseEntity.ok(user);
     }
+
+    @GetMapping("/addnewuser")
+    public String addNewUser(@RequestParam String name, @RequestParam String username, @RequestParam String email, @RequestParam String password) {
+        User user = new User(name, username, password, email, UserType.USER); // create a new user with the provided name and email
+        userRepository.save(user); // save the user to the database using the user repository
+
+        return "User added: " + name; // return a message confirming that the user was added
+    }
+
 
 }
