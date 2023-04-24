@@ -24,10 +24,10 @@ public class UserController {
 
     @GetMapping("/addnewuser")
     public String addNewUser(@RequestParam String name, @RequestParam String username, @RequestParam String email, @RequestParam String password) {
-        User user = new User(name, username, password, email, UserType.USER); // create a new user with the provided name and email
+        User user = new User(name, username, password, email, UserType.USER); // create a new user
         userRepository.save(user); // save the user to the database using the user repository
 
-        return "User added: " + name; // return a message confirming that the user was added
+        return "User added: " + name;
     }
 
 
