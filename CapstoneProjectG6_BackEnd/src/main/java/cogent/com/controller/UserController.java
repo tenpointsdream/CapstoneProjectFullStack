@@ -36,17 +36,17 @@ public class UserController {
         return "User added: " + name;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable(value = "id") int id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    @GetMapping
+    @GetMapping("/allusers")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable(value = "id") int userId,
                                            @RequestBody User user) {
         return null;
