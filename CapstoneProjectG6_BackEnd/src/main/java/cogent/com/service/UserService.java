@@ -1,6 +1,7 @@
 package cogent.com.service;
 
 import cogent.com.entity.User;
+import cogent.com.util.UserType;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface UserService {
 
 	public List<User> getAllUsersByName(String name);
 
-	public List<User> getAllUsersByUserType(String userType);
+	public List<User> getAllUsersByUserType(UserType userType);
 
 	public User getUserById(int id);
 
