@@ -2,6 +2,7 @@ package cogent.com.service;
 
 import cogent.com.entity.User;
 import cogent.com.repository.UserRepository;
+import cogent.com.util.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,8 +67,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllUsersByUserType(String userType) {
-		return userRepository.findByType(userType);
+	public List<User> getAllUsersByUserType(UserType userType) {
+		return userRepository.findByUserType(userType);
 	}
 
 	@Override
