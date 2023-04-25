@@ -10,7 +10,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
     List<Question> finByTopic(String topic);
 
-    List<Question> findAllByFlagFalse();
+    List<Question> findByStatus(String aFalse);
 
     Question addQuestion(Question question);
 }

@@ -5,6 +5,7 @@ import cogent.com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,26 +17,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    // TODO: 4/24/23  
     @Override
-    public String home() {
-        return null;
+    public void addUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User addNewUser(User newUser) {
-        return userRepository.save( newUser);
-    }
-
-    // TODO: 4/24/23  
-    @Override
-    public User getLogin() {
-        return null;
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -44,28 +33,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int userId) {
-        return userRepository.findById(userId).get();
+    public void home() {
+        System.out.println("Home Page");
     }
 
     @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public void addNewUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public User getUserByName(String userName) {
-        return userRepository.findByUsername(userName);
+    public List<String> getLogin(User user) {
+        List<String> userCredentials = new ArrayList<String>();
+        userCredentials.add(user.getUsername());
+        userCredentials.add(user.getPassword());
+        return userCredentials;
     }
 
     @Override
-    public List<User> getAllUsersByType(String userType) {
-        return userRepository.findAll(userType);
+    public boolean userLoginVerify(User user) {
+        return userRepository.verifyLogin(user);
     }
 
-    // TODO: 4/24/23
     @Override
-    public String userLoginVerify() {
-        return null;
+    public List<User> getAllUsersById(int id) {
+        return userRepository.findAllUserById(id);
+    }
+
+    @Override
+    public List<User> getAllUsersByName(String name) {
+        return (List<User>) userRepository.findByUserName(name);
+    }
+
+    @Override
+    public List<User> getAllUsersByUserType(String userType) {
+        return userRepository.findByType(userType);
     }
 }
