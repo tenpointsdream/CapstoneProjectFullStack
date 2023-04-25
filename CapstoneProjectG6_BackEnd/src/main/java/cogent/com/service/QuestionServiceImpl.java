@@ -8,46 +8,49 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class QuestionServiceImpl implements QuestionService{
-    private QuestionRepository questionRepository;
-  @Autowired
+public class QuestionServiceImpl implements QuestionService {
 
-    public QuestionServiceImpl(QuestionRepository questionRepository) {
-        this.questionRepository = questionRepository;
-    }
+	@Autowired
+	private QuestionRepository questionRepository;
 
-    @Override
-    public void addQuestion(Question question) {
-       questionRepository.save(question);
-    }
+	@Autowired
 
-    @Override
-    public void updateQuestion(Question question) {
-        questionRepository.save(question);
-    }
+	public QuestionServiceImpl(QuestionRepository questionRepository) {
+		this.questionRepository = questionRepository;
+	}
 
-    @Override
-    public void deleteQuestionById(int questionId) {
-        questionRepository.deleteById(questionId);
-    }
+	@Override
+	public void addQuestion(Question question) {
+		questionRepository.save(question);
+	}
 
-    @Override
-    public List<Question> getAllQuestions() {
-        return questionRepository.findAll();
-    }
+	@Override
+	public void updateQuestion(Question question) {
+		questionRepository.save(question);
+	}
 
-    @Override
-    public List<Question> getAllQuestionsFalse() {
-        return questionRepository.findByStatus("false");
-    }
+	@Override
+	public void deleteQuestionById(int questionId) {
+		questionRepository.deleteById(questionId);
+	}
 
-    @Override
-    public List<Question> getQuestionsByTopic(String topic) {
-        return questionRepository.finByTopic(topic);
-    }
+	@Override
+	public List<Question> getAllQuestions() {
+		return questionRepository.findAll();
+	}
 
-    @Override
-    public Question getQuestionById(int questionId) {
-        return questionRepository.findById(questionId).get();
-    }
+	@Override
+	public List<Question> getAllQuestionsFalse() {
+		return questionRepository.findByStatus("false");
+	}
+
+	@Override
+	public List<Question> getQuestionsByTopic(String topic) {
+		return questionRepository.finByTopic(topic);
+	}
+
+	@Override
+	public Question getQuestionById(int questionId) {
+		return questionRepository.findById(questionId).get();
+	}
 }
