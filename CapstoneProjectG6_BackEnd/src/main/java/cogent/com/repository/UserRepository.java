@@ -4,15 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import cogent.com.entity.User;
 
-<<<<<<< HEAD
-public interface UserRepository extends JpaRepository<User, Integer> {
-
-	User findByUserName(String userName);
-
-	User findByName(String name);
-
-	List<User> findAll(String userType);
-=======
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
@@ -30,5 +21,4 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
     List<User> findByType(String userType);
 
->>>>>>> 73fb061d4cbeb95c610b24726809b542bc29f1e4
 }
