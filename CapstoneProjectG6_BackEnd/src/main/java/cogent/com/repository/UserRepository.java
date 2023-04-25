@@ -1,24 +1,27 @@
 package cogent.com.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import cogent.com.entity.User;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Integer>{
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-    User findByUsername(String username);
+	User findByUsername(String username);
 
-    List<User> findAll(String userType);
-    User addUser(User user);
+	List<User> findAll(String userType);
 
-    boolean verifyLogin(User user);
+	User addUser(User user);
 
-    List<User> findAllUserById(int id);
+	boolean verifyLogin(User user);
 
-    Object findByUserName(String name);
+	List<User> findAllUserById(int id);
 
-    List<User> findByType(String userType);
+	Object findByUserName(String name);
+
+	List<User> findByType(String userType);
 
 }
