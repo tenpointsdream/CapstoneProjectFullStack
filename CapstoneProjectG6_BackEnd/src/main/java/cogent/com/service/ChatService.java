@@ -1,5 +1,14 @@
 package cogent.com.service;
 
-public class ChatService {
+import java.util.List;
 
+import cogent.com.entity.Chat;
+
+public interface ChatService {
+
+	Chat addMessage(Chat chat);
+	
+	void deleteById(int id);
+	
+	List<Chat> getAllMessage();
 }

@@ -5,23 +5,25 @@ import cogent.com.entity.User;
 import java.util.List;
 
 public interface UserService {
-    String home();
+	String home();
 
-    User addUser(User user);
+	User addUser(User user);
 
-    User addNewUser(User user);
+	User addNewUser(User user);
 
-    User getLogin();
+	User getLogin();
 
-    List<User> getAllUsers();
+	List<User> getAllUsers();
 
-    User getUserById(int userId);
+	User getUserById(int userId);
 
-    User updateUser(User user);
+	User updateUser(User user);
 
-    User getUserByName(String userName);
+	User getUserByName(String name);
 
-    List<User> getAllUsersByType(String userType);
+	User getUserByUserame(String userName);
 
-    String userLoginVerify();
+	List<User> getAllUsersByType(String userType);
+
+	String userLoginVerify();
 }
