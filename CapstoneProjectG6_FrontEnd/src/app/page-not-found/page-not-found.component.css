@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: lightblue;
+}
+
+h1 {
+  font-size: 36px;
+  margin-top: 50px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
