@@ -5,7 +5,6 @@ import cogent.com.entity.User;
 import java.util.List;
 
 public interface UserService {
-
     public void addUser(User user);
     public void updateUser(User user);
     public List<User> getAllUsers();
@@ -16,5 +15,4 @@ public interface UserService {
 	public List<User> getAllUsersById(int id);
 	public List<User> getAllUsersByName(String name);
 	public List<User> getAllUsersByUserType(String userType);
-	User getUserById(int id);
 }

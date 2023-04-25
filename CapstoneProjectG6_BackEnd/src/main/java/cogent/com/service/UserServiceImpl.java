@@ -10,30 +10,29 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-	private UserRepository userRepository;
+    private UserRepository userRepository;
 
-	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
+    @Override
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
 
-	@Override
-	public void addUser(User user) {
+    @Override
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
 
-	}
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
-	@Override
-	public void updateUser(User user) {
-
-	}
-
-	@Override
-	public List<User> getAllUsers() {
-		return null;
-	}
-
-	@Override
+    @Override
     public void home() {
         System.out.println("Home Page");
     }
@@ -70,10 +69,4 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsersByUserType(String userType) {
         return userRepository.findByType(userType);
     }
-
-	@Override
-	public User getUserById(int id) {
-		return null;
-	}
-
 }
