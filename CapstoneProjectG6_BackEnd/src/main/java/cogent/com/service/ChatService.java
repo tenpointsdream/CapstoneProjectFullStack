@@ -6,9 +6,9 @@ import cogent.com.entity.Chat;
 
 public interface ChatService {
 
-	Chat addMessage(Chat chat);
-	
-	void deleteById(int id);
-	
-	List<Chat> getAllMessage();
+    Chat addMessage(Chat chat);
+
+    void deleteById(int id);
+
+    List<Chat> getAllMessage();
 }

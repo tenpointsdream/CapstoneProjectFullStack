@@ -11,22 +11,22 @@ import cogent.com.repository.ChatRepository;
 @Service
 public class ChatServiceImpl implements ChatService {
 
-	@Autowired
-	private ChatRepository chatRepository;
+    @Autowired
+    private ChatRepository chatRepository;
 
-	@Override
-	public Chat addMessage(Chat chat) {
-		return chatRepository.save(chat);
-	}
+    @Override
+    public Chat addMessage(Chat chat) {
+        return chatRepository.save(chat);
+    }
 
-	@Override
-	public void deleteById(int id) {
-		chatRepository.deleteById(id);
-	}
+    @Override
+    public void deleteById(int id) {
+        chatRepository.deleteById(id);
+    }
 
-	@Override
-	public List<Chat> getAllMessage() {
-		return chatRepository.findAll();
-	}
+    @Override
+    public List<Chat> getAllMessage() {
+        return chatRepository.findAll();
+    }
 
 }
