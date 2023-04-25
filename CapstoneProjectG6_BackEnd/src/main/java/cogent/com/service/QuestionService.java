@@ -5,17 +5,16 @@ import cogent.com.entity.Question;
 import java.util.List;
 
 public interface QuestionService {
-    Question addQuestion(Question question);
+   public void addQuestion(Question question);
 
-    Question updateQuestion(Question question);
+   public void updateQuestion(Question question);
 
-    void deleteQuestionById(int questionId);
+   public void deleteQuestionById(int questionId);
 
-    List<Question> getAllQuestions();
+   public List<Question> getAllQuestions();
 
-    List<Question> getAllQuestionsFalse();
+   public List<Question> getAllQuestionsFalse();
 
-    List<Question> getQuestionsByTopic(String topic);
-
-    Question getQuestionById(int questionId);
+   public List<Question> getQuestionsByTopic(String topic);
+   public Question getQuestionById(int questionId);
 }

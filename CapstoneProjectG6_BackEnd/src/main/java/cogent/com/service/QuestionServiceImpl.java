@@ -17,13 +17,13 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public Question addQuestion(Question question) {
-        return questionRepository.save(question);
+    public void addQuestion(Question question) {
+       questionRepository.save(question);
     }
 
     @Override
-    public Question updateQuestion(Question question) {
-        return questionRepository.save(question);
+    public void updateQuestion(Question question) {
+        questionRepository.save(question);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService{
 
     @Override
     public List<Question> getAllQuestionsFalse() {
-        return questionRepository.findAllByFlagFalse();
+        return questionRepository.findByStatus("false");
     }
 
     @Override

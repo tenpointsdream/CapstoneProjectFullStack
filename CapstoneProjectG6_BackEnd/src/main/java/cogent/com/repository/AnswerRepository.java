@@ -8,9 +8,8 @@ import java.util.List;
 
 public interface AnswerRepository extends JpaRepository<Answer, Integer>{
 
+    List<Answer> findByStatus(String aFalse);
 
-    List<Answer> findAllAnswerFalse();
-
-    List<Answer> findAnswersByQuestionId(int questionId);
+    List<Answer> getAllQuestionById(int questionId);
 
 }
