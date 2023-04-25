@@ -1,9 +1,9 @@
 package cogent.com.service;
 
-import cogent.com.entity.EmailDetails;
+import cogent.com.entity.Email;
 
 public interface EmailService {
 
-	String sendEmail(EmailDetails details);
-	String sendMailWithAttachment(EmailDetails details);
+	String sendEmail(Email details);
+	String sendMailWithAttachment(Email details);
 }

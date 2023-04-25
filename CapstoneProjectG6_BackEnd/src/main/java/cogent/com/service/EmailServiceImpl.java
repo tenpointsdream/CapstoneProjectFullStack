@@ -12,7 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import cogent.com.entity.EmailDetails;
+import cogent.com.entity.Email;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -22,7 +22,7 @@ public class EmailServiceImpl implements EmailService {
 	private String sender;
 
 	@Override
-	public String sendEmail(EmailDetails details) {
+	public String sendEmail(Email details) {
 		try {
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setFrom(sender);
@@ -36,7 +36,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public String sendMailWithAttachment(EmailDetails details) {
+	public String sendMailWithAttachment(Email details) {
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper mimeMessageHelper;
 		try {
@@ -50,7 +50,7 @@ public class EmailServiceImpl implements EmailService {
 			mimeMessageHelper.addAttachment(file.getFilename(), file);
 			javaMailSender.send(mimeMessage);
 			return "Mail sent Successfully";
-		} catch (MessagingException e) {
+		} catch (MessagingException | NullPointerException e) {
 			return "Error while sending Mail";
 		}
 	}
