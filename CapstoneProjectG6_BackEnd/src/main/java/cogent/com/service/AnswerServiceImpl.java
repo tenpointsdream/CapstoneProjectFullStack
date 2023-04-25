@@ -8,20 +8,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class AnswerServiceImpl implements AnswerService{
-    private AnswerRepository answerRepository;
     @Autowired
+    private AnswerRepository answerRepository;
     public AnswerServiceImpl(AnswerRepository answerRepository) {
         this.answerRepository = answerRepository;
     }
 
     @Override
-    public Answer addAnswer(Answer answer) {
-        return answerRepository.save(answer);
+    public void addAnswer(Answer answer) {
+        answerRepository.save(answer);
     }
 
     @Override
-    public Answer updateAnswer(Answer answer) {
-        return answerRepository.save(answer);
+    public void updateAnswer(Answer answer) {
+        answerRepository.save(answer);
     }
 
     @Override
@@ -36,16 +36,17 @@ public class AnswerServiceImpl implements AnswerService{
 
     @Override
     public List<Answer> getAllAnswersFalse() {
-        return answerRepository.findAllAnswerFalse();
+        return answerRepository.findByStatus("false");
     }
 
     @Override
-    public Answer getAnswerById(int answerId) {
-        return answerRepository.findById(answerId).get();
+    public List<Answer> getAllAnswersByQuestionId(int questionId) {
+        return answerRepository.getAllQuestionById(questionId);
     }
 
     @Override
-    public List<Answer> getAnswersByQuestionId(int questionId) {
-        return answerRepository.findAnswersByQuestionId(questionId);
+    public List<Answer> getAllAnswersById(int id) {
+        return null;
     }
+
 }
