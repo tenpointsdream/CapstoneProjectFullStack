@@ -21,6 +21,7 @@ import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { UserToUserChatComponent } from './user-to-user-chat/user-to-user-chat.component';
 import { UserRegisterAndLoginComponent } from './user-register-and-login/user-register-and-login.component';
 import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin-register-and-login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
