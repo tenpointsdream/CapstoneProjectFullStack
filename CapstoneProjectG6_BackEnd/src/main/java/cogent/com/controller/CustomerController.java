@@ -3,6 +3,7 @@ package cogent.com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class CustomerController {
 	@PostMapping("/user/adduser")
 	public ResponseEntity<?> addUser(User user) {
 		userService.addUser(user);
-		return ResponseEntity.ok(user);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@GetMapping("/user/updateuser/{id}")
@@ -63,7 +64,7 @@ public class CustomerController {
 			existingUser.setPassword(user.getPassword());
 			existingUser.setUserType(user.getUserType());
 			userService.updateUser(existingUser);
-			return ResponseEntity.ok(existingUser);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 
 	}
@@ -71,25 +72,25 @@ public class CustomerController {
 	@GetMapping("user/getbyLogin")
 	public ResponseEntity<?> getLogin(User user) {
 		List<String> userCredential = userService.getLogin(user);
-		return ResponseEntity.ok(userCredential);
+		return new ResponseEntity<>(userCredential, HttpStatus.OK);
 	}
 
 	@GetMapping("user/{name}")
 	public ResponseEntity<?> getUserByName(@PathVariable("name") String name) {
 		User user = userService.getUserByName(name);
-		return ResponseEntity.ok(user);
+		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
 	@GetMapping("user/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable("id") int id) {
 		User user = userService.getUserById(id);
-		return ResponseEntity.ok(user);
+		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
 	@GetMapping("user/getall")
 	public ResponseEntity<?> getAllUsers() {
 		List<User> users = userService.getAllUsers();
-		return ResponseEntity.ok(users);
+		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
 	@DeleteMapping("user/{id}")
@@ -98,44 +99,44 @@ public class CustomerController {
 			throw new UserDoesNotExistException("User does not exist in the our record");
 		} else {
 			User user = userService.getUserById(id);
-			return ResponseEntity.ok(user);
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
 	}
 
 	@GetMapping("question/getall")
 	public ResponseEntity<?> getAllQuestions() {
 		List<Question> questions = questionService.getAllQuestions();
-		return ResponseEntity.ok(questions);
+		return new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("question/false")
 	public ResponseEntity<?> getAllQuestionFalse() {
 		List<Question> questions = questionService.getAllQuestionsFalse();
-		return ResponseEntity.ok(questions);
+		return new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("question/{topic}")
 	public ResponseEntity<?> getQuestionByTopic(@PathVariable String topic) {
 		List<Question> questions = questionService.getQuestionsByTopic(topic);
-		return ResponseEntity.ok(questions);
+		return new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("question/{id}")
 	public ResponseEntity<?> getQuestionById(int id) {
 		Question question = questionService.getQuestionById(id);
-		return ResponseEntity.ok(question);
+		return new ResponseEntity<>(question, HttpStatus.OK);
 	}
 
 	@PostMapping("answer/addanswer")
 	public ResponseEntity<?> addAnwser(@RequestBody Answer answer) {
 		answerService.addAnswer(answer);
-		return ResponseEntity.ok(answer);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping("answer/{id}")
 	public ResponseEntity<?> getAnswerById(@PathVariable("id") int id) {
 		List<Answer> answers = answerService.getAllAnswersById(id);
-		return ResponseEntity.ok(answers);
+		return new ResponseEntity<>(answers, HttpStatus.OK);
 	}
 
 	@PutMapping("answer/update/{id}")
@@ -150,31 +151,31 @@ public class CustomerController {
 			existingAnswer.setDescription_answer(answer.getDescription_answer());
 			existingAnswer.setDatetime(answer.getDatetime());
 			answerService.updateAnswer(existingAnswer);
-			return ResponseEntity.ok(existingAnswer);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 	}
 
 	@GetMapping("answer/question/{id}")
 	public ResponseEntity<?> getAnswerByQuestionId(@PathVariable int id) {
 		List<Answer> answers = answerService.getAllAnswersByQuestionId(id);
-		return ResponseEntity.ok(answers);
+		return new ResponseEntity<>(answers, HttpStatus.OK);
 	}
 
 	@PostMapping("chat/addmsg")
 	public ResponseEntity<?> addMsg(@RequestBody Chat chat) {
 		chatService.addMessage(chat);
-		return ResponseEntity.ok(chat);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("chat/delete/{id}")
 	public ResponseEntity<?> deleteChatById(@PathVariable int id) {
 		chatService.deleteById(id);
-		return ResponseEntity.ok(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping("chat/getallmsg")
 	public ResponseEntity<?> getAllMsg() {
 		List<Chat> chats = chatService.getAllMessage();
-		return ResponseEntity.ok(chats);
+		return new ResponseEntity<>(chats, HttpStatus.OK);
 	}
 }
