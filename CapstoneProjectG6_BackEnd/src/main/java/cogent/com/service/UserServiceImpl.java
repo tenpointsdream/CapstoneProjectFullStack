@@ -17,78 +17,23 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 
-<<<<<<< HEAD
-	// TODO: 4/24/23
+
 	@Override
-	public String home() {
-		return null;
+	public void addUser(User user) {
+
 	}
 
 	@Override
-	public User addUser(User user) {
-		return userRepository.save(user);
-	}
+	public void updateUser(User user) {
 
-	@Override
-	public User addNewUser(User newUser) {
-		return userRepository.save(newUser);
 	}
-
-	// TODO: 4/24/23
-	@Override
-	public User getLogin() {
-		return null;
-	}
-=======
-    @Override
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
-
-    @Override
-    public void updateUser(User user) {
-        userRepository.save(user);
-    }
->>>>>>> 73fb061d4cbeb95c610b24726809b542bc29f1e4
 
 	@Override
 	public List<User> getAllUsers() {
-		return userRepository.findAll();
-	}
-
-<<<<<<< HEAD
-	@Override
-	public User getUserById(int userId) {
-		return userRepository.findById(userId).get();
-	}
-
-	@Override
-	public User updateUser(User user) {
-		return userRepository.save(user);
-	}
-
-	@Override
-	public List<User> getAllUsersByType(String userType) {
-		return userRepository.findAll(userType);
-	}
-
-	// TODO: 4/24/23
-	@Override
-	public String userLoginVerify() {
 		return null;
 	}
 
 	@Override
-	public User getUserByName(String name) {
-		return userRepository.findByName(name);
-	}
-
-	@Override
-	public User getUserByUserame(String userName) {
-		return userRepository.findByUserName(userName);
-	}
-=======
-    @Override
     public void home() {
         System.out.println("Home Page");
     }
@@ -125,5 +70,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsersByUserType(String userType) {
         return userRepository.findByType(userType);
     }
->>>>>>> 73fb061d4cbeb95c610b24726809b542bc29f1e4
+
+	@Override
+	public User getUserById(int id) {
+		return null;
+	}
+
 }
