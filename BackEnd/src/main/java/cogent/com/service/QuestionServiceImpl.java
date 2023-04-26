@@ -47,7 +47,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Question> getAllQuestionsFalse() {
-		return questionRepository.findByStatus("Wrong");
+		return questionRepository.findByStatus("False");
 	}
 
 }
