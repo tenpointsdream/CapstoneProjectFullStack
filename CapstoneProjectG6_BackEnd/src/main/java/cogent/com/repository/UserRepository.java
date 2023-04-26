@@ -13,15 +13,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findByUsername(String username);
 
-	List<User> findAll(String userType);
-
-	User addUser(User user);
-
-	boolean verifyLogin(User user);
-
-	List<User> findAllUserById(int id);
-
-	List<User> getAllUsersByUserType(UserType userType);
+	List<User> findByName(String name);
 
 	List<User> findByUserType(UserType userType);
 }

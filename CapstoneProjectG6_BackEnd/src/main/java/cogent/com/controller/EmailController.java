@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cogent.com.entity.Email;
 import cogent.com.service.EmailService;
 
-@RestController("/api/email")
+@RestController("/email")
 public class EmailController {
 
 	@Autowired

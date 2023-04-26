@@ -3,22 +3,23 @@ package cogent.com.service;
 import cogent.com.entity.Answer;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AnswerService {
 
-	public void addAnswer(Answer answer);
+	public List<Answer> getAllAnswers();
 
-	public void updateAnswer(Answer answer);
+	public Answer addAnswer(Answer answer);
 
-	public void deleteAnswerById(int answerId);
+	public Answer updateAnswer(Answer answer);
 
-	List<Answer> getAllAnswers();
+	public Optional<Answer> getAnswerById(int id);
 
-	List<Answer> getAllAnswersFalse();
-
-	List<Answer> getAllAnswersByQuestionId(int questionId);
+	public void deleteAnswerById(int id);
+	
+	public List<Answer> getAllAnswersFalse();
 
 	List<Answer> getAllAnswersById(int id);
 
-	Answer getAnswerById(int id);
+
 }

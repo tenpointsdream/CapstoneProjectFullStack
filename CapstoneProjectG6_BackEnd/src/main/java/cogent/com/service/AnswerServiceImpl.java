@@ -1,34 +1,19 @@
 package cogent.com.service;
 
-import cogent.com.entity.Answer;
-import cogent.com.repository.AnswerRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
+import cogent.com.entity.Answer;
+import cogent.com.repository.AnswerRepository;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
+
 	@Autowired
 	private AnswerRepository answerRepository;
-
-	public AnswerServiceImpl(AnswerRepository answerRepository) {
-		this.answerRepository = answerRepository;
-	}
-
-	@Override
-	public void addAnswer(Answer answer) {
-		answerRepository.save(answer);
-	}
-
-	@Override
-	public void updateAnswer(Answer answer) {
-		answerRepository.save(answer);
-	}
-
-	@Override
-	public void deleteAnswerById(int answerId) {
-		answerRepository.deleteById(answerId);
-	}
 
 	@Override
 	public List<Answer> getAllAnswers() {
@@ -36,23 +21,33 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersFalse() {
-		return answerRepository.findByStatus("false");
+	public Answer addAnswer(Answer answer) {
+		return answerRepository.save(answer);
 	}
 
 	@Override
-	public List<Answer> getAllAnswersByQuestionId(int questionId) {
-		return answerRepository.getAllQuestionById(questionId);
+	public Answer updateAnswer(Answer answer) {
+		return answerRepository.save(answer);
+	}
+
+	@Override
+	public Optional<Answer> getAnswerById(int id) {
+		return answerRepository.findById(id);
+	}
+
+	@Override
+	public void deleteAnswerById(int id) {
+		answerRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Answer> getAllAnswersFalse() {
+		return null;
 	}
 
 	@Override
 	public List<Answer> getAllAnswersById(int id) {
 		return null;
-	}
-
-	@Override
-	public Answer getAnswerById(int id) {
-		return answerRepository.findById(id).get();
 	}
 
 }

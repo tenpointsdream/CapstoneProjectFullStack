@@ -1,11 +1,13 @@
 package cogent.com.service;
 
-import cogent.com.entity.Question;
-import cogent.com.repository.QuestionRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import cogent.com.entity.Question;
+import cogent.com.repository.QuestionRepository;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -13,44 +15,39 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	@Autowired
-
-	public QuestionServiceImpl(QuestionRepository questionRepository) {
-		this.questionRepository = questionRepository;
+	@Override
+	public Question addQuetion(Question question) {
+		return questionRepository.save(question);
 	}
 
 	@Override
-	public void addQuestion(Question question) {
-		questionRepository.save(question);
+	public Question updateQuestion(Question question) {
+		return questionRepository.save(question);
 	}
 
 	@Override
-	public void updateQuestion(Question question) {
-		questionRepository.save(question);
+	public void deleteQuestionById(int id) {
+		questionRepository.deleteById(id);
 	}
 
 	@Override
-	public void deleteQuestionById(int questionId) {
-		questionRepository.deleteById(questionId);
-	}
-
-	@Override
-	public List<Question> getAllQuestions() {
+	public List<Question> getAllQuestion() {
 		return questionRepository.findAll();
 	}
 
 	@Override
+	public List<Question> getQuestionByTopic(String topic) {
+		return questionRepository.findByTopic(topic);
+	}
+
+	@Override
+	public Optional<Question> getQuestionById(int id) {
+		return questionRepository.findById(id);
+	}
+
+	@Override
 	public List<Question> getAllQuestionsFalse() {
-		return questionRepository.findByStatus("false");
+		return null;
 	}
 
-	@Override
-	public List<Question> getQuestionsByTopic(String topic) {
-		return questionRepository.finByTopic(topic);
-	}
-
-	@Override
-	public Question getQuestionById(int questionId) {
-		return questionRepository.findById(questionId).get();
-	}
 }

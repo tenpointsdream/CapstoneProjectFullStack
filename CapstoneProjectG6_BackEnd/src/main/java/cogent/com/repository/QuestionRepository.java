@@ -10,9 +10,8 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    List<Question> finByTopic(String topic);
+    List<Question> findByTopic(String topic);
 
     List<Question> findByStatus(String aFalse);
 
-    Question addQuestion(Question question);
 }
