@@ -15,6 +15,7 @@ import cogent.com.util.UserType;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("http://localhost:4200/")
 public class UserController {
 
 	@Autowired
