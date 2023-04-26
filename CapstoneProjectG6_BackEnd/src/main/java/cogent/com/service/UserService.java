@@ -26,4 +26,10 @@ public interface UserService {
 
 	public List<User> getUsersByType(UserType userType);
 
+<<<<<<< HEAD
+=======
+	public User getUserById(int id);
+
+	public User getUserByName(String name);
+>>>>>>> f452737b6f0a0f5af2aae735e73b9a88facf0c29
 }
