@@ -81,7 +81,7 @@ public class QuestionController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("/getquestionsbystatus/{status}")
+	@GetMapping("/getquestionbystatus/{status}")
 	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") String status) {
 		List<Question> questions = questionService.getAllQuestionsFalse();
 		if (questions == null) {
