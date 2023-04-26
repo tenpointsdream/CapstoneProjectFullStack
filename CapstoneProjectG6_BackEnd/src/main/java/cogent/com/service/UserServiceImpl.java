@@ -1,72 +1,59 @@
 package cogent.com.service;
 
-import cogent.com.entity.User;
-import cogent.com.repository.UserRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import cogent.com.entity.User;
+import cogent.com.repository.UserRepository;
+import cogent.com.util.UserType;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	@Autowired
+	private UserRepository userRepository;
 
-    @Override
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
+	@Override
+	public User addUser(User user) {
+		return userRepository.save(user);
+	}
 
-    @Override
-    public void updateUser(User user) {
-        userRepository.save(user);
-    }
+	@Override
+	public User updateUser(User user) {
+		return userRepository.save(user);
+	}
 
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 
-    @Override
-    public void home() {
-        System.out.println("Home Page");
-    }
+	@Override
+	public User addNewUser(User user) {
+		return userRepository.save(user);
+	}
 
-    @Override
-    public void addNewUser(User user) {
-        userRepository.save(user);
-    }
+	@Override
+	public boolean userLoginVerify(User user) {
+		return false;
+	}
 
-    @Override
-    public List<String> getLogin(User user) {
-        List<String> userCredentials = new ArrayList<String>();
-        userCredentials.add(user.getUsername());
-        userCredentials.add(user.getPassword());
-        return userCredentials;
-    }
+	@Override
+	public Optional<User> getUserById(int id) {
+		return userRepository.findById(id);
+	}
 
-    @Override
-    public boolean userLoginVerify(User user) {
-        return userRepository.verifyLogin(user);
-    }
+	@Override
+	public List<User> getUsersByName(String name) {
+		return userRepository.findByName(name);
+	}
 
-    @Override
-    public List<User> getAllUsersById(int id) {
-        return userRepository.findAllUserById(id);
-    }
+	@Override
+	public List<User> getUsersByType(UserType userType) {
+		return userRepository.findByUserType(userType);
+	}
 
-    @Override
-    public List<User> getAllUsersByName(String name) {
-        return (List<User>) userRepository.findByUserName(name);
-    }
-
-    @Override
-    public List<User> getAllUsersByUserType(String userType) {
-        return userRepository.findByType(userType);
-    }
 }

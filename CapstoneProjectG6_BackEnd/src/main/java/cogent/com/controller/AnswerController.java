@@ -1,50 +1,56 @@
 package cogent.com.controller;
 
-import cogent.com.entity.Answer;
-import cogent.com.service.AnswerService;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import cogent.com.entity.Answer;
+import cogent.com.service.AnswerService;
 
 @RestController
+@RequestMapping("answer")
+@CrossOrigin("http://localhost:4200/")
 public class AnswerController {
-    @Autowired
-    private AnswerService answerService;
+	@Autowired
+	private AnswerService answerService;
 
-    @PostMapping("/addAnswer")
-    public void addAnswer(@Validated @RequestBody Answer answer) {
-        answerService.addAnswer(answer);
-    }
+	@GetMapping("/getallanswers")
+	public ResponseEntity<List<Answer>> getAllAnswers() {
+		List<Answer> answers = answerService.getAllAnswers();
+		return answers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(answers, HttpStatus.OK);
+	}
 
-    @PostMapping("/updateAnswer")
-    public void updateAnswer(@Validated @RequestBody Answer answer) {
-        answerService.updateAnswer(answer);
-    }
+	@PostMapping("/addanswer")
+	public ResponseEntity<Answer> addAnwser(Answer answer) {
+		return new ResponseEntity<>(answerService.addAnswer(answer), HttpStatus.OK);
+	}
 
-    @DeleteMapping("/deleteAnswerById")
-    public void deleteAnswerById(@Validated @RequestBody int id) {
-        answerService.deleteAnswerById(id);
-    }
+	@GetMapping("getanswerbyid/{id}")
+	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
+		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
+		return optionalAnswer.isPresent() ? new ResponseEntity<>(optionalAnswer.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
-    @GetMapping("/getAllAnswers")
-    public List<Answer> getAllAnswers() {
-        return answerService.getAllAnswers();
-    }
+	@PutMapping("/updateanswer/{id}")
+	public ResponseEntity<Answer> updateAnswer(@PathVariable("id") int id, @RequestBody Answer answer) {
+		if (answerService.getAnswerById(id).isPresent()) {
+			answer.setId(id);
+			return new ResponseEntity<>(answerService.updateAnswer(answer), HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
-    @GetMapping("/getAllAnswerFalse")
-    public List<Answer> getAllAnswersFalse() {
-        return answerService.getAllAnswersFalse();
-    }
+	@DeleteMapping("/deleteanswerbyid/{id}")
+	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
+		if (answerService.getAnswerById(id).isPresent()) {
+			answerService.deleteAnswerById(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
-    @GetMapping("/getAllAnswerByQuestionId")
-    public List<Answer> getAllAnswersByQuestionId(@Validated @RequestBody int questionId) {
-        return answerService.getAllAnswersByQuestionId(questionId);
-    }
-
-    @GetMapping("/getAllAnswerById")
-    public List<Answer> getAllAnswersById(@Validated @RequestBody int answerId) {
-        return answerService.getAllAnswersById(answerId);
-    }
 }

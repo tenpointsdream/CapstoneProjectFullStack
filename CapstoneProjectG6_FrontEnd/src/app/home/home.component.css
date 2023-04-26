@@ -1,0 +1,56 @@
+ .navbar {
+     background-color: rgba(255, 255, 255, 0.689);
+     background-position: center;
+     border-radius: 10px;
+     margin:0 50px;
+     color: #000;
+ }
+ body {
+    background-image: url('./images/background-img.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+ .navbar-brand {
+     color: rgb(61, 57, 57);
+     font-weight: bold;
+ }
+ .color a {
+     color: black;
+ }
+ .nav-link {
+     color: rgb(255, 255, 255);
+ }
+
+ .navbar-nav .nav-item {
+     margin-right: 20px;
+ }
+
+ .navbar-nav .nav-item:first-child {
+     margin-left: auto;
+ }
+ .container {
+    height: 30rem;
+    width: 12;
+    background-size: cover;
+    background-repeat: no-repeat
+    ;
+ }
+ .login {
+     background-color: rgb(71, 65, 65);
+     border-radius: 5px;
+     padding:0 5px;
+ }
+ .footer-div {
+     background-color: rgb(185, 215, 205);
+     text-align: center;
+ }
+ .footer{
+     display: flex;
+     justify-content: center;
+     gap: 15px;
+ }
+  ul li {
+     list-style-type: none;
+     font-weight: 500;
+ }

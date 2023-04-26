@@ -1,21 +1,14 @@
 package cogent.com.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import cogent.com.entity.Answer;
 
-import java.util.List;
-
 public interface AnswerService {
-    public void addAnswer(Answer answer);
-
-    public void updateAnswer(Answer answer);
-
-    public void deleteAnswerById(int answerId);
-
-    List<Answer> getAllAnswers();
-
-    List<Answer> getAllAnswersFalse();
-
-    List<Answer> getAllAnswersByQuestionId(int questionId);
-
-    List<Answer> getAllAnswersById(int id);
+	public List<Answer> getAllAnswers();
+	public Answer addAnswer(Answer answer);
+	public Answer updateAnswer(Answer answer);
+	public Optional<Answer> getAnswerById(int id);
+	public void deleteAnswerById(int id);
 }
