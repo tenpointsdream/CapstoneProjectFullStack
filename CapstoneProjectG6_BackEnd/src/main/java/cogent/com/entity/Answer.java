@@ -1,6 +1,6 @@
 package cogent.com.entity;
 
-import javax.persistence.*;
+import  javax.persistence.*;
 
 @Entity
 @Table(name = "answer")

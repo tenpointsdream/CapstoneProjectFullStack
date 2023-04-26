@@ -6,14 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cogent.com.entity.Question;
 import cogent.com.service.QuestionService;
@@ -32,19 +25,16 @@ public class QuestionController {
 
 	@PutMapping("/updatequestion")
 	public ResponseEntity<Question> updateQuestion(@PathVariable("id") int id, @RequestBody Question question) {
-		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
-		if (optionalQuestion.isPresent()) {
+		if (questionService.getQuestionById(id).isPresent()) {
 			question.setId(id);
-			Question updatedQuestion = questionService.updateQuestion(question);
-			return new ResponseEntity<>(updatedQuestion, HttpStatus.OK);
+			return new ResponseEntity<>(questionService.updateQuestion(question), HttpStatus.OK);
 		} else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/deletequetionbyid/{id}")
+	@DeleteMapping("/deletequetion/{id}")
 	public ResponseEntity<?> deleteQuestionById(@PathVariable("id") int id) {
-		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
-		if (optionalQuestion.isPresent()) {
+		if (questionService.getQuestionById(id).isPresent()) {
 			questionService.deleteQuestionById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} else
@@ -52,30 +42,21 @@ public class QuestionController {
 	}
 
 	@GetMapping("/getallquestions")
-	public ResponseEntity<List<Question>> getAllQuetion() {
+	public ResponseEntity<List<Question>> getAllQuestion() {
 		List<Question> questions = questionService.getAllQuestion();
-		if (questions == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else
-			return new ResponseEntity<>(questions, HttpStatus.OK);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("/getquestionbytopic/{topic}")
-	public ResponseEntity<List<Question>> getQuetionByTopic(@PathVariable("topic") String topic) {
+	public ResponseEntity<List<Question>> getQuestionByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
-		if (questions == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else
-			return new ResponseEntity<>(questions, HttpStatus.OK);
+		return questions == null ? new ResponseEntity<List<Question>>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("/getquestionbyid/{id}")
-	public ResponseEntity<Question> getAllQuetion(@PathVariable("id") int id) {
+	public ResponseEntity<Question> getQuestionById(@PathVariable("id") int id) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
-		if (optionalQuestion.isPresent()) {
-			return new ResponseEntity<>(optionalQuestion.get(), HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 }
