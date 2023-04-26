@@ -51,7 +51,7 @@ public class QuestionController {
 	@GetMapping("/getquestionbytopic/{topic}")
 	public ResponseEntity<List<Question>> getQuestionByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
-		return questions == null ? new ResponseEntity<List<Question>>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("/getquestionbyid/{id}")
