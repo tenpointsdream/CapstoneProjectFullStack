@@ -1,18 +1,14 @@
 package cogent.com.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import cogent.com.entity.Question;
 
-import java.util.List;
-
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Integer> {
+public interface QuestionRepository extends JpaRepository<Question, Integer>{
 
-    List<Question> finByTopic(String topic);
-
-    List<Question> findByStatus(String aFalse);
-
-    Question addQuestion(Question question);
+	List<Question> findByTopic(String Topic);
 }

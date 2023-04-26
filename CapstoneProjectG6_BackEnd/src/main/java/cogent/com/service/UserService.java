@@ -1,32 +1,20 @@
 package cogent.com.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import cogent.com.entity.User;
 import cogent.com.util.UserType;
 
-import java.util.List;
-
 public interface UserService {
-	public void addUser(User user);
 
-	public void updateUser(User user);
-
+	public User addUser(User user);
+	public User updateUser(User user);
 	public List<User> getAllUsers();
-
-	public void home();
-
-	public void addNewUser(User user);
-
-	public List<String> getLogin(User user);
-
+	public User addNewUser(User user);
 	public boolean userLoginVerify(User user);
-
-	public List<User> getAllUsersById(int id);
-
-	public List<User> getAllUsersByName(String name);
-
-	public List<User> getAllUsersByUserType(UserType userType);
-
-	public User getUserById(int id);
-
-	public User getUserByName(String name);
+	public Optional<User> getUserById(int id);
+	public List<User> getUsersByName(String name);
+	public List<User> getUsersByType(UserType userType);
+	
 }
