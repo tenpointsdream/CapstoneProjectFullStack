@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import cogent.com.entity.Question;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Integer>{
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    List<Question> findByTopic(String Topic);
+	List<Question> findByTopic(String Topic);
+
+	List<Question> findByStatus(String aFalse);
 }

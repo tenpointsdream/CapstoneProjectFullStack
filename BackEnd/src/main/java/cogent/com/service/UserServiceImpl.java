@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
+	//Need implementation
 	@Override
 	public boolean userLoginVerify(User user) {
 		return false;
@@ -54,6 +55,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByType(UserType userType) {
 		return userRepository.findByUserType(userType);
+	}
+
+	@Override
+	public String home() {
+		return "Users Home Page";
 	}
 
 }
