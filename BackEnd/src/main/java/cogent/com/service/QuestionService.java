@@ -20,4 +20,6 @@ public interface QuestionService {
 	public List<Question> getAllQuestionsFalse();
 
 	public Optional<Question> getQuestionById(int id);
+
+	public List<Question> getQuestionByTitle(String title);
 }

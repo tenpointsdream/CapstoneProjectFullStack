@@ -1,5 +1,6 @@
 package cogent.com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -132,6 +133,22 @@ public class CustomerController {
 			return new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
+	@GetMapping("questions/searchquestions/{topic}/{title}")
+	public ResponseEntity<List<Question>> getQuestionsByTitle(@PathVariable("topic") String topic,
+			@PathVariable("title") String title) {
+		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
+		if (questionsByTopic == null)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		else {
+			List<Question> questionsByTitle = new ArrayList<Question>();
+			for (Question question : questionsByTopic) {
+				if (question.getTitle().contains(title))
+					questionsByTitle.add(question);
+			}
+			return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
+		}
+	}
+
 	@GetMapping("/question/getquestionbytopic/{topic}")
 	public ResponseEntity<List<Question>> getQuetionByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
@@ -187,7 +204,7 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	//Chat Controllers
+	// Chat Controllers
 	@PostMapping("/chat/addmsg")
 	public ResponseEntity<Chat> addMsg(@RequestBody Chat chat) {
 		Chat addedChat = chatService.addNewChat(chat);

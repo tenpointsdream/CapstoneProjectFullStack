@@ -1,5 +1,6 @@
 package cogent.com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +49,17 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public List<Question> getAllQuestionsFalse() {
 		return questionRepository.findByStatus("False");
+	}
+
+	@Override
+	public List<Question> getQuestionByTitle(String title) {
+		List<Question> allQuestions = questionRepository.findAll();
+		List<Question> allQuestionsByTitle = new ArrayList<>();
+		for (Question question : allQuestions) {
+			if (question.getTitle().contains(title))
+				allQuestionsByTitle.add(question);
+		}
+		return allQuestionsByTitle;
 	}
 
 }
