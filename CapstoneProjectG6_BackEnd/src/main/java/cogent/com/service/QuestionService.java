@@ -6,18 +6,19 @@ import java.util.Optional;
 import cogent.com.entity.Question;
 
 public interface QuestionService {
+	Question addQuestion(Question question);
 
-	public Question addQuestion(Question question);
+	Question updateQuestion(Question question);
 
-	public Question updateQuestion(Question question);
+	void deleteQuestionById(int id);
 
-	public void deleteQuestionById(int id);
+	List<Question> getAllQuestion();
 
-	public List<Question> getAllQuestion();
+	List<Question> getQuestionByTopic(String topic);
 
-	public List<Question> getQuestionByTopic(String topic);
+	List<Question> getAllQuestionsFalse();
 
-	public List<Question> getAllQuestionsFalse();
+	Optional<Question> getQuestionById(int id);
 
-	public Optional<Question> getQuestionById(int id);
+	List<Question> getQuestionByTitle(String title);
 }
