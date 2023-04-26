@@ -6,8 +6,8 @@ import java.util.Optional;
 import cogent.com.entity.Question;
 
 public interface QuestionService {
-	
-	public Question addQuetion(Question question);
+
+	public Question addQuestion(Question question);
 
 	public Question updateQuestion(Question question);
 
@@ -16,8 +16,6 @@ public interface QuestionService {
 	public List<Question> getAllQuestion();
 
 	public List<Question> getQuestionByTopic(String topic);
-
-	public List<Question> getAllQuestionsFalse();
 
 	public Optional<Question> getQuestionById(int id);
 }

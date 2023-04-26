@@ -56,9 +56,4 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUserType(userType);
 	}
 
-	@Override
-	public String home() {
-		return "Users Home Page";
-	}
-
 }

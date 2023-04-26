@@ -1,12 +1,12 @@
 package cogent.com.repository;
 
-import cogent.com.util.UserType;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import cogent.com.entity.User;
-
-import java.util.List;
+import cogent.com.util.UserType;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {

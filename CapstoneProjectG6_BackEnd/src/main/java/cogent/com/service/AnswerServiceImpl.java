@@ -40,14 +40,4 @@ public class AnswerServiceImpl implements AnswerService {
 		answerRepository.deleteById(id);
 	}
 
-	@Override
-	public List<Answer> getAllAnswersFalse() {
-		return null;
-	}
-
-	@Override
-	public List<Answer> getAllAnswersById(int id) {
-		return null;
-	}
-
 }

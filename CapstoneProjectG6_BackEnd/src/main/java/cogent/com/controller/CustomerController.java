@@ -45,8 +45,7 @@ public class CustomerController {
 	// User Controllers
 	@PostMapping("/user/adduser")
 	public ResponseEntity<User> addUser(User user) {
-		User newUser = userService.addNewUser(user);
-		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+		return new ResponseEntity<>(userService.addNewUser(user), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/user/updateuser/{id}")
@@ -54,8 +53,7 @@ public class CustomerController {
 		Optional<User> userOptional = userService.getUserById(id);
 		if (userOptional.isPresent()) {
 			user.setId(id);
-			User updatedUser = userService.updateUser(user);
-			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+			return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
 		} else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
@@ -96,7 +94,7 @@ public class CustomerController {
 	// Question Controllers
 	@PostMapping("/question/addquestion")
 	public ResponseEntity<Question> addQuestion(Question question) {
-		Question addedQuestion = questionService.addQuetion(question);
+		Question addedQuestion = questionService.addQuestion(question);
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
 
@@ -122,7 +120,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getallquestions")
-	public ResponseEntity<List<Question>> getAllQuetion() {
+	public ResponseEntity<List<Question>> getAllQuestion() {
 		List<Question> questions = questionService.getAllQuestion();
 		if (questions == null)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -140,7 +138,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getquestionbyid/{id}")
-	public ResponseEntity<Question> getAllQuetion(@PathVariable("id") int id) {
+	public ResponseEntity<Question> getAllQuestion(@PathVariable("id") int id) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
 		if (optionalQuestion.isPresent()) {
 			return new ResponseEntity<>(optionalQuestion.get(), HttpStatus.OK);
@@ -185,7 +183,7 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	// Chat Controllers
+	//Chat Controllers
 	@PostMapping("/chat/addmsg")
 	public ResponseEntity<Chat> addMsg(@RequestBody Chat chat) {
 		Chat addedChat = chatService.addNewChat(chat);

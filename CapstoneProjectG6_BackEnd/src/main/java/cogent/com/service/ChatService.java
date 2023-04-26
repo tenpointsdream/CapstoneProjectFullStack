@@ -12,6 +12,6 @@ public interface ChatService {
 	public void deleteChatById(int id);
 
 	public List<Chat> getAllChat();
-
+	
 	public Optional<Chat> getChatById(int id);
 }

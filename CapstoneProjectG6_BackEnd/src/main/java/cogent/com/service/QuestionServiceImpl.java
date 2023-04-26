@@ -16,7 +16,7 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionRepository questionRepository;
 
 	@Override
-	public Question addQuetion(Question question) {
+	public Question addQuestion(Question question) {
 		return questionRepository.save(question);
 	}
 
@@ -43,11 +43,6 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public Optional<Question> getQuestionById(int id) {
 		return questionRepository.findById(id);
-	}
-
-	@Override
-	public List<Question> getAllQuestionsFalse() {
-		return null;
 	}
 
 }

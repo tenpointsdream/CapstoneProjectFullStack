@@ -1,10 +1,6 @@
 package cogent.com.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "chat")
@@ -20,6 +16,7 @@ public class Chat {
 
 	public Chat() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Chat(String from_user, String to_user, String message, String datetime) {

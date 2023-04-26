@@ -27,8 +27,7 @@ public class QuestionController {
 
 	@PostMapping("/addquestion")
 	public ResponseEntity<Question> addQuestion(Question question) {
-		Question addedQuestion = questionService.addQuetion(question);
-		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
+		return new ResponseEntity<>(questionService.addQuestion(question), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/updatequestion")

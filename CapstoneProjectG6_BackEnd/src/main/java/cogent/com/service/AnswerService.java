@@ -1,9 +1,9 @@
 package cogent.com.service;
 
-import cogent.com.entity.Answer;
-
 import java.util.List;
 import java.util.Optional;
+
+import cogent.com.entity.Answer;
 
 public interface AnswerService {
 
@@ -16,10 +16,4 @@ public interface AnswerService {
 	public Optional<Answer> getAnswerById(int id);
 
 	public void deleteAnswerById(int id);
-	
-	public List<Answer> getAllAnswersFalse();
-
-	List<Answer> getAllAnswersById(int id);
-
-
 }
