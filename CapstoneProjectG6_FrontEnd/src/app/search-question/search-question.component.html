@@ -1,7 +1,7 @@
 <div>
-   <form action="">
-    <label for="">Search the question: </label>
-    <select name="topic" id="topic">
+   <form novalidate #searchform='ngForm' (ngSubmit)="onSubmit()">
+    <label for="topic">Search the question: </label>
+    <select  name="topic" id="topic" [(ngModel)] = "topic">
         <option value="Java">Java</option>
         <option value="C">C</option>
         <option value="C#">C#</option>
@@ -9,7 +9,29 @@
         <option value="Angular">Angular</option>
         <option value="SpringBoot">SpringBoot</option>
     </select>
-    <input type="text" placeholder="What is the title?">
-    <button>Search</button>
+    <input type="text" placeholder="What is the title?" name="title" [(ngModel)] = "title">
+    <button type="submit" (click)="refresh()">Search</button>
    </form>
+</div>
+
+<div *ngIf="onVisible">
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Topic</th>
+            <th>Description</th>
+            <th>Action</th>
+        </thead>
+        <tbody *ngFor="let question of searchedQuestions">
+            <tr>
+                <td>{{question.id}}</td>
+                <td>{{question.topic}}</td>
+                <td>{{question.title}}</td>
+                <td>{{question.descriptionQuestion}}</td>
+                <td>
+                    <button>Show details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

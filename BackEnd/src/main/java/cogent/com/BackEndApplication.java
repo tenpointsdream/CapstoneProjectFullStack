@@ -23,8 +23,8 @@ public class BackEndApplication {
 
 		QuestionService questionService = ctx.getBean(QuestionService.class);
 		List<User> users = userService.getAllUsers();
-		questionService.addQuetion(new Question("Test description", "test.jpg", "04-26-2023, 12:36", "Wrong", "Server",
-				"Server", null, users.get(0), null));
+		questionService.addQuetion(new Question("Test description", "test.jpg", "04-26-2023, 12:36", "False", "JavaScript",
+				"Getting to know", null, users.get(0), null));
 	}
 
 }

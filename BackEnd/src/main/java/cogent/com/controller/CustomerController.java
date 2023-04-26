@@ -133,7 +133,7 @@ public class CustomerController {
 			return new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
-	@GetMapping("questions/searchquestions/{topic}/{title}")
+	@GetMapping("question/searchquestions/{topic}/{title}")
 	public ResponseEntity<List<Question>> getQuestionsByTitle(@PathVariable("topic") String topic,
 			@PathVariable("title") String title) {
 		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
