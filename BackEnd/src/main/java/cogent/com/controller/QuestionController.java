@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cogent.com.entity.Question;
 import cogent.com.service.QuestionService;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("question")
 public class QuestionController {
@@ -79,4 +81,12 @@ public class QuestionController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	@GetMapping("/getquestionsbystatus/{status}")
+	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") String status) {
+		List<Question> questions = questionService.getAllQuestionsFalse();
+		if (questions == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else
+			return new ResponseEntity<>(questions, HttpStatus.OK);
+	}
 }
