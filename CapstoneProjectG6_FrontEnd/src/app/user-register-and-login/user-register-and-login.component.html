@@ -1,1 +1,26 @@
-<p>user-register-and-login works!</p>
+<div>
+    <div>
+        <h2>User Register</h2>
+    </div>
+    <div>
+        <form novalidate #registerform='ngForm' (ngSubmit)="onSubmit(registerform)">
+            <div class="register-form">
+                <label for="name">Full Name</label><br>
+                <input type="text" [(ngModel)]='model.name' name="name" required><br>
+            </div>
+            <div>
+                <label for="username">Username</label><br>
+                <input type="text" [(ngModel)]='model.username' name="username" required><br>
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" [(ngModel)]='model.password' name="password" required><br>
+            </div>
+            <div>
+                <label for="email">Email</label><br>
+                <input type="email" [(ngModel)]='model.email' name="email" required><br>
+            </div>
+            <button [disabled]="registerform.invalid" (click)="refresh()" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

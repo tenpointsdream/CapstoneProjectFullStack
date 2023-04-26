@@ -22,7 +22,7 @@ import { UserToUserChatComponent } from './user-to-user-chat/user-to-user-chat.c
 import { UserRegisterAndLoginComponent } from './user-register-and-login/user-register-and-login.component';
 import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin-register-and-login.component';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
