@@ -41,6 +41,11 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
+	public List<Question> getAllQuestionsFalse() {
+		return questionRepository.findByStatus("False");
+	}
+
+	@Override
 	public Optional<Question> getQuestionById(int id) {
 		return questionRepository.findById(id);
 	}

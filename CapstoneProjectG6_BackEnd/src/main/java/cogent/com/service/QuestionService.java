@@ -17,5 +17,7 @@ public interface QuestionService {
 
 	public List<Question> getQuestionByTopic(String topic);
 
+	public List<Question> getAllQuestionsFalse();
+
 	public Optional<Question> getQuestionById(int id);
 }
