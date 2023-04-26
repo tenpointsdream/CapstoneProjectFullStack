@@ -60,4 +60,10 @@ public class QuestionController {
 		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/getquestionbystatus/{status}")
+	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") String status) {
+		List<Question> questions = questionService.getAllQuestionsFalse();
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+	}
+
 }
