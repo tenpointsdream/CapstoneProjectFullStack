@@ -1,7 +1,6 @@
 package cogent.com.service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +47,16 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public Optional<Question> getQuestionById(int id) {
 		return questionRepository.findById(id);
+	}
+
+	@Override
+	public List<Question> getQuestionByTitle(String title) {
+		List<Question> allQuestions = questionRepository.findAll();
+		List<Question> allQuestionsByTitle = new ArrayList<>();
+		for (Question question : allQuestions)
+			if (question.getTitle().contains(title))
+				allQuestionsByTitle.add(question);
+		return allQuestionsByTitle;
 	}
 
 }
