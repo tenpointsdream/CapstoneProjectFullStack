@@ -26,14 +26,10 @@ public class Answer {
 	@JoinColumn(name = "created_by_id")
 	private User created_by;
 
-	public Answer() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Answer() {}
 
 	public Answer(String description_answer, String img_src, String status, String datetime, Question question,
 			User approved_by, User created_by) {
-		super();
 		this.description_answer = description_answer;
 		this.img_src = img_src;
 		this.status = status;
