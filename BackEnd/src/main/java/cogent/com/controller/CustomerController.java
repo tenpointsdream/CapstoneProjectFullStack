@@ -147,7 +147,7 @@ public class CustomerController {
 		else {
 			List<Question> questionsByTitle = new ArrayList<Question>();
 			for (Question question : questionsByTopic) {
-				if (question.getTitle().contains(title))
+				if (question.getTitle().toLowerCase().contains(title.toLowerCase()))
 					questionsByTitle.add(question);
 			}
 			return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
