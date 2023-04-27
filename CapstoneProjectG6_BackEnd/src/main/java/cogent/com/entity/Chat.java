@@ -14,13 +14,9 @@ public class Chat {
 	private String message;
 	private String datetime;
 
-	public Chat() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Chat() {}
 
 	public Chat(String from_user, String to_user, String message, String datetime) {
-		super();
 		this.from_user = from_user;
 		this.to_user = to_user;
 		this.message = message;

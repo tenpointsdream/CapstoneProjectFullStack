@@ -16,12 +16,9 @@ public class User {
 	private String email;
 	private UserType userType;
 
-	public User() {
-		super();
-	}
+	public User() {}
 
 	public User(String name, String username, String password, String email, UserType userType) {
-		super();
 		this.name = name;
 		this.username = username;
 		this.password = password;

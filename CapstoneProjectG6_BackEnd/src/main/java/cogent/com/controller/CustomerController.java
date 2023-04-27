@@ -1,14 +1,11 @@
 package cogent.com.controller;
 
-import java.util.List;
-import java.util.Optional;
-
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import cogent.com.entity.*;
 import cogent.com.service.*;
 import cogent.com.util.UserType;
@@ -98,6 +95,21 @@ public class CustomerController {
 		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
+	@GetMapping("question/searchquestions/{topic}/{title}")
+	public ResponseEntity<List<Question>> getQuestionsByTitle(@PathVariable("topic") String topic,
+															  @PathVariable("title") String title) {
+		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
+		if (questionsByTopic == null)
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		else {
+			List<Question> questionsByTitle = new ArrayList<>();
+			for (Question question : questionsByTopic)
+				if (question.getTitle().contains(title))
+					questionsByTitle.add(question);
+			return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
+		}
+	}
+
 	@GetMapping("/question/getquestion/{topic}")
 	public ResponseEntity<List<Question>> getQuestionByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
@@ -131,7 +143,7 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/deleteanswer/{id}")
+	@DeleteMapping("answer/deleteanswer/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
 		if (answerService.getAnswerById(id).isPresent()) {
 			answerService.deleteAnswerById(id);
