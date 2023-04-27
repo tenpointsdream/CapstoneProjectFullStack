@@ -1,7 +1,8 @@
 <div>
    <form novalidate #searchform='ngForm' (ngSubmit)="onSubmit()">
     <label for="topic">Search the question: </label>
-    <select  name="topic" id="topic" [(ngModel)] = "topic">
+    <select  name="topic" id="topic" [(ngModel)] = "topic" required>
+        <option value="" disabled selected>Pick a Topic</option>
         <option value="Java">Java</option>
         <option value="C">C</option>
         <option value="C#">C#</option>
@@ -9,8 +10,8 @@
         <option value="Angular">Angular</option>
         <option value="SpringBoot">SpringBoot</option>
     </select>
-    <input type="text" placeholder="What is the title?" name="title" [(ngModel)] = "title">
-    <button type="submit" (click)="refresh()">Search</button>
+    <input type="text" placeholder="What is the title?" name="title" [(ngModel)] = "title" required>
+    <button [disabled]="searchform.invalid" type="submit">Search</button>
    </form>
 </div>
 
