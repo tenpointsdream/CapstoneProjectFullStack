@@ -25,11 +25,11 @@ public class AnswerController {
 	}
 
 	@PostMapping("/addanswer")
-	public ResponseEntity<Answer> addAnwser(Answer answer) {
+	public ResponseEntity<Answer> addAnswer(Answer answer) {
 		return new ResponseEntity<>(answerService.addAnswer(answer), HttpStatus.OK);
 	}
 
-	@GetMapping("getanswerbyid/{id}")
+	@GetMapping("getanswer/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
 		return optionalAnswer.isPresent() ? new ResponseEntity<>(optionalAnswer.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,7 +44,7 @@ public class AnswerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/deleteanswerbyid/{id}")
+	@DeleteMapping("/deleteanswer/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
 		if (answerService.getAnswerById(id).isPresent()) {
 			answerService.deleteAnswerById(id);

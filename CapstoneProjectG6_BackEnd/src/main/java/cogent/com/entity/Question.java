@@ -31,14 +31,10 @@ public class Question {
 	@JoinColumn(name = "approved_by_id")
 	private User qapproved_by;
 
-	public Question() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Question() {}
 
 	public Question(String descriptionQuestion, String imageSrc, String datetime, String status, String topic,
 			String title, List<Answer> answers, User qcreated_by, User qapproved_by) {
-		super();
 		this.descriptionQuestion = descriptionQuestion;
 		this.imageSrc = imageSrc;
 		this.datetime = datetime;
