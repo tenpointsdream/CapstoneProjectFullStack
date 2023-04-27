@@ -42,12 +42,17 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public List<Answer> getAllAnswersFalse() {
-		return answerRepository.findByStatus("Wrong");
+		return answerRepository.findByStatus("False");
 	}
 
 	@Override
 	public List<Answer> getAllAnswersById(int id) {
 		return answerRepository.findAllById(id);
+	}
+
+	@Override
+	public List<Answer> getAnswerByQuestionId(int questionId) {
+		return answerRepository.findByQuestionId(questionId);
 	}
 
 }
