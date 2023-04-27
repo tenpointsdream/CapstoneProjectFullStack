@@ -1,3 +1,3 @@
 package cogent.com.config;
 
-public class SecurityConfig{ }
+public class SecurityConfig {}
