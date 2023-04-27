@@ -27,6 +27,9 @@ public class CustomerController {
 	@Autowired
 	private ChatService chatService;
 
+	@Autowired
+	private EmailService emailService;
+
 	// User Controllers
 	@PostMapping("/user/adduser")
 	public ResponseEntity<User> addUser(User user) {
@@ -174,5 +177,11 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else
 			return new ResponseEntity<>(chats, HttpStatus.OK);
+	}
+
+	// Email Controller
+	@PostMapping("/sendemail")
+	public String sendEmail(@RequestBody Email email) {
+		return emailService.sendEmail(email);
 	}
 }
