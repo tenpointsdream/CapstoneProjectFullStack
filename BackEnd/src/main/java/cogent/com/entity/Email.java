@@ -1,36 +1,20 @@
 package cogent.com.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity
 public class Email {
-	@Id
-	private int id;
 
 	private String recipient;
 	private String msgBody;
 	private String subject;
-	private String attachment;
 
 	public Email() {
 		super();
 	}
 
-	public Email(String recipient, String msgBody, String subject, String attachment) {
+	public Email(String recipient, String msgBody, String subject) {
 		super();
 		this.recipient = recipient;
 		this.msgBody = msgBody;
 		this.subject = subject;
-		this.attachment = attachment;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getRecipient() {
@@ -55,14 +39,6 @@ public class Email {
 
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
-
-	public String getAttachment() {
-		return attachment;
-	}
-
-	public void setAttachment(String attachment) {
-		this.attachment = attachment;
 	}
 
 }

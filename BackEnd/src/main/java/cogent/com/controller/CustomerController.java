@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cogent.com.entity.Answer;
 import cogent.com.entity.Chat;
+import cogent.com.entity.Email;
 import cogent.com.entity.Question;
 import cogent.com.entity.User;
 import cogent.com.service.AnswerService;
 import cogent.com.service.ChatService;
+import cogent.com.service.EmailService;
 import cogent.com.service.QuestionService;
 import cogent.com.service.UserService;
 import cogent.com.util.UserType;
@@ -44,6 +46,9 @@ public class CustomerController {
 
 	@Autowired
 	private ChatService chatService;
+
+	@Autowired
+	private EmailService emailService;
 
 	// User Controllers
 	@PostMapping("/user/adduser")
@@ -228,5 +233,11 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else
 			return new ResponseEntity<>(chats, HttpStatus.OK);
+	}
+
+	// Email Controller
+	@PostMapping("/sendemail")
+	public String sendEmail(@RequestBody Email email) {
+		return emailService.sendEmail(email);
 	}
 }
