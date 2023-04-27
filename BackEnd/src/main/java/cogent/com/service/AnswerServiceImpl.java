@@ -1,13 +1,12 @@
 package cogent.com.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import cogent.com.entity.Answer;
+import cogent.com.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cogent.com.entity.Answer;
-import cogent.com.repository.AnswerRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -48,11 +47,6 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public List<Answer> getAllAnswersById(int id) {
 		return answerRepository.findAllById(id);
-	}
-
-	@Override
-	public List<Answer> getAnswerByQuestionId(int questionId) {
-		return answerRepository.findByQuestionId(questionId);
 	}
 
 }

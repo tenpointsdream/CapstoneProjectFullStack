@@ -1,12 +1,11 @@
 package cogent.com.repository;
 
-import java.util.List;
-
+import cogent.com.entity.User;
+import cogent.com.util.UserType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import cogent.com.entity.User;
-import cogent.com.util.UserType;
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -16,6 +15,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findByName(String name);
 
 	List<User> findByUserType(UserType userType);
-
-	User findByUsernameAndPassword(String username, String pasword);
 }
