@@ -40,4 +40,14 @@ public class AnswerServiceImpl implements AnswerService {
 		answerRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Answer> getAllAnswersById(int id) {
+		return answerRepository.findAllById(id);
+	}
+
+	@Override
+	public List<Answer> getAnswerByQuestionId(int questionId) {
+		return answerRepository.findByQuestionId(questionId);
+	}
+
 }
