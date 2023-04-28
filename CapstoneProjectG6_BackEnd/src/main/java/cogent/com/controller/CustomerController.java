@@ -102,8 +102,7 @@ public class CustomerController {
 	public ResponseEntity<List<Question>> getQuestionsByTitle(@PathVariable("topic") String topic,
 															  @PathVariable("title") String title) {
 		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
-		if (questionsByTopic == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		if (questionsByTopic == null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		List<Question> questionsByTitle = new ArrayList<>();
 		for (Question question : questionsByTopic)
 			if (question.getTitle().contains(title))
@@ -111,9 +110,15 @@ public class CustomerController {
 		return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
 	}
 
-	@GetMapping("/question/getquestion/{topic}")
+	@GetMapping("/question/getquestionbytopic/{topic}")
 	public ResponseEntity<List<Question>> getQuestionByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+	}
+
+	@GetMapping("/question/getquestionbytitle/{title}")
+	public ResponseEntity<List<Question>> getQuestionByTitle(@PathVariable("title") String title) {
+		List<Question> questions = questionService.getQuestionByTitle(title);
 		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
@@ -131,8 +136,7 @@ public class CustomerController {
 
 	@GetMapping("answer/getanswer/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
-		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return answerService.getAnswerById(id).map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PutMapping("/answer/updateanswer/{id}")

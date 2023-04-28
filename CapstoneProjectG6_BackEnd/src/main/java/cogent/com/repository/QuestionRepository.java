@@ -10,5 +10,5 @@ import cogent.com.entity.Question;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer>{
     List<Question> findByTopic(String Topic);
-    List<Question> findByStatus(String aFalse);
+    List<Question> findByStatus(boolean status);
 }
