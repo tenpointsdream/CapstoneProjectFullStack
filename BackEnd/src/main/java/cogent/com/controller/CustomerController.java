@@ -8,26 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import cogent.com.entity.Answer;
-import cogent.com.entity.Chat;
-import cogent.com.entity.Email;
-import cogent.com.entity.Question;
-import cogent.com.entity.User;
-import cogent.com.service.AnswerService;
-import cogent.com.service.ChatService;
-import cogent.com.service.EmailService;
-import cogent.com.service.QuestionService;
-import cogent.com.service.UserService;
+import org.springframework.web.bind.annotation.*;
+import cogent.com.entity.*;
+import cogent.com.service.*;
 import cogent.com.util.UserType;
 
 @CrossOrigin(origins = "http://localhost:4200/")
@@ -99,7 +82,7 @@ public class CustomerController {
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/question/updatequestion")
+	@PutMapping("/question/updatequestion/{id}")
 	public ResponseEntity<Question> updateQuestion(@PathVariable("id") int id, @RequestBody Question question) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
 		if (optionalQuestion.isPresent()) {
