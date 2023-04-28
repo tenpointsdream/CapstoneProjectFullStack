@@ -12,7 +12,7 @@ import cogent.com.entity.Question;
 import cogent.com.service.QuestionService;
 
 @RestController
-@RequestMapping("question")
+@RequestMapping("/question")
 @CrossOrigin("http://localhost:4200/")
 public class QuestionController {
 
