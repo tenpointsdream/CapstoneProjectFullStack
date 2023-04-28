@@ -56,8 +56,7 @@ public class QuestionController {
 
 	@GetMapping("/getquestionbyid/{id}")
 	public ResponseEntity<Question> getQuestionById(@PathVariable("id") int id) {
-		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
-		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return questionService.getQuestionById(id).map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@GetMapping("/getquestionbystatus/{status}")
