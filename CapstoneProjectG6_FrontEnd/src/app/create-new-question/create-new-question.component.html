@@ -1,1 +1,34 @@
-<p>create-new-question works!</p>
+<div>
+    <div>
+        <h2>Create New Question</h2>
+    </div>
+    <div class="container">
+        <!-- todo -->
+        <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
+            <div class="register-form">
+                <label for="title">Title</label><br>
+                <input type="text" [(ngModel)]='model.title' name="title" required><br>
+            </div>
+            <div>
+                <label for="topic">Choose Topic</label><br><br>
+                <select name="topic" id="topic" [(ngModel)]="model.topic">
+                    <option value="Java">Java</option>
+                    <option value="C#">C#</option>
+                    <option value="Html">Html</option>
+                    <option value="Angular">Angular</option>
+                    <option value="Other">Other</option>
+                </select><br><br>
+            </div>
+            <div>
+                <label for="descriptionQuestion">Description</label><br>
+                <textarea name="descriptionQuestion" [(ngModel)]='model.descriptionQuestion' id="descriptionQuestion" cols="40" rows="5"></textarea><br><br>
+            </div>
+            <div>
+                <!-- todo -->
+                <label for="imageSrc">ImageSrc</label><br>
+                <input type="file"  src="[(ngModel)]='model.imageSrc'" alt="image.jpg" required><br><br>
+            </div>
+            <button [disabled]="adminform.invalid" (click)="refresh()" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

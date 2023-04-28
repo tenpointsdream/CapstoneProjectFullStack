@@ -1,1 +1,18 @@
-<p>admin-login works!</p>
+<div>
+    <div>
+        <h2>Admin Log In</h2>
+    </div>
+    <div class="container">
+        <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
+            <div class="register-form">
+                <label for="email">Email</label><br>
+                <input type="email" [(ngModel)]='model.email' name="email" required><br>
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" [(ngModel)]='model.password' name="password" required><br>
+            </div>
+            <button [disabled]="adminform.invalid" (click)="login()" type="submit">Log In</button>
+        </form>
+    </div>
+</div>
