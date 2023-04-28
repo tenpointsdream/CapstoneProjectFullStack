@@ -43,8 +43,8 @@ public class UserController {
 			user.setId(id);
 			User updatedUser = userService.updateUser(user);
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/getbyname/{name}")

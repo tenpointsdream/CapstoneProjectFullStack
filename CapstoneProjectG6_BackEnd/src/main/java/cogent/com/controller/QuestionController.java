@@ -29,8 +29,8 @@ public class QuestionController {
 		if (questionService.getQuestionById(id).isPresent()) {
 			question.setId(id);
 			return new ResponseEntity<>(questionService.updateQuestion(question), HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/deletequetion/{id}")
@@ -38,8 +38,8 @@ public class QuestionController {
 		if (questionService.getQuestionById(id).isPresent()) {
 			questionService.deleteQuestionById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/getallquestions")

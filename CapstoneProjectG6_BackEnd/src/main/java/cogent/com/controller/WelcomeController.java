@@ -21,12 +21,13 @@ public class WelcomeController {
     }
 
     @PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-        } catch (Exception ex) {
-            throw new Exception("invalid username/password");
-        }
+    public String generateToken(@RequestBody AuthRequest authRequest) {
+//        try {
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+//        } catch (Exception ex) {
+//            throw new Exception("invalid username/password");
+//        }
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         return jwtUtil.generateToken(authRequest.getUsername());
     }
 }

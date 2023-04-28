@@ -104,13 +104,11 @@ public class CustomerController {
 		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
 		if (questionsByTopic == null)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else {
-			List<Question> questionsByTitle = new ArrayList<>();
-			for (Question question : questionsByTopic)
-				if (question.getTitle().contains(title))
-					questionsByTitle.add(question);
-			return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
-		}
+		List<Question> questionsByTitle = new ArrayList<>();
+		for (Question question : questionsByTopic)
+			if (question.getTitle().contains(title))
+				questionsByTitle.add(question);
+		return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestion/{topic}")
@@ -142,8 +140,8 @@ public class CustomerController {
 		if (answerService.getAnswerById(id).isPresent()) {
 			answer.setId(id);
 			return new ResponseEntity<>(answerService.updateAnswer(answer), HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("answer/deleteanswer/{id}")
@@ -151,8 +149,8 @@ public class CustomerController {
 		if (answerService.getAnswerById(id).isPresent()) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	//Chat Controllers
@@ -166,8 +164,8 @@ public class CustomerController {
 		if (chatService.getChatById(id).isPresent()) {
 			chatService.deleteChatById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("chat/getallmsg")
@@ -175,8 +173,8 @@ public class CustomerController {
 		List<Chat> chats = chatService.getAllChat();
 		if (chats == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} else
-			return new ResponseEntity<>(chats, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(chats, HttpStatus.OK);
 	}
 
 	// Email Controller
