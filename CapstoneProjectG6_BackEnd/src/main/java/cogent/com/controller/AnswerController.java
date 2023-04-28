@@ -32,7 +32,7 @@ public class AnswerController {
 	@GetMapping("getanswer/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		return optionalAnswer.isPresent() ? new ResponseEntity<>(optionalAnswer.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PutMapping("/updateanswer/{id}")
@@ -40,8 +40,8 @@ public class AnswerController {
 		if (answerService.getAnswerById(id).isPresent()) {
 			answer.setId(id);
 			return new ResponseEntity<>(answerService.updateAnswer(answer), HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/deleteanswer/{id}")
@@ -49,8 +49,8 @@ public class AnswerController {
 		if (answerService.getAnswerById(id).isPresent()) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }
