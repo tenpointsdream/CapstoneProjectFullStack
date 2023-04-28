@@ -35,13 +35,17 @@ public class UserController {
 	}
 
 	@PostMapping("/authenticate")
-	public String generateToken(@RequestBody AuthRequest request) throws Exception {
-		try {
-			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-		} catch (Exception e) {
-			throw new Exception("Invalid username/password");
-		}
+	public String generateToken(@RequestBody AuthRequest request) {
+//		try{
+//			authenticationManager.authenticate(
+//					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+//			);
+//		} catch (Exception e){
+//			throw new Exception("Invalid username/password");
+//		}
+		authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+		);
 		return jwtUtil.generateToken(request.getUsername());
 	}
 
@@ -57,42 +61,33 @@ public class UserController {
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
-	@GetMapping("/getbyid/{id}")
+	@GetMapping("/getuserbyid/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		Optional<User> userOptional = userService.getUserById(id);
-		if (userOptional.isPresent())
-			return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/updateuserbyid/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @Validated @RequestBody User user) {
 		Optional<User> userOptional = userService.getUserById(id);
 		if (userOptional.isPresent()) {
 			user.setId(id);
 			User updatedUser = userService.updateUser(user);
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/getbyname/{name}")
 	public ResponseEntity<List<User>> getUserByName(@PathVariable("name") String name) {
 		List<User> users = userService.getUsersByName(name);
-		if (users != null)
-			return new ResponseEntity<>(users, HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return users != null ? new ResponseEntity<>(users, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/getbytype/{userType}")
 	public ResponseEntity<List<User>> getUsersByTypes(@PathVariable("userType") UserType userType) {
 		List<User> users = userService.getUsersByType(userType);
-		if (users != null)
-			return new ResponseEntity<>(users, HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return users != null ? new ResponseEntity<>(users, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }
