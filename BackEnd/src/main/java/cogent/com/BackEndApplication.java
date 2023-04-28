@@ -1,22 +1,21 @@
 package cogent.com;
 
-import cogent.com.entity.Question;
-import cogent.com.entity.User;
-import cogent.com.repository.UserRepository;
-import cogent.com.service.QuestionService;
-import cogent.com.service.UserService;
-import cogent.com.util.UserType;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.List;
+import cogent.com.entity.Question;
+import cogent.com.entity.User;
+import cogent.com.service.QuestionService;
+import cogent.com.service.UserService;
+import cogent.com.util.UserType;
 
 @SpringBootApplication
 public class BackEndApplication {
-	@Autowired
-	private UserRepository repository;
+//	@Autowired
+//	private UserRepository repository;
 	//	@PostConstruct
 //	public void initUsers() {
 //		List<User> users = Stream.of(

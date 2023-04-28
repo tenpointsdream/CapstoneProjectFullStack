@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/user")
@@ -32,6 +33,7 @@ public class UserController {
 	public String welcome() {
 		return "Welcome to Great learning !!";
 	}
+
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest request) {
 //		try{
