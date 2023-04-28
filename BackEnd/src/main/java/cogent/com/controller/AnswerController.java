@@ -21,7 +21,7 @@ import cogent.com.service.AnswerService;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
-@RequestMapping("answer")
+@RequestMapping("/answer")
 public class AnswerController {
 	@Autowired
 	private AnswerService answerService;
@@ -29,10 +29,7 @@ public class AnswerController {
 	@GetMapping("/getallanswers")
 	public ResponseEntity<List<Answer>> getAllAnswers() {
 		List<Answer> answers = answerService.getAllAnswers();
-		if (answers == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else
-			return new ResponseEntity<>(answers, HttpStatus.OK);
+		return answers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(answers, HttpStatus.OK);
 	}
 
 	@PostMapping("/addanswer")
@@ -44,10 +41,7 @@ public class AnswerController {
 	@GetMapping("getanswerbyid/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		if (optionalAnswer.isPresent())
-			return new ResponseEntity<>(optionalAnswer.get(), HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PutMapping("/updateanswer/{id}")
@@ -57,8 +51,8 @@ public class AnswerController {
 			answer.setId(id);
 			Answer updatedAnswer = answerService.updateAnswer(answer);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
@@ -67,8 +61,8 @@ public class AnswerController {
 		if (optionalAnswer.isPresent()) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }

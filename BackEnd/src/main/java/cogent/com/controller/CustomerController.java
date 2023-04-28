@@ -64,35 +64,26 @@ public class CustomerController {
 			user.setId(id);
 			User updatedUser = userService.updateUser(user);
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/user/getbyname/{name}")
 	public ResponseEntity<List<User>> getUserByName(@PathVariable("name") String name) {
 		List<User> users = userService.getUsersByName(name);
-		if (users != null)
-			return new ResponseEntity<>(users, HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return users != null ? new ResponseEntity<>(users, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/user/getbytype/{userType}")
 	public ResponseEntity<List<User>> getUsersByTypes(@PathVariable("userType") UserType userType) {
 		List<User> users = userService.getUsersByType(userType);
-		if (users != null)
-			return new ResponseEntity<>(users, HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return users != null ? new ResponseEntity<>(users, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/user/getbyid/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		Optional<User> userOptional = userService.getUserById(id);
-		if (userOptional.isPresent())
-			return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@GetMapping("/user/getallusers")
@@ -115,27 +106,24 @@ public class CustomerController {
 			question.setId(id);
 			Question updatedQuestion = questionService.updateQuestion(question);
 			return new ResponseEntity<>(updatedQuestion, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/question/deletequetionbyid/{id}")
+	@DeleteMapping("/question/deletequestionbyid/{id}")
 	public ResponseEntity<?> deleteQuestionById(@PathVariable("id") int id) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
 		if (optionalQuestion.isPresent()) {
 			questionService.deleteQuestionById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/question/getallquestions")
-	public ResponseEntity<List<Question>> getAllQuetion() {
+	public ResponseEntity<List<Question>> getAllQuestion() {
 		List<Question> questions = questionService.getAllQuestion();
-		if (questions == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else
-			return new ResponseEntity<>(questions, HttpStatus.OK);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("question/searchquestions/{topic}/{title}")
@@ -144,37 +132,28 @@ public class CustomerController {
 		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
 		if (questionsByTopic == null)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else {
-			List<Question> questionsByTitle = new ArrayList<Question>();
-			for (Question question : questionsByTopic) {
-				if (question.getTitle().toLowerCase().contains(title.toLowerCase()))
-					questionsByTitle.add(question);
-			}
-			return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
-		}
+		List<Question> questionsByTitle = new ArrayList<>();
+		for (Question question : questionsByTopic)
+			if (question.getTitle().toLowerCase().contains(title.toLowerCase()))
+				questionsByTitle.add(question);
+		return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbytopic/{topic}")
-	public ResponseEntity<List<Question>> getQuetionByTopic(@PathVariable("topic") String topic) {
+	public ResponseEntity<List<Question>> getQuestionByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
-		if (questions == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		else
-			return new ResponseEntity<>(questions, HttpStatus.OK);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbyid/{id}")
-	public ResponseEntity<Question> getAllQuetion(@PathVariable("id") int id) {
+	public ResponseEntity<Question> getAllQuestion(@PathVariable("id") int id) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
-		if (optionalQuestion.isPresent()) {
-			return new ResponseEntity<>(optionalQuestion.get(), HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	// Answer Controllers
 	@PostMapping("/answer/addanswer")
-	public ResponseEntity<Answer> addAnwser(Answer answer) {
+	public ResponseEntity<Answer> addAnswer(Answer answer) {
 		Answer addedAnswer = answerService.addAnswer(answer);
 		return new ResponseEntity<>(addedAnswer, HttpStatus.OK);
 	}
@@ -182,10 +161,7 @@ public class CustomerController {
 	@GetMapping("answer/getanswerbyid/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		if (optionalAnswer.isPresent())
-			return new ResponseEntity<>(optionalAnswer.get(), HttpStatus.OK);
-		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PutMapping("/answer/updateanswer/{id}")
@@ -195,8 +171,8 @@ public class CustomerController {
 			answer.setId(id);
 			Answer updatedAnswer = answerService.updateAnswer(answer);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
@@ -205,8 +181,8 @@ public class CustomerController {
 		if (optionalAnswer.isPresent()) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	// Chat Controllers
@@ -216,23 +192,20 @@ public class CustomerController {
 		return new ResponseEntity<>(addedChat, HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("chat/deletechatbyid")
+	@DeleteMapping("chat/deletechatbyid/{id}")
 	public ResponseEntity<?> deleteChatById(@PathVariable("id") int id) {
 		Optional<Chat> optionalChat = chatService.getChatById(id);
 		if (optionalChat.isPresent()) {
 			chatService.deleteChatById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("chat/getallmsg")
 	public ResponseEntity<List<Chat>> getAllMsg() {
 		List<Chat> chats = chatService.getAllChat();
-		if (chats == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} else
-			return new ResponseEntity<>(chats, HttpStatus.OK);
+		return chats == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(chats, HttpStatus.OK);
 	}
 
 	// Email Controller
