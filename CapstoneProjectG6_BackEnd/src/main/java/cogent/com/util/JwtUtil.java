@@ -10,8 +10,6 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtil {
-
-    @Value("${jwt.secret}")
     private final String secret = "gyanendra";
 
     public String extractUsername(String token) {
