@@ -6,6 +6,9 @@ import { Question } from '../entity/question.entity';
   providedIn: 'root'
 })
 export class QuestionService {
+  addQuestion(questionform: Question) {
+    throw new Error('Method not implemented.');
+  }
 
   private baseUrl: string = "http://localhost:8080/customer"
   constructor(private httpClient: HttpClient) { }

@@ -1,1 +1,52 @@
-<p>admin-register-and-login works!</p>
+<div class="main-container">
+
+    <!-- //log in admin -->
+<div>
+    <div>
+        <h2>Admin Log In</h2>
+    </div>
+    <div class="container">
+        <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
+            <div class="register-form">
+                <label for="email">Email</label><br>
+                <input type="email" [(ngModel)]='model.email' name="email" required><br>
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" [(ngModel)]='model.password' name="password" required><br>
+            </div>
+            <button [disabled]="adminform.invalid" (click)="login()" type="submit">Log In</button>
+        </form>
+    </div>
+</div>
+
+<!-- //register admin -->
+<div>
+    <div>
+        <h2>Admin Sign Up</h2>
+    </div>
+    <div class="container">
+        <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
+            <div class="register-form">
+                <label for="name">Full Name</label><br>
+                <input type="text" [(ngModel)]='model.name' name="name" required><br>
+            </div>
+            <div>
+                <label for="username">Username</label><br>
+                <input type="text" [(ngModel)]='model.username' name="username" required><br>
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" [(ngModel)]='model.password' name="password" required><br>
+            </div>
+            <div>
+                <label for="email">Email</label><br>
+                <input type="email" [(ngModel)]='model.email' name="email" required><br>
+            </div>
+            <button [disabled]="adminform.invalid" (click)="refresh()" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+</div>
