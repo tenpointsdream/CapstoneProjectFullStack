@@ -52,7 +52,7 @@ public class CustomerController {
 
 	// User Controllers
 	@PostMapping("/user/adduser")
-	public ResponseEntity<User> addUser(User user) {
+	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User newUser = userService.addNewUser(user);
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}

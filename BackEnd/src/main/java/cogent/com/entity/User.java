@@ -15,6 +15,7 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	@Column(name = "usertype")
 	private UserType userType;
 
 	public User() {
