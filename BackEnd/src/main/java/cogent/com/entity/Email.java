@@ -7,11 +7,9 @@ public class Email {
 	private String subject;
 
 	public Email() {
-		super();
 	}
 
 	public Email(String recipient, String msgBody, String subject) {
-		super();
 		this.recipient = recipient;
 		this.msgBody = msgBody;
 		this.subject = subject;
