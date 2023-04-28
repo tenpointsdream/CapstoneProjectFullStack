@@ -31,8 +31,7 @@ public class AnswerController {
 
 	@GetMapping("getanswer/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
-		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return answerService.getAnswerById(id).map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PutMapping("/updateanswer/{id}")

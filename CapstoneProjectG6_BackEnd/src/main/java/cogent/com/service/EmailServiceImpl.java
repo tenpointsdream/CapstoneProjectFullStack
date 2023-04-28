@@ -1,6 +1,7 @@
 package cogent.com.service;
 
 import cogent.com.entity.Email;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,7 @@ public class EmailServiceImpl implements EmailService {
 
             javaMailSender.send(mailMessage);
             return "Mail Sent Successfully...";
-        } catch (Exception e) {
+        } catch (MailException e) {
             return "Error while Sending Mail";
         }
     }

@@ -26,7 +26,7 @@ public class BackEndApplication {
 		List<User> users = userService.getAllUsers();
 		String munenyo = "https://i.kym-cdn.com/entries/icons/original/000/037/291/chucover.jpg";
 		questionService.addQuestion(new Question("Test description", munenyo, "04-26-2023, 12:36",
-				"Pending", "C", "segv", null, users.get(0), null));
+				"false", "C", "segv", null, users.get(0), null));
 	}
 
 }
