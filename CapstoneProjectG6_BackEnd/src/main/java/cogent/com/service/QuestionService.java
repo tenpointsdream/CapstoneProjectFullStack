@@ -11,7 +11,7 @@ public interface QuestionService {
 	void deleteQuestionById(int id);
 	List<Question> getAllQuestion();
 	List<Question> getQuestionByTopic(String topic);
-	List<Question> getAllQuestionsFalse();
+	List<Question> getAllQuestionsByStatus(boolean status);
 	Optional<Question> getQuestionById(int id);
 	List<Question> getQuestionByTitle(String title);
 }

@@ -40,8 +40,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<Question> getAllQuestionsFalse() {
-		return questionRepository.findByStatus(false);
+	public List<Question> getAllQuestionsByStatus(boolean status) {
+		return questionRepository.findByStatus(status);
 	}
 
 	@Override
@@ -51,12 +51,6 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Question> getQuestionByTitle(String title) {
-//		List<Question> allQuestions = questionRepository.findAll();
-//		List<Question> allQuestionsByTitle = new ArrayList<>();
-//		for (Question question : allQuestions)
-//			if (question.getTitle().contains(title))
-//				allQuestionsByTitle.add(question);
-//		return allQuestionsByTitle;
 		List<Question> questions = questionRepository.findAll();
 		for (int i = 0; i < questions.size(); i++)
 			if (!questions.get(i).getTitle().contains(title)) {
