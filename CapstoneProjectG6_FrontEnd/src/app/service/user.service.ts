@@ -6,6 +6,9 @@ import { User } from '../entity/user.entity';
   providedIn: 'root'
 })
 export class UserService {
+  login(userForm: User) {
+    throw new Error('Method not implemented.');
+  }
 
   private baseUrl = 'http://localhost:8080/user/adduser';
   constructor(private httpClient: HttpClient) { }
