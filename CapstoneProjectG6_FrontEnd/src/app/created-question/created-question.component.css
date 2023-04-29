@@ -5,7 +5,6 @@ body {
 }
 
 /* header */
-/* header */
 .header {
     background-color: #d9e5ecd9;
     margin: 20px 25px;
@@ -47,6 +46,7 @@ body {
     padding: 5px;
     color: rgb(235, 231, 231);
 }
+
 /* body */
 h1 {
     font-size: 36px;
@@ -55,7 +55,7 @@ h1 {
     text-align: center;
 }
 
-.container ul{
+.container ul {
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 10px;
@@ -63,12 +63,29 @@ h1 {
     margin: 0 auto;
     list-style-type: none;
 }
-.container img{
+
+.container img {
     float: left;
 }
 
+.footer-div {
+    background-color: #d9e5ecd9;
+    margin: 20px 25px;
+    border-radius: 7px;
+    text-align: center;
+    padding: 0;
+    font-weight: 600;
+    font-size: small;
+    font-family: 'Times New Roman', Times, serif;
+}
 
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-
-
-
+ul li {
+    list-style-type: none;
+    font-weight: 500;
+}
