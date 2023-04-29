@@ -12,5 +12,5 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 	List<Question> findByTopic(String topic);
 
-	List<Question> findByStatus(String aFalse);
+	List<Question> findByStatus(boolean status);
 }
