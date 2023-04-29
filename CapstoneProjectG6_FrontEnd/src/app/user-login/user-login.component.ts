@@ -1,6 +1,6 @@
 import { User } from './../entity/user.entity';
 import { UserService } from './../service/user.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserType } from '../entity/UserSubmit';
 
 @Component({
@@ -8,13 +8,14 @@ import { UserType } from '../entity/UserSubmit';
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css']
 })
-export default class UserLoginComponent {
+export class UserLoginComponent {
 userForm: User;
 model : User;
 constructor(private UserService: UserService) {
   this.userForm = new User();
   this.model = new User();
 }
+
 onSubmit(userForm : any){
   this.userForm.username = userForm.value.username;
   this.userForm.password = userForm.value.password;
