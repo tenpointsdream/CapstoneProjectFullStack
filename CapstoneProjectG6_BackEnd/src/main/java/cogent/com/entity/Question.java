@@ -1,6 +1,5 @@
 package cogent.com.entity;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,8 +18,8 @@ public class Question {
 	private int id;
 	private String descriptionQuestion;
 	private String imageSrc;
-	private LocalDateTime datetime;
-	private boolean status;
+	private String datetime;
+	private String status;
 	private String topic;
 	private String title;
 
@@ -35,7 +34,7 @@ public class Question {
 	@JoinColumn(name = "approved_by_id")
 	private User qapproved_by;
 
-	public Question(String descriptionQuestion, String imageSrc, LocalDateTime datetime, boolean status, String topic,
+	public Question(String descriptionQuestion, String imageSrc, String datetime, String status, String topic,
 			String title, List<Answer> answers, User qcreated_by, User qapproved_by) {
 		this.descriptionQuestion = descriptionQuestion;
 		this.imageSrc = imageSrc;

@@ -2,7 +2,6 @@ package cogent.com.entity;
 
 import lombok.*;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +16,9 @@ public class Chat {
 	private String from_user;
 	private String to_user;
 	private String message;
-	private LocalDateTime datetime;
+	private String datetime;
 
-	public Chat(String from_user, String to_user, String message, LocalDateTime datetime) {
+	public Chat(String from_user, String to_user, String message, String datetime) {
 		this.from_user = from_user;
 		this.to_user = to_user;
 		this.message = message;

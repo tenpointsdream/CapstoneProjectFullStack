@@ -2,7 +2,6 @@ package cogent.com.entity;
 
 import lombok.*;
 import  javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +16,7 @@ public class Answer {
 	private String description_answer;
 	private String img_src;
 	private String status;
-	private LocalDateTime datetime;
+	private String datetime;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "question_id")
