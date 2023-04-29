@@ -89,6 +89,15 @@ button[type="submit"] {
   box-sizing: border-box;
 }
 
+button[type=submit]:hover {
+  background-color: #0d47a1;
+}
+
+button[type=submit]:disabled {
+  background-color: #7080d9;
+  color: #9FA8DA;
+}
+
 .container {
   border: 1px solid #ccc;
   padding: 20px;
