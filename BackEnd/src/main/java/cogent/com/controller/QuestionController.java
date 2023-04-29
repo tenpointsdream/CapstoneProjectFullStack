@@ -21,7 +21,7 @@ public class QuestionController {
 
 	@PostMapping("/addquestion")
 	public ResponseEntity<Question> addQuestion(Question question) {
-		Question addedQuestion = questionService.addQuetion(question);
+		Question addedQuestion = questionService.addQuestion(question);
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
 
@@ -65,8 +65,8 @@ public class QuestionController {
 	}
 
 	@GetMapping("/getquestionbystatus/{status}")
-	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") String status) {
-		List<Question> questions = questionService.getAllQuestionsFalse();
+	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") boolean status) {
+		List<Question> questions = questionService.getAllQuestionsByStatus(status);
 		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 }

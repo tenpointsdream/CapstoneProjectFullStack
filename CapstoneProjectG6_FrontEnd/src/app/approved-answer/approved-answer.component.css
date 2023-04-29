@@ -1,0 +1,36 @@
+body {
+  background: lightblue;
+  background: linear-gradient(#f6f9fc, lightblue);
+  font-family: Roboto, sans-serif;
+}
+
+button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:10px;
+}
+
+button:hover {
+  background-color: #333333;
+}
+
+button:focus {
+  background-color: #737373;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 50px 0 0;
+  font-weight: normal;
+  text-align: center;
+}
+
+

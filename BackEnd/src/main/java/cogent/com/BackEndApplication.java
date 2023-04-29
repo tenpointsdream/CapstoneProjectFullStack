@@ -32,7 +32,7 @@ public static void main(String[] args) {
 
 	QuestionService questionService = ctx.getBean(QuestionService.class);
 	List<User> users = userService.getAllUsers();
-	questionService.addQuetion(new Question("Test description", "test.jpg", "04-26-2023, 12:36", "False", "JavaScript",
+	questionService.addQuestion(new Question("Test description", "test.jpg", "04-26-2023, 12:36", false, "JavaScript",
 			"Getting to know", null, users.get(0), null));
 }
 

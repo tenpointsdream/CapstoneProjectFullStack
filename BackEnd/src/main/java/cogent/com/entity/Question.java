@@ -15,7 +15,7 @@ public class Question {
 	private String descriptionQuestion;
 	private String imageSrc;
 	private String datetime;
-	private String status;
+	private boolean status;
 	private String topic;
 	private String title;
 
@@ -30,14 +30,10 @@ public class Question {
 	@JoinColumn(name = "approved_by_id")
 	private User qapproved_by;
 
-	public Question() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Question() {}
 
-	public Question(String descriptionQuestion, String imageSrc, String datetime, String status, String topic,
+	public Question(String descriptionQuestion, String imageSrc, String datetime, boolean status, String topic,
 					String title, List<Answer> answers, User qcreated_by, User qapproved_by) {
-		super();
 		this.descriptionQuestion = descriptionQuestion;
 		this.imageSrc = imageSrc;
 		this.datetime = datetime;
@@ -81,11 +77,11 @@ public class Question {
 		this.datetime = datetime;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
