@@ -1,3 +1,4 @@
+import { UserHomePageComponent } from './user-home-page/user-home-page.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'adminregister', component: AdminRegisterAndLoginComponent },
   { path: 'userlogin', component: UserLoginComponent },
   { path: 'usersignup', component: UserSignUpComponent },
+  {path: 'userhomepage',component: UserHomePageComponent},
   { path: 'approvedanswer', component: ApprovedAnswerComponent },
   { path: 'createdquestion', component: CreatedQuestionComponent },
   { path: 'pendingquestion', component: PendingQuestionComponent },

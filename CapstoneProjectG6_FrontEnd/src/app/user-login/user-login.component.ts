@@ -37,7 +37,7 @@ export class UserLoginComponent {
           this.authenticationService.setToken("authorized");
           console.log("Logging in");
           this.isLoggedIn = true;
-          this.router.navigate(["createdquestion"]);
+          this.router.navigate(["userhomepage"]);
         }
       }, (err) => {
         this.authenticationService.logout();
