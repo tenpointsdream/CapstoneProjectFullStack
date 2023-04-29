@@ -1,6 +1,6 @@
 import { User } from './../entity/user.entity';
 import { UserService } from './../service/user.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserType } from '../entity/UserSubmit';
 import { AuthenticationService } from '../service/authentication.service';
 import { HttpClient } from '@angular/common/http';

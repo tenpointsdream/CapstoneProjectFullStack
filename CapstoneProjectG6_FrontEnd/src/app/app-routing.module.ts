@@ -23,6 +23,8 @@ const routes: Routes = [
   {path: 'pendingquestion', component: PendingQuestionComponent},
   {path: 'pendinganswer', component: PendingAnswerComponent},
   {path: '**', component: PageNotFoundComponent},
+  {path: 'user-login', component: UserLoginComponent },
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
