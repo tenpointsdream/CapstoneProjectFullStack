@@ -24,6 +24,7 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { UserHomePageComponent } from './user-home-page/user-home-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RouterModule } from '@angular/router';
     UserSignUpComponent,
     UserToUserChatComponent,
     UserRegisterAndLoginComponent,
-    AdminRegisterAndLoginComponent
+    AdminRegisterAndLoginComponent,
+    UserHomePageComponent
   ],
   imports: [
     BrowserModule,
