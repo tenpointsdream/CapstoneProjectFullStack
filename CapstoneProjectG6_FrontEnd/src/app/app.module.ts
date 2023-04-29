@@ -16,7 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PendingAnswerComponent } from './pending-answer/pending-answer.component';
 import { PendingQuestionComponent } from './pending-question/pending-question.component';
 import { SearchQuestionComponent } from './search-question/search-question.component';
-import { UserLoginComponent } from './user-login/user-login.component';
+import UserLoginComponent from './user-login/user-login.component';
 import { UserSignUpComponent } from './user-sign-up/user-sign-up.component';
 import { UserToUserChatComponent } from './user-to-user-chat/user-to-user-chat.component';
 import { UserRegisterAndLoginComponent } from './user-register-and-login/user-register-and-login.component';

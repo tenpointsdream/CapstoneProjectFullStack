@@ -14,10 +14,22 @@ export class UserRegisterAndLoginComponent {
 
   formUser: User;
   model: User;
+  userForm: any;
   constructor(private userService: UserService) {
     this.model = new User();
     this.formUser = new User();
   }
+  onLogIn(userForm : any){
+  this.userForm.username = userForm.value.username;
+  this.userForm.password = userForm.value.password;
+  this.userForm.userType = UserType.USER;
+  // this.UserService.login(this.userForm).subscribe();
+  this.login();
+}
+// todo
+login() {
+
+}
   onSubmit(registerform: any) {
 
     this.formUser.name = registerform.value.name;

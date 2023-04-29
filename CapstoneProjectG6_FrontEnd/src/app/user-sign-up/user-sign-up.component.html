@@ -1,1 +1,48 @@
-<p>user-sign-up works!</p>
+<body>
+        <!-- header -->
+        <div class="header">
+            <div class="header-left" id="logo">
+                <ul>
+                    <li class="logo">DoConnect <span class="user-type">User </span><i class="fa-solid fa-user"></i> </li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <ul>
+                    <li class="list"><a href=""><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li class="list"><a href=""><i class="fa-solid fa-clipboard-question"></i> Ask Question</a></li>
+                    <li class="list"><a href=""><i class="fa-solid fa-pen"></i> Answer Question</a></li>
+                    <li class="list"><a href=""><i class="fa-solid fa-message"></i> Chat with us</a></li>
+                    <li class="list" id="btn"><a href="">Sign Out</a></li>
+                    <li class="list user-type">user</li>
+                </ul>
+            </div>
+        </div>
+        <!-- form -->
+        
+    <div>
+        <div>
+            <h2>User Register</h2>
+        </div>
+        <div class="container">
+            <form novalidate #registerform='ngForm' (ngSubmit)="onSubmit(registerform)">
+                <div class="register-form">
+                    <label for="name">Full Name</label><br>
+                    <input type="text" [(ngModel)]='model.name' name="name" required><br>
+                </div>
+                <div>
+                    <label for="username">Username</label><br>
+                    <input type="text" [(ngModel)]='model.username' name="username" required><br>
+                </div>
+                <div>
+                    <label for="password">Password</label><br>
+                    <input type="password" [(ngModel)]='model.password' name="password" required><br>
+                </div>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input type="email" [(ngModel)]='model.email' name="email" required><br>
+                </div>
+                <button [disabled]="registerform.invalid" (click)="refresh()" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>

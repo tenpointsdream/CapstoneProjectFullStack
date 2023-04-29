@@ -3,7 +3,51 @@ body {
   background: linear-gradient(#f6f9fc, lightblue);
   font-family: Roboto, sans-serif;
 }
-
+    /* header */
+    /* header */
+    .header {
+      background-color: #d9e5ecd9;
+      margin: 20px 25px;
+      display: flex;
+      justify-content: space-around;
+      gap: 50px;
+      border-radius: 7px;
+      padding: 15px;
+      font-weight: 600;
+      font-size: larger;
+      font-family: 'Times New Roman', Times, serif;
+    }
+  
+    .header-left li {
+      float: left;
+      display: inline;
+      margin: 0 30px 0 0;
+  
+    }
+  
+    .header-right li {
+      display: inline;
+      float: left;
+      margin: 0 0 0 30px;
+    }
+  
+    .list a {
+      text-decoration: none;
+      color: black;
+    }
+  
+    .user-type {
+      color: #387cea;
+    }
+  
+    #btn a {
+      background-color: rgb(97, 93, 93);
+      border-radius: 3px;
+      padding: 5px;
+      color: rgb(235, 231, 231);
+    }
+  
+    /* body */
 table, td {
   border:1px solid black;
   border-collapse: collapse;

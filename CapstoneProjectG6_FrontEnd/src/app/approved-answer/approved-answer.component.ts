@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./approved-answer.component.css']
 })
 export class ApprovedAnswerComponent {
-
+approvedAnswers: string[] = [
+    'Yes',
+    'No',
+    'Maybe',
+    'I don\'t know',
+  ];
 }
