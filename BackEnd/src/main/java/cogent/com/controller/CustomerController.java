@@ -78,7 +78,7 @@ public class CustomerController {
 	// Question Controllers
 	@PostMapping("/question/addquestion")
 	public ResponseEntity<Question> addQuestion(Question question) {
-		Question addedQuestion = questionService.addQuetion(question);
+		Question addedQuestion = questionService.addQuestion(question);
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
 
@@ -104,7 +104,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getallquestions")
-	public ResponseEntity<List<Question>> getAllQuestion() {
+	public ResponseEntity<List<Question>> geQuestionsById() {
 		List<Question> questions = questionService.getAllQuestion();
 		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
@@ -123,13 +123,13 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getquestionbytopic/{topic}")
-	public ResponseEntity<List<Question>> getQuestionByTopic(@PathVariable("topic") String topic) {
+	public ResponseEntity<List<Question>> getQuestionsByTopic(@PathVariable("topic") String topic) {
 		List<Question> questions = questionService.getQuestionByTopic(topic);
 		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbyid/{id}")
-	public ResponseEntity<Question> getAllQuestion(@PathVariable("id") int id) {
+	public ResponseEntity<Question> geQuestionsById(@PathVariable("id") int id) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
 		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}

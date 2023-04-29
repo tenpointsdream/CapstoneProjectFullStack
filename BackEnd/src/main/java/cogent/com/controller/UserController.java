@@ -36,13 +36,6 @@ public class UserController {
 
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest request) {
-//		try{
-//			authenticationManager.authenticate(
-//					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-//			);
-//		} catch (Exception e){
-//			throw new Exception("Invalid username/password");
-//		}
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
 		);
