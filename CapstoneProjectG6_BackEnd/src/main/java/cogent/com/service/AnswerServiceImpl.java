@@ -1,51 +1,42 @@
 package cogent.com.service;
 
-import cogent.com.entity.Answer;
-import cogent.com.repository.AnswerRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import cogent.com.entity.Answer;
+import cogent.com.repository.AnswerRepository;
+
 @Service
-public class AnswerServiceImpl implements AnswerService{
-    private AnswerRepository answerRepository;
-    @Autowired
-    public AnswerServiceImpl(AnswerRepository answerRepository) {
-        this.answerRepository = answerRepository;
-    }
+public class AnswerServiceImpl implements AnswerService {
 
-    @Override
-    public Answer addAnswer(Answer answer) {
-        return answerRepository.save(answer);
-    }
+	@Autowired
+	private AnswerRepository answerRepository;
 
-    @Override
-    public Answer updateAnswer(Answer answer) {
-        return answerRepository.save(answer);
-    }
+	@Override
+	public List<Answer> getAllAnswers() {
+		return answerRepository.findAll();
+	}
 
-    @Override
-    public void deleteAnswerById(int answerId) {
-        answerRepository.deleteById(answerId);
-    }
+	@Override
+	public Answer addAnswer(Answer answer) {
+		return answerRepository.save(answer);
+	}
 
-    @Override
-    public List<Answer> getAllAnswers() {
-        return answerRepository.findAll();
-    }
+	@Override
+	public Answer updateAnswer(Answer answer) {
+		return answerRepository.save(answer);
+	}
 
-    @Override
-    public List<Answer> getAllAnswersFalse() {
-        return answerRepository.findAllAnswerFalse();
-    }
+	@Override
+	public Optional<Answer> getAnswerById(int id) {
+		return answerRepository.findById(id);
+	}
 
-    @Override
-    public Answer getAnswerById(int answerId) {
-        return answerRepository.findById(answerId).get();
-    }
-
-    @Override
-    public List<Answer> getAnswersByQuestionId(int questionId) {
-        return answerRepository.findAnswersByQuestionId(questionId);
-    }
+	@Override
+	public void deleteAnswerById(int id) {
+		answerRepository.deleteById(id);
+	}
 }

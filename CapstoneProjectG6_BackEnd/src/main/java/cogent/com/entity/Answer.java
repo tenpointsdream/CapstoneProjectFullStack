@@ -1,35 +1,32 @@
 package cogent.com.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import  javax.persistence.*;
 
-import javax.persistence.*;
-
-
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "answers")
+@NoArgsConstructor
+@Entity
+@Table(name = "answer")
 public class Answer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String description_answer;
+	private String img_src;
+	private String status;
+	private String datetime;
 
-    private String description_answer;
-    private String img_src;
-    private String status;
-    private String datetime;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "question_id")
+	private Question question;
 
-    @ManyToOne
-    private Question question;
+	@OneToOne
+	@JoinColumn(name = "approved_by_id")
+	private User approved_by;
 
-    @OneToOne
-    private User approved_by;
-
-    @OneToOne
-    private User created_by;
-
+	@OneToOne
+	@JoinColumn(name = "created_by_id")
+	private User created_by;
 }

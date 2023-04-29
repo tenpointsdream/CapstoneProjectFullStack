@@ -1,10 +1,10 @@
-package cogent.com;
+package cogent.com.BackEnd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CapstoneProjectGroup6ApplicationTests {
+class BackEndApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,31 +1,49 @@
 package cogent.com.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import javax.persistence.*;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "questions")
+@NoArgsConstructor
+@Entity
+@Table(name = "question")
 public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String description_question;
-    private String image_src;
-    private String datetime;
-    private String status;
-    private String topics;
-    private String title;
-    @OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
-    private List<Answer> answers;
-    @OneToOne
-    private User qcreated_by;
-    @OneToOne
-    private User qapproved_by;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String descriptionQuestion;
+	private String imageSrc;
+	private String datetime;
+	private String status;
+	private String topic;
+	private String title;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnore
+	private List<Answer> answers;
+	@OneToOne
+	@JoinColumn(name = "created_by_id")
+	private User qcreated_by;
+
+	@OneToOne
+	@JoinColumn(name = "approved_by_id")
+	private User qapproved_by;
+
+	public Question(String descriptionQuestion, String imageSrc, String datetime, String status, String topic,
+			String title, List<Answer> answers, User qcreated_by, User qapproved_by) {
+		this.descriptionQuestion = descriptionQuestion;
+		this.imageSrc = imageSrc;
+		this.datetime = datetime;
+		this.status = status;
+		this.topic = topic;
+		this.title = title;
+		this.answers = answers;
+		this.qcreated_by = qcreated_by;
+		this.qapproved_by = qapproved_by;
+	}
 }

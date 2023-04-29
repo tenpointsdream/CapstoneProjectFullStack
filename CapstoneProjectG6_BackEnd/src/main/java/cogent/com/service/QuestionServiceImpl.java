@@ -1,53 +1,69 @@
 package cogent.com.service;
 
-import cogent.com.entity.Question;
-import cogent.com.repository.QuestionRepository;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import cogent.com.entity.Question;
+import cogent.com.repository.QuestionRepository;
 
 @Service
-public class QuestionServiceImpl implements QuestionService{
-    private QuestionRepository questionRepository;
-  @Autowired
+public class QuestionServiceImpl implements QuestionService {
 
-    public QuestionServiceImpl(QuestionRepository questionRepository) {
-        this.questionRepository = questionRepository;
-    }
+	@Autowired
+	private QuestionRepository questionRepository;
 
-    @Override
-    public Question addQuestion(Question question) {
-        return questionRepository.save(question);
-    }
+	@Override
+	public Question addQuestion(Question question) {
+		return questionRepository.save(question);
+	}
 
-    @Override
-    public Question updateQuestion(Question question) {
-        return questionRepository.save(question);
-    }
+	@Override
+	public Question updateQuestion(Question question) {
+		return questionRepository.save(question);
+	}
 
-    @Override
-    public void deleteQuestionById(int questionId) {
-        questionRepository.deleteById(questionId);
-    }
+	@Override
+	public void deleteQuestionById(int id) {
+		questionRepository.deleteById(id);
+	}
 
-    @Override
-    public List<Question> getAllQuestions() {
-        return questionRepository.findAll();
-    }
+	@Override
+	public List<Question> getAllQuestion() {
+		return questionRepository.findAll();
+	}
 
-    @Override
-    public List<Question> getAllQuestionsFalse() {
-        return questionRepository.findAllByFlagFalse();
-    }
+	@Override
+	public List<Question> getQuestionByTopic(String topic) {
+		return questionRepository.findByTopic(topic);
+	}
 
-    @Override
-    public List<Question> getQuestionsByTopic(String topic) {
-        return questionRepository.finByTopic(topic);
-    }
+	@Override
+	public List<Question> getAllQuestionsFalse() {
+		return questionRepository.findByStatus(false);
+	}
 
-    @Override
-    public Question getQuestionById(int questionId) {
-        return questionRepository.findById(questionId).get();
-    }
+	@Override
+	public Optional<Question> getQuestionById(int id) {
+		return questionRepository.findById(id);
+	}
+
+	@Override
+	public List<Question> getQuestionByTitle(String title) {
+//		List<Question> allQuestions = questionRepository.findAll();
+//		List<Question> allQuestionsByTitle = new ArrayList<>();
+//		for (Question question : allQuestions)
+//			if (question.getTitle().contains(title))
+//				allQuestionsByTitle.add(question);
+//		return allQuestionsByTitle;
+		List<Question> questions = questionRepository.findAll();
+		for (int i = 0; i < questions.size(); i++)
+			if (!questions.get(i).getTitle().contains(title)) {
+				questions.remove(i);
+				i--;
+			}
+		return questions;
+	}
+
 }
