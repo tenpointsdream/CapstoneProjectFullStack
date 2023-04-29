@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css']
 })
-export default class UserLoginComponent {
+export class UserLoginComponent {
   private baseUrl: string = "http://localhost:8080/user/login";
   userForm: User;
   model: User;
