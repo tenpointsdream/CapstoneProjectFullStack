@@ -36,10 +36,17 @@ public class UserController {
 
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest request) {
-		authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-		);
+		authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		return jwtUtil.generateToken(request.getUsername());
+	}
+
+	@GetMapping("/login/{username}/{password}")
+	public ResponseEntity<Boolean> retrieveToken(@PathVariable("username") String username,
+			@PathVariable("password") String password) {
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+		String token = jwtUtil.generateToken(username);
+		return new ResponseEntity<>((token.length() > 0), HttpStatus.OK);
 	}
 
 	@PostMapping("/adduser")
@@ -57,7 +64,8 @@ public class UserController {
 	@GetMapping("/getuserbyid/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		Optional<User> userOptional = userService.getUserById(id);
-		return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@PutMapping("/updateuserbyid/{id}")
