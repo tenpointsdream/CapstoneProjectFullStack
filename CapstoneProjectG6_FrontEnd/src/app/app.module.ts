@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';import { UserHomePageComponent } from './user-home-page/user-home-page.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -49,13 +50,14 @@ import { CookieService } from 'ngx-cookie-service';import { UserHomePageComponen
     AdminRegisterAndLoginComponent,
     UserHomePageComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    RouterModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        RouterModule,
+        NgOptimizedImage,
+    ],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })
