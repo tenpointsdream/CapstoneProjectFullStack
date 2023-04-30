@@ -17,22 +17,26 @@ import { SearchQuestionComponent } from './search-question/search-question.compo
 import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
 
 const routes: Routes = [
-  { path: '',redirectTo: '/home',pathMatch: 'full'  },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'home/adminlogin', component: AdminLoginComponent },
   { path: 'home/adminregister', component: AdminRegisterAndLoginComponent },
   { path: 'home/userlogin', component: UserLoginComponent },
   { path: 'home/usersignup', component: UserSignUpComponent },
+  // user
   { path: 'userhomepage', component: UserHomePageComponent },
-  { path: 'adminhomepage',component: AdminHomePageComponent},
-  { path: 'userhomepage/searchquestion', component: SearchQuestionComponent },
   { path: 'approvedanswer', component: ApprovedAnswerComponent },
   { path: 'createdquestion', component: CreatedQuestionComponent },
-  { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent},
-  { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent},
+  { path: 'userhomepage/searchquestion', component: SearchQuestionComponent },
+  { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent },
+  { path: 'userhomepage/createdquestion', component: CreatedQuestionComponent},
+  { path: 'userhomepage/approvedquestion', component: ApprovedAnswerComponent},
+  // admin
+  { path: 'adminhomepage', component: AdminHomePageComponent },
   { path: 'adminhomepage/pendingquestion', component: PendingQuestionComponent },
   { path: 'adminhomepage/pendinganswer', component: PendingAnswerComponent },
-  { path: 'userhomepage/usertouserchat', component: UserToUserChatComponent},
+  // chat
+  { path: 'userhomepage/usertouserchat', component: UserToUserChatComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
