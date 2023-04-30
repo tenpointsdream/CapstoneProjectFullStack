@@ -31,10 +31,10 @@
         </tr>
         <tbody *ngFor="let answer of answers">
         <tr *ngIf="answer.status == false">
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
+          <td>{{answer.id}}</td>
+          <td>{{answer.description_answer}}</td>
+          <td>{{answer.created_by.name}}</td>
+          <td>{{answer.datetime}}</td>
           <td><button>placeholder</button></td>
         </tr>
         </tbody>
