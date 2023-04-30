@@ -13,7 +13,7 @@ import cogent.com.entity.*;
 import cogent.com.service.*;
 import cogent.com.util.UserType;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -77,7 +77,7 @@ public class CustomerController {
 
 	// Question Controllers
 	@PostMapping("/question/addquestion")
-	public ResponseEntity<Question> addQuestion(Question question) {
+	public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
 		Question addedQuestion = questionService.addQuestion(question);
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
@@ -104,7 +104,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getallquestions")
-	public ResponseEntity<List<Question>> geQuestionsById() {
+	public ResponseEntity<List<Question>> getAllQuestions() {
 		List<Question> questions = questionService.getAllQuestion();
 		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
 	}
@@ -129,14 +129,14 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getquestionbyid/{id}")
-	public ResponseEntity<Question> geQuestionsById(@PathVariable("id") int id) {
+	public ResponseEntity<Question> getQuestionsById(@PathVariable("id") int id) {
 		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
 		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	// Answer Controllers
 	@PostMapping("/answer/addanswer")
-	public ResponseEntity<Answer> addAnswer(Answer answer) {
+	public ResponseEntity<Answer> addAnswer(@RequestBody Answer answer) {
 		Answer addedAnswer = answerService.addAnswer(answer);
 		return new ResponseEntity<>(addedAnswer, HttpStatus.OK);
 	}

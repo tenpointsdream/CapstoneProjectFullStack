@@ -5,15 +5,9 @@ import { AuthenticationService } from '../service/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserProfile } from '../entity/userprofile.entity';
 
-interface UserProfile {
-  id: number;
-  name: string;
-  username: string;
-  password: string;
-  email: string;
-  userType: UserType;
-}
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',

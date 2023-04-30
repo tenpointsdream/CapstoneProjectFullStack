@@ -5,34 +5,42 @@ import { User } from './../entity/user.entity';
 import { Question } from './../entity/question.entity';
 import { Component } from '@angular/core';
 import { Answer } from '../entity/answer.entity';
-interface question {
-  id: number;
-  descriptionQuestion: string;
-  imageSrc: string;
-  status: string;
-  topic: string;
-  title: string;
-  answers: Answer[];
-  qcreated_by: User;
-  qapproved_by: User;
-}
+import { HttpClient } from '@angular/common/http';
+import { UserProfile } from '../entity/userprofile.entity';
+import { CookieService } from 'ngx-cookie-service';
+
+
 @Component({
   selector: 'app-create-new-question',
   templateUrl: './create-new-question.component.html',
   styleUrls: ['./create-new-question.component.css']
 })
 export class CreateNewQuestionComponent {
-  questionForm !: question;
-  model !: question;
-  constructor(private questionService: QuestionService) {
+  questionForm !: Question;
+  model !: Question;
+  constructor(
+    private questionService: QuestionService,
+    private httpClient: HttpClient,
+    private cookieService: CookieService) {
   }
   onSubmit(questionform: any) {
     this.questionForm.title = questionform.value.title;
     this.questionForm.topic = questionform.value.topic;
     this.questionForm.descriptionQuestion = questionform.value.descriptionQuestion;
     this.questionForm.imageSrc = questionform.value.imageSrc;
+    this.questionForm.status = 'False';
+    this.questionForm.answers = [];
+    this.questionForm.qapproved_by = new User();
+    this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.cookieService.get('username')}`,
+      {
+        headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` }
+        //withCredentials: true
+      })
+      .subscribe((userProfile: UserProfile) => {
+        this.questionForm.qcreated_by = userProfile;
+      });
     // todo
-    this.questionService.addQuestion(this.questionForm);
+    this.questionService.addQuestion(this.questionForm).subscribe();
     this.refresh();
   }
   refresh() {
