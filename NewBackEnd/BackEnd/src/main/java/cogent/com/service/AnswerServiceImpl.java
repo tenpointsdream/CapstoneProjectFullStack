@@ -41,7 +41,7 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public List<Answer> getAllAnswersFalse() {
-		return answerRepository.findByStatus("False");
+		return answerRepository.findByStatus(false);
 	}
 
 	@Override

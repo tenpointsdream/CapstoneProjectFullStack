@@ -1,3 +1,4 @@
+import { UserToUserChatComponent } from './user-to-user-chat/user-to-user-chat.component';
 import { UserHomePageComponent } from './user-home-page/user-home-page.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -15,19 +16,21 @@ import { SearchQuestionComponent } from './search-question/search-question.compo
 import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '',redirectTo: '/home',pathMatch: 'full'  },
   { path: 'home', component: HomeComponent },
-  { path: 'adminlogin', component: AdminLoginComponent },
-  { path: 'adminregister', component: AdminRegisterAndLoginComponent },
-  { path: 'userlogin', component: UserLoginComponent },
-  { path: 'usersignup', component: UserSignUpComponent },
+  { path: 'home/adminlogin', component: AdminLoginComponent },
+  { path: 'home/adminregister', component: AdminRegisterAndLoginComponent },
+  { path: 'home/userlogin', component: UserLoginComponent },
+  { path: 'home/usersignup', component: UserSignUpComponent },
   { path: 'userhomepage', component: UserHomePageComponent },
-  { path: 'searchquestion', component: SearchQuestionComponent },
+  { path: 'userhomepage/searchquestion', component: SearchQuestionComponent },
   { path: 'approvedanswer', component: ApprovedAnswerComponent },
   { path: 'createdquestion', component: CreatedQuestionComponent },
-  { path: 'createquestion', component: CreateNewQuestionComponent},
+  { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent},
+  { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent},
   { path: 'pendingquestion', component: PendingQuestionComponent },
   { path: 'pendinganswer', component: PendingAnswerComponent },
+  { path: 'usertouserchat', component: UserToUserChatComponent},
   { path: '**', component: PageNotFoundComponent },
 ];
 
