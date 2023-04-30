@@ -10,7 +10,7 @@
             <ul>
                 <li class="list"><a href=""><i class="fa-solid fa-house"></i> Dashboard</a></li>
                 <li class="list"><a href=""><i class="fa-solid fa-clipboard-question"></i> Ask Question</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-pen"></i> Answer Question</a></li>
+                <li class="list"><a href="" routerLink="/createanswer"><i class="fa-solid fa-pen"></i> Answer Question</a></li>
                 <li class="list"><a href=""><i class="fa-solid fa-message"></i> Chat with us</a></li>
                 <li class="list" id="btn"><a href="">Sign Out</a></li>
                 <li class="list user-type">user</li>
@@ -39,6 +39,28 @@
             </form>
         </div>
     </div>
+    <div *ngIf="onVisible">
+        <table class="table">
+            <thead>
+                <th>ID</th>
+                <th>Topic</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Action</th>
+            </thead>
+            <tbody *ngFor="let question of searchedQuestions">
+                <tr>
+                    <td>{{question.id}}</td>
+                    <td>{{question.topic}}</td>
+                    <td>{{question.title}}</td>
+                    <td>{{question.descriptionQuestion}}</td>
+                    <td>
+                        <button>Show details</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <footer class="footer-div">
         <ul class="footer">
             <li>Abdulkerim Mohammed</li>
@@ -48,25 +70,3 @@
         <p>2023 Copy Right ©</p>
     </footer>
 </body>
-
-<div *ngIf="onVisible">
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Topic</th>
-            <th>Description</th>
-            <th>Action</th>
-        </thead>
-        <tbody *ngFor="let question of searchedQuestions">
-            <tr>
-                <td>{{question.id}}</td>
-                <td>{{question.topic}}</td>
-                <td>{{question.title}}</td>
-                <td>{{question.descriptionQuestion}}</td>
-                <td>
-                    <button>Show details</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>

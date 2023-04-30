@@ -8,12 +8,12 @@
         <div class="header-right">
             <ul>
                 <li class="list"><a href=""><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-question"></i> Create Question</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-lightbulb"></i> Search Question</a></li>
+                <li class="list"><a href="" routerLink="/createquestion"><i class="fa-solid fa-question"></i> Create Question</a></li>
+                <li class="list"><a href="" routerLink="/searchquestion"><i class="fa-solid fa-lightbulb"></i> Search Question</a></li>
                 <li class="list"><a href=""><i class="fa-solid fa-message"></i> Chat with us</a></li>
-                <li class="list" id="btn"><a href="">Sign Out</a></li>
+                <li class="list" id="btn" (click)="signout()" routerLink="/userlogin"><a href="">Sign Out</a></li>
                 <!-- todo -->
-                <li class="list user-type">user</li>
+                <li class="list user-type">USER</li>
             </ul>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <h1>User Home Page</h1>
         </div> -->
         <div class="container">
-          This is Home Page
+          <h3 [(ngModel)]="name">Hi there {{name}}!</h3>
         </div>
     </div>
     <footer class="footer-div">
