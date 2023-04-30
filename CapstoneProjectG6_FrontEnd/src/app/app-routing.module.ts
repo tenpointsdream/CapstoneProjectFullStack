@@ -11,6 +11,8 @@ import { CreatedQuestionComponent } from './created-question/created-question.co
 import { PendingQuestionComponent } from './pending-question/pending-question.component';
 import { PendingAnswerComponent } from './pending-answer/pending-answer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SearchQuestionComponent } from './search-question/search-question.component';
+import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,14 +21,14 @@ const routes: Routes = [
   { path: 'adminregister', component: AdminRegisterAndLoginComponent },
   { path: 'userlogin', component: UserLoginComponent },
   { path: 'usersignup', component: UserSignUpComponent },
-  {path: 'userhomepage',component: UserHomePageComponent},
+  { path: 'userhomepage', component: UserHomePageComponent },
+  { path: 'searchquestion', component: SearchQuestionComponent },
   { path: 'approvedanswer', component: ApprovedAnswerComponent },
   { path: 'createdquestion', component: CreatedQuestionComponent },
+  { path: 'createquestion', component: CreateNewQuestionComponent},
   { path: 'pendingquestion', component: PendingQuestionComponent },
   { path: 'pendinganswer', component: PendingAnswerComponent },
   { path: '**', component: PageNotFoundComponent },
-  { path: 'user-login', component: UserLoginComponent },
-  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
