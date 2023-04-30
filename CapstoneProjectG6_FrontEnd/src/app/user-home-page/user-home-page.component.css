@@ -10,7 +10,7 @@ body {
     margin: 20px 25px;
     display: flex;
     justify-content: space-around;
-    gap: 50px;
+    gap: 5;
     border-radius: 7px;
     padding: 15px;
     font-weight: 600;
