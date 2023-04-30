@@ -12,7 +12,7 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String descriptionQuestion;
+	private String description;
 	private String imageSrc;
 	private String datetime;
 	private boolean status;
@@ -32,9 +32,9 @@ public class Question {
 
 	public Question() {}
 
-	public Question(String descriptionQuestion, String imageSrc, String datetime, boolean status, String topic,
+	public Question(String description, String imageSrc, String datetime, boolean status, String topic,
 					String title, List<Answer> answers, User qcreated_by, User qapproved_by) {
-		this.descriptionQuestion = descriptionQuestion;
+		this.description = description;
 		this.imageSrc = imageSrc;
 		this.datetime = datetime;
 		this.status = status;
@@ -53,12 +53,12 @@ public class Question {
 		this.id = id;
 	}
 
-	public String getDescriptionQuestion() {
-		return descriptionQuestion;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptionQuestion(String descriptionQuestion) {
-		this.descriptionQuestion = descriptionQuestion;
+	public void setDescription(String descriptionQuestion) {
+		this.description = descriptionQuestion;
 	}
 
 	public String getImageSrc() {
