@@ -3,7 +3,7 @@ import { User } from "./user.entity";
 
 export interface Question {
     id: number;
-    description: string;
+    descriptionQuestion: string;
     imageSrc: string;
     status: boolean;
     topic: string;
