@@ -54,8 +54,12 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public List<Question> getQuestionByTitle(String title) {
 		List<Question> allQuestions = questionRepository.findAll();
-		allQuestions.removeIf(str -> !str.getTitle().contains(title));
-		return allQuestions;
+		List<Question> allQuestionsByTitle = new ArrayList<>();
+		for (Question question : allQuestions) {
+			if (question.getTitle().contains(title))
+				allQuestionsByTitle.add(question);
+		}
+		return allQuestionsByTitle;
 	}
 
 }
