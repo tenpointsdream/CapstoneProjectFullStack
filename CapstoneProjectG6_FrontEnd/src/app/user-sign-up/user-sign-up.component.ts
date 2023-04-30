@@ -24,9 +24,9 @@ formUser: User;
     this.formUser.userType = UserType.USER;
     console.log(registerform.value);
     this.userService.addUser(this.formUser).subscribe();
-    this.refresh();
+    this.goto();
   }
-  refresh() {
-    window.location.reload();
+  goto() {
+    window.location.href = '/home/userlogin';
   }
 }
