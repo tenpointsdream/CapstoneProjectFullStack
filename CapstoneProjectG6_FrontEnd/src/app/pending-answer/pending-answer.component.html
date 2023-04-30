@@ -29,34 +29,15 @@
           <th>Date Time</th>
           <th>Action</th>
         </tr>
-        <tr>
+        <tbody *ngFor="let answer of answers">
+        <tr *ngIf="answer.status == false">
           <td>Place holder</td>
           <td>Chupapi</td>
           <td>Bicho</td>
           <td>Taso</td>
-          <td>Munenyo</td>
+          <td><button>placeholder</button></td>
         </tr>
-        <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
-        </tr>
-        <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
-        </tr>
-        <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
-        </tr>
+        </tbody>
       </table>
     </div>
   </div>
