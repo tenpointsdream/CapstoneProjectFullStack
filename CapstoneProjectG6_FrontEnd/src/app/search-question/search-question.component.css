@@ -118,3 +118,13 @@ ul li {
     list-style-type: none;
     font-weight: 500;
 }
+
+.table {
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+.thead .tbody .th .td {
+    border: 2px solid;
+    border-collapse: collapse;
+}

@@ -49,6 +49,8 @@ export class UserLoginComponent {
           })
           .subscribe((userProfile: UserProfile) => {
             console.log('Logged in as: ', userProfile.username);
+            this.cookieService.set('username', userProfile.username);
+            this.cookieService.set('name', userProfile.name);
             console.log('Email: ', userProfile.email);
             console.log('User type: ' + userProfile.userType);
           });

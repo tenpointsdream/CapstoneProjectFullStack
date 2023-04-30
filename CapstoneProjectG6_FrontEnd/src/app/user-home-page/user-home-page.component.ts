@@ -7,10 +7,18 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./user-home-page.component.css']
 })
 export class UserHomePageComponent {
-
+  name: string;
   constructor(
     private router: Router,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService) {
+    this.name = cookieService.get('name');
+    //this.refresh();
+  }
+
+  refresh(): void {
+    window.location.reload();
+  }
   signout(): void {
+    this.cookieService.deleteAll();
   }
 }

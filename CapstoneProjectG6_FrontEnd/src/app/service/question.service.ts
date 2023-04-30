@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Question } from '../entity/question.entity';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,9 +12,9 @@ export class QuestionService {
   }
 
   private baseUrl: string = "http://localhost:8080/customer"
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
   searchQuestion(topic: string, title: string): Observable<Question[]> {
     const url = `${this.baseUrl}/question/searchquestions/${topic}/${title}`;
-    return this.httpClient.get<Question[]>(url);
+    return this.httpClient.get<Question[]>(url, {headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}`}});
   }
 }
