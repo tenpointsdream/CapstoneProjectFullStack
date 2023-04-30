@@ -5,17 +5,17 @@ import { User } from '../entity/user.entity';
 import { Answer } from '../entity/answer.entity';
 import { CookieService } from 'ngx-cookie-service';
 
-interface questions {
-  id: number;
-  descriptionQuestion: string;
-  imageSrc: string;
-  status: string;
-  topic: string;
-  title: string;
-  answers: Answer[];
-  qcreated_by: User;
-  qapproved_by: User;
-}
+// interface questions {
+//   id: number;
+//   descriptionQuestion: string;
+//   imageSrc: string;
+//   status: string;
+//   topic: string;
+//   title: string;
+//   answers: Answer[];
+//   qcreated_by: User;
+//   qapproved_by: User;
+// }
 
 @Component({
   selector: 'app-search-question',
@@ -27,7 +27,7 @@ export class SearchQuestionComponent {
   onVisible: boolean = false;
   topic!: string;
   title!: string;
-  searchedQuestions: questions[];
+  searchedQuestions: Question[];
   constructor(
     private questionService: QuestionService,
     private cookieService: CookieService) {
@@ -44,11 +44,13 @@ export class SearchQuestionComponent {
     }
     else {
       this.searchedQuestions = [{
-        'id': 0, 'descriptionQuestion': 'None',
+        'id': 0,
+        'descriptionQuestion': 'None',
         'imageSrc': 'None',
-        'status': 'None',
+        'status': false,
         'topic': 'None',
         'title': 'None',
+        'datetime': 'None',
         'answers': [],
         'qcreated_by': new User(),
         'qapproved_by': new User()

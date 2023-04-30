@@ -32,28 +32,18 @@
           <th>Date Time</th>
           <th>Action</th>
         </tr>
-        <tr>
-          <td>Place holder</td>
-          <td><img src="assets/images/chucover.jpeg" width="100" height="75">
-          </td>
-          <td>Chupapi Munenyo</td>
-          <td>foo</td>
-          <td>bar</td>
-          <td>bicho taso</td>
-          <td>chumommy</td>
-          <td>Muñyayño</td>
-        </tr>
-        <tr>
-          <td>Place holder</td>
-          <td><img src="assets/images/chucover.jpeg" width="100" height="75">
-          </td>
-          <td>Chupapi Munenyo</td>
-          <td>foo</td>
-          <td>bar</td>
-          <td>bicho taso</td>
-          <td>chumommy</td>
-          <td>Muñyayño</td>
-        </tr>
+        <tbody *ngFor="let question of questions">
+          <tr *ngIf="question.status == false">
+            <td>{{question.id}}</td>
+            <td><img ngSrc="{{question.imageSrc}}" width="100" height="75" alt="question_image"></td>
+            <td>{{question.topic}}</td>
+            <td>{{question.title}}</td>
+            <td>{{question.descriptionQuestion}}</td>
+            <td>{{question.qcreated_by.name}}</td>
+            <td>{{question.datetime}}</td>
+            <td><button>placeholder</button></td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

@@ -28,7 +28,7 @@ export class CreateNewQuestionComponent {
     this.questionForm.topic = questionform.value.topic;
     this.questionForm.descriptionQuestion = questionform.value.descriptionQuestion;
     this.questionForm.imageSrc = questionform.value.imageSrc;
-    this.questionForm.status = 'False';
+    this.questionForm.status = false;
     this.questionForm.answers = [];
     this.questionForm.qapproved_by = new User();
     this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.cookieService.get('username')}`,

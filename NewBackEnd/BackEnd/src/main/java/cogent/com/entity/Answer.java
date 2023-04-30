@@ -11,7 +11,7 @@ public class Answer {
 	private int id;
 	private String description_answer;
 	private String img_src;
-	private String status;
+	private boolean status;
 	private String datetime;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -31,7 +31,7 @@ public class Answer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Answer(String description_answer, String img_src, String status, String datetime, Question question,
+	public Answer(String description_answer, String img_src, boolean status, String datetime, Question question,
 			User approved_by, User created_by) {
 		super();
 		this.description_answer = description_answer;
@@ -67,11 +67,11 @@ public class Answer {
 		this.img_src = img_src;
 	}
 
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

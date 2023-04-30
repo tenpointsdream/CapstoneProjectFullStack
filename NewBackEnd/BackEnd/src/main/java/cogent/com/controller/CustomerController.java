@@ -134,6 +134,11 @@ public class CustomerController {
 		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/question/getquestionbystatus/{status}")
+	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") boolean status) {
+		List<Question> questions = questionService.getAllQuestionsByStatus(status);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+	}
 	// Answer Controllers
 	@PostMapping("/answer/addanswer")
 	public ResponseEntity<Answer> addAnswer(@RequestBody Answer answer) {
