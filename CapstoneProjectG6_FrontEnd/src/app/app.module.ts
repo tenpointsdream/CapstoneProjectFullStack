@@ -24,7 +24,8 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';import { UserHomePageComponent } from './user-home-page/user-home-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { CookieService } from 'ngx-cookie-service';
     UserSignUpComponent,
     UserToUserChatComponent,
     UserRegisterAndLoginComponent,
-    AdminRegisterAndLoginComponent
+    AdminRegisterAndLoginComponent,
+    UserHomePageComponent
   ],
   imports: [
     BrowserModule,

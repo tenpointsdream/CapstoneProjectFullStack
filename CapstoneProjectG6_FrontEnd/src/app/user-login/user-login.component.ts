@@ -44,7 +44,7 @@ export class UserLoginComponent {
         console.log("Token: " + token);
         this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.userForm.username}`,
           {
-            headers: { Authorization: `Bearer ${token}` }//,
+            headers: { Authorization: `Bearer ${token}` }
             //withCredentials: true
           })
           .subscribe((userProfile: UserProfile) => {
@@ -52,7 +52,7 @@ export class UserLoginComponent {
             console.log('Email: ', userProfile.email);
             console.log('User type: ' + userProfile.userType);
           });
-        this.router.navigate(['createdquestion']);
+        this.router.navigate(['userhomepage']);
       }, (err) => {
         alert("Invalid username/password");
       });
