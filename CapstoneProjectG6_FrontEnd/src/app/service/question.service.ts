@@ -14,6 +14,8 @@ export class QuestionService {
   addQuestion(questionform: Question) {
     const addUrl = `${this.baseUrl}/question/addquestion`;
     return this.httpClient.post(addUrl, questionform, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+
+    //return this.httpClient.post(addUrl,{} { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   searchQuestion(topic: string, title: string): Observable<Question[]> {
     const url = `${this.baseUrl}/question/searchquestions/${topic}/${title}`;

@@ -24,8 +24,8 @@
         <div class="container">
             <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
                 <div class="register-form">
-                    <label for="email">Email</label><br>
-                    <input type="email" [(ngModel)]='model.email' name="email" required><br>
+                    <label for="username">Username</label><br>
+                    <input type="text" [(ngModel)]='model.username' name="username" required><br>
                 </div>
                 <div>
                     <label for="password">Password</label><br>

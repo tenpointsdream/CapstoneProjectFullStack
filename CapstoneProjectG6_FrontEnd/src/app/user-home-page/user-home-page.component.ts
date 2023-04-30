@@ -7,11 +7,11 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./user-home-page.component.css']
 })
 export class UserHomePageComponent {
-  name: string;
+  name: string = this.cookieService.get('name');
   constructor(
     private router: Router,
     private cookieService: CookieService) {
-    this.name = cookieService.get('name');
+    //this.name = cookieService.get('name');
     //this.refresh();
   }
 
