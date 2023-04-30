@@ -5,7 +5,7 @@ export interface Question {
     id: number;
     description: string;
     imageSrc: string;
-    status: string;
+    status: boolean;
     topic: string;
     title: string;
     datetime: string;
