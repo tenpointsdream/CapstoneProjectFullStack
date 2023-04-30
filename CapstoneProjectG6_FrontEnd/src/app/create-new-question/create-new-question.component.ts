@@ -38,6 +38,7 @@ export class CreateNewQuestionComponent {
       })
       .subscribe((userProfile: UserProfile) => {
         this.questionForm.qcreated_by = userProfile;
+        
       });
     // todo
     this.questionService.addQuestion(this.questionForm).subscribe();

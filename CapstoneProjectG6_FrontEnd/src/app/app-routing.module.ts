@@ -1,3 +1,4 @@
+import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
 import { UserToUserChatComponent } from './user-to-user-chat/user-to-user-chat.component';
 import { UserHomePageComponent } from './user-home-page/user-home-page.component';
 import { HomeComponent } from './home/home.component';
@@ -23,14 +24,15 @@ const routes: Routes = [
   { path: 'home/userlogin', component: UserLoginComponent },
   { path: 'home/usersignup', component: UserSignUpComponent },
   { path: 'userhomepage', component: UserHomePageComponent },
+  { path: 'adminhomepage',component: AdminHomePageComponent},
   { path: 'userhomepage/searchquestion', component: SearchQuestionComponent },
   { path: 'approvedanswer', component: ApprovedAnswerComponent },
   { path: 'createdquestion', component: CreatedQuestionComponent },
   { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent},
   { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent},
-  { path: 'pendingquestion', component: PendingQuestionComponent },
-  { path: 'pendinganswer', component: PendingAnswerComponent },
-  { path: 'usertouserchat', component: UserToUserChatComponent},
+  { path: 'adminhomepage/pendingquestion', component: PendingQuestionComponent },
+  { path: 'adminhomepage/pendinganswer', component: PendingAnswerComponent },
+  { path: 'userhomepage/usertouserchat', component: UserToUserChatComponent},
   { path: '**', component: PageNotFoundComponent },
 ];
 
