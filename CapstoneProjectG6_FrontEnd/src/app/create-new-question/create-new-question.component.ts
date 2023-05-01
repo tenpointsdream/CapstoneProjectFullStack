@@ -1,8 +1,8 @@
-import { QuestionService } from './../service/question.service';
-import { UserType } from './../entity/UserSubmit';
-import { UserService } from './../service/user.service';
-import { User } from './../entity/user.entity';
-import { Question } from './../entity/question.entity';
+import { QuestionService } from '../service/question.service';
+import { UserType } from '../entity/UserSubmit';
+import { UserService } from '../service/user.service';
+import { User } from '../entity/user.entity';
+import { Question } from '../entity/question.entity';
 import { Component } from '@angular/core';
 import { Answer } from '../entity/answer.entity';
 import { HttpClient } from '@angular/common/http';
@@ -38,7 +38,7 @@ export class CreateNewQuestionComponent {
       })
       .subscribe((userProfile: UserProfile) => {
         this.questionForm.qcreated_by = userProfile;
-        
+
       });
     // todo
     this.questionService.addQuestion(this.questionForm).subscribe();

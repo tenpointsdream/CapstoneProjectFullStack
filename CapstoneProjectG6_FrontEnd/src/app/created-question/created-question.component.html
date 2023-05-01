@@ -7,11 +7,12 @@
         </div>
         <div class="header-right">
             <ul>
-                <li class="list"><a href=""><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-question"></i> Create Question</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-lightbulb"></i> Search Question</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-message"></i> Chat with us</a></li>
-                <li class="list" id="btn"><a href="">Sign Out</a></li>
+                <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class="list"><a routerLink="/userhomepage/createquestion"><i class="fa-solid fa-question"></i> Ask Question</a></li>
+                <li class="list"><a routerLink="/userhomepage/searchquestion"><i class="fa-solid fa-search"></i> Search Question</a>
+                </li>
+                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat with us</a></li>
+                <li class="list" id="btn"><a routerLink="/home/userlogin">Sign Out</a></li>
                 <!-- todo -->
                 <li class="list user-type">user</li>
             </ul>
