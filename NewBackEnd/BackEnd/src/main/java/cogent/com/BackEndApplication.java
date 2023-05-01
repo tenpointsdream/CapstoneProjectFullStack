@@ -37,7 +37,7 @@ public class BackEndApplication {
 		questionService.addQuestion(new QuestionDTO(0,"Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"JavaScript", "Getting to know", null, users.get(1), null));
 		questionService.addQuestion(new QuestionDTO(1, "Test description", "test.jpg", "04-26-2023, 12:36", true, "Angular",
-				"What is Angular?", new ArrayList<Answer>(List.of(new Answer())), users.get(1), users.get(0)));
+				"What is Angular?", new ArrayList<>(), users.get(1), users.get(0)));
 		questionService.addQuestion(new QuestionDTO(2,"Test description", "test.jpg", "04-26-2023, 12:36", false, "Java",
 				"Too many problems with Java", null, users.get(1), null));
 		questionService.addQuestion(new QuestionDTO(3,"Test description", "test.jpg", "04-26-2023, 12:36", false,
