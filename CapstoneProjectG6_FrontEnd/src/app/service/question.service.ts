@@ -25,4 +25,8 @@ export class QuestionService {
   getQuestions():Observable<Question[]> {
     return this.httpClient.get<Question[]>(`${this.baseUrl}`);
   }
+
+  deleteQuestion(id: number) {
+    return this.httpClient.delete('http://localhost:4200/adminhomepage/pendingquestion');
+  }
 }
