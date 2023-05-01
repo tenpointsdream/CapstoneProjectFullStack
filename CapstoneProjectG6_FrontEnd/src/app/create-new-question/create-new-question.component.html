@@ -52,7 +52,7 @@
                 <div>
                     <!-- todo -->
                     <label for="imageSrc">ImageSrc</label>
-                    <input type="file" src="[(ngModel)]='model.imageSrc'" (change)="onFileSelected($event)" alt="image.jpg" required>
+                    <input type="file" (change)="onFileSelected($event)" alt="image.jpg" required>
                 </div>
                 <button [disabled]="adminform.invalid" type="submit">Submit</button>
             </form>
