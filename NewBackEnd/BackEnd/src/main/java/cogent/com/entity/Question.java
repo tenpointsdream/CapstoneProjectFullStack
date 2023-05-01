@@ -19,15 +19,13 @@ public class Question {
 	private String topic;
 	private String title;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "question")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
 	@JsonIgnore
 	private List<Answer> answers;
 	@OneToOne
-	@JoinColumn(name = "created_by_id")
 	private User qcreated_by;
 
 	@OneToOne
-	@JoinColumn(name = "approved_by_id")
 	private User qapproved_by;
 
 	public Question() {}

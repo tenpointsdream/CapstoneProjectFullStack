@@ -14,16 +14,13 @@ public class Answer {
 	private boolean status;
 	private String datetime;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "question_id")
+	@ManyToOne
 	private Question question;
 
 	@OneToOne
-	@JoinColumn(name = "approved_by_id")
 	private User approved_by;
 
 	@OneToOne
-	@JoinColumn(name = "created_by_id")
 	private User created_by;
 
 	public Answer() {
