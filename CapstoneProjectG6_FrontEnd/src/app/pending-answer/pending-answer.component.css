@@ -40,11 +40,42 @@ body {
   color: #387cea;
 }
 
-#btn a {
-  background-color: rgb(97, 93, 93);
-  border-radius: 3px;
-  padding: 5px;
-  color: rgb(235, 231, 231);
+.delete {
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.delete:hover {
+  background-color: indianred;
+}
+
+.delete:active {
+  background-color: darkred;
+}
+
+.approve {
+  background-color: green;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.approve:hover {
+  background-color: greenyellow;
+}
+
+.approve:active {
+  background-color: darkgreen;
 }
 
 /* body */
