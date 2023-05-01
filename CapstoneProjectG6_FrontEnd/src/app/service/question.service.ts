@@ -46,4 +46,7 @@ export class QuestionService {
     return this.httpClient.delete(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   
+  addAnswerToQuestion(id: number){
+    
+  }
 }

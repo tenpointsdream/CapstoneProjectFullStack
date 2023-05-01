@@ -16,6 +16,7 @@ export class PendingAnswerComponent implements OnInit {
   pendingAnswers: Answer[];
   answerToUpdate = {} as Answer;
   currentUser = {} as UserProfile;
+  currentQuestion = {} as Question;
   constructor(
     private answerService: AnswerService,
     private cookieService: CookieService,
@@ -32,6 +33,7 @@ export class PendingAnswerComponent implements OnInit {
   approveAnswer(id: number) {
 
     if (confirm('Are you sure you want to approve this question?')) {
+      let questionId = -1;
       this.answerService.getAnswerById(id).subscribe((answer: Answer) => {
         console.log(answer);
         this.answerToUpdate = answer;
@@ -40,10 +42,19 @@ export class PendingAnswerComponent implements OnInit {
         this.userService.getUser(this.cookieService.get('username')).subscribe((user: UserProfile) => {
           console.log(user);
           this.answerToUpdate.approved_by = user;
+          questionId = this.answerToUpdate.question.id;
+          console.log("Answer adding to question id: ", questionId);
           console.log("Question before to approve: ", this.answerToUpdate);
           this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
             console.log(updatedAnswer);
             //this.refresh();
+            this.questionService.getQuestionById(questionId).subscribe((existingQuestion: Question) => {
+              this.currentQuestion = existingQuestion;
+              this.currentQuestion.answers.push(updatedAnswer);
+              this.questionService.updateQuestion(questionId, this.currentQuestion).subscribe((updatedQuestion: Question) => {
+                console.log(updatedQuestion);
+              })
+            })
           });
         });
 
