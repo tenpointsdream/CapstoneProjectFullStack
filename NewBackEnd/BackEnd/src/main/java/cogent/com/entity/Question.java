@@ -42,7 +42,7 @@ public class Question {
 		this.qcreated_by = qcreated_by;
 		this.qapproved_by = qapproved_by;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -75,7 +75,7 @@ public class Question {
 		this.datetime = datetime;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 

@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import cogent.com.dto.AnswerDTO;
+import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.*;
 import cogent.com.service.*;
 import cogent.com.util.UserType;
@@ -22,10 +25,10 @@ public class CustomerController {
 	private UserService userService;
 
 	@Autowired
-	private QuestionService questionService;
+	private QuestionServiceImpl questionService;
 
 	@Autowired
-	private AnswerService answerService;
+	private AnswerServiceImpl answerService;
 
 	@Autowired
 	private ChatService chatService;
@@ -66,7 +69,8 @@ public class CustomerController {
 	@GetMapping("/user/getbyid/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		Optional<User> userOptional = userService.getUserById(id);
-		return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@GetMapping("/user/getallusers")
@@ -77,17 +81,18 @@ public class CustomerController {
 
 	// Question Controllers
 	@PostMapping("/question/addquestion")
-	public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
-		Question addedQuestion = questionService.addQuestion(question);
+	public ResponseEntity<QuestionDTO> addQuestion(@RequestBody QuestionDTO questionDTO) {
+		QuestionDTO addedQuestion = questionService.addQuestion(questionDTO);
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/question/updatequestion/{id}")
-	public ResponseEntity<Question> updateQuestion(@PathVariable("id") int id, @RequestBody Question question) {
-		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
+	public ResponseEntity<QuestionDTO> updateQuestion(@PathVariable("id") int id,
+			@RequestBody QuestionDTO questionDTO) {
+		Optional<QuestionDTO> optionalQuestion = questionService.getQuestionById(id);
 		if (optionalQuestion.isPresent()) {
-			question.setId(id);
-			Question updatedQuestion = questionService.updateQuestion(question);
+			questionDTO.setId(id);
+			QuestionDTO updatedQuestion = questionService.updateQuestion(questionDTO);
 			return new ResponseEntity<>(updatedQuestion, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -95,7 +100,7 @@ public class CustomerController {
 
 	@DeleteMapping("/question/deletequestionbyid/{id}")
 	public ResponseEntity<?> deleteQuestionById(@PathVariable("id") int id) {
-		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
+		Optional<QuestionDTO> optionalQuestion = questionService.getQuestionById(id);
 		if (optionalQuestion.isPresent()) {
 			questionService.deleteQuestionById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -104,60 +109,66 @@ public class CustomerController {
 	}
 
 	@GetMapping("/question/getallquestions")
-	public ResponseEntity<List<Question>> getAllQuestions() {
-		List<Question> questions = questionService.getAllQuestion();
-		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+	public ResponseEntity<List<QuestionDTO>> getAllQuestions() {
+		List<QuestionDTO> questions = questionService.getAllQuestion();
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+				: new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("question/searchquestions/{topic}/{title}")
-	public ResponseEntity<List<Question>> getQuestionsByTitle(@PathVariable("topic") String topic,
+	public ResponseEntity<List<QuestionDTO>> getQuestionsByTitle(@PathVariable("topic") String topic,
 			@PathVariable("title") String title) {
-		List<Question> questionsByTopic = questionService.getQuestionByTopic(topic);
+		List<QuestionDTO> questionsByTopic = questionService.getQuestionByTopic(topic);
 		if (questionsByTopic == null)
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		List<Question> questionsByTitle = new ArrayList<>();
-		for (Question question : questionsByTopic)
+		List<QuestionDTO> questionsByTitle = new ArrayList<>();
+		for (QuestionDTO question : questionsByTopic)
 			if (question.getTitle().toLowerCase().contains(title.toLowerCase()))
 				questionsByTitle.add(question);
 		return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbytopic/{topic}")
-	public ResponseEntity<List<Question>> getQuestionsByTopic(@PathVariable("topic") String topic) {
-		List<Question> questions = questionService.getQuestionByTopic(topic);
-		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+	public ResponseEntity<List<QuestionDTO>> getQuestionsByTopic(@PathVariable("topic") String topic) {
+		List<QuestionDTO> questions = questionService.getQuestionByTopic(topic);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+				: new ResponseEntity<>(questions, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbyid/{id}")
-	public ResponseEntity<Question> getQuestionsById(@PathVariable("id") int id) {
-		Optional<Question> optionalQuestion = questionService.getQuestionById(id);
-		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	public ResponseEntity<QuestionDTO> getQuestionsById(@PathVariable("id") int id) {
+		Optional<QuestionDTO> optionalQuestion = questionService.getQuestionById(id);
+		return optionalQuestion.map(question -> new ResponseEntity<>(question, HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@GetMapping("/question/getquestionbystatus/{status}")
-	public ResponseEntity<List<Question>> getQuestionsByStatus(@PathVariable("status") boolean status) {
-		List<Question> questions = questionService.getAllQuestionsByStatus(status);
-		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(questions, HttpStatus.OK);
+	public ResponseEntity<List<QuestionDTO>> getQuestionsByStatus(@PathVariable("status") boolean status) {
+		List<QuestionDTO> questions = questionService.getAllQuestionsByStatus(status);
+		return questions == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+				: new ResponseEntity<>(questions, HttpStatus.OK);
 	}
+
 	// Answer Controllers
 	@PostMapping("/answer/addanswer")
-	public ResponseEntity<Answer> addAnswer(@RequestBody Answer answer) {
-		Answer addedAnswer = answerService.addAnswer(answer);
+	public ResponseEntity<AnswerDTO> addAnswer(@RequestBody AnswerDTO answerDTO) {
+		AnswerDTO addedAnswer = answerService.addAnswer(answerDTO);
 		return new ResponseEntity<>(addedAnswer, HttpStatus.OK);
 	}
 
 	@GetMapping("answer/getanswerbyid/{id}")
-	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
-		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	public ResponseEntity<AnswerDTO> getAnswerById(@PathVariable("id") int id) {
+		AnswerDTO answer = answerService.getAnswerById(id);
+		return answer == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
+				: new ResponseEntity<>(answer, HttpStatus.OK);
 	}
 
 	@PutMapping("/answer/updateanswer/{id}")
-	public ResponseEntity<Answer> updateAnswer(@PathVariable("id") int id, @RequestBody Answer answer) {
-		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		if (optionalAnswer.isPresent()) {
+	public ResponseEntity<AnswerDTO> updateAnswer(@PathVariable("id") int id, @RequestBody AnswerDTO answerDTO) {
+		AnswerDTO answer = answerService.getAnswerById(id);
+		if (answer != null) {
 			answer.setId(id);
-			Answer updatedAnswer = answerService.updateAnswer(answer);
+			AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -165,8 +176,8 @@ public class CustomerController {
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
-		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
-		if (optionalAnswer.isPresent()) {
+		AnswerDTO answer = answerService.getAnswerById(id);
+		if (answer != null) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}

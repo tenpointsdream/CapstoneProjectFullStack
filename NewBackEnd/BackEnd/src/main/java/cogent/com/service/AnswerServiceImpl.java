@@ -1,12 +1,13 @@
 package cogent.com.service;
 
-import cogent.com.entity.Answer;
-import cogent.com.repository.AnswerRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import cogent.com.dto.AnswerDTO;
+import cogent.com.repository.AnswerRepository;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -14,24 +15,33 @@ public class AnswerServiceImpl implements AnswerService {
 	@Autowired
 	private AnswerRepository answerRepository;
 
+	@Autowired
+	private QuestionServiceImpl questionService;
+
 	@Override
-	public List<Answer> getAllAnswers() {
-		return answerRepository.findAll();
+	public List<AnswerDTO> getAllAnswers() {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findAll().forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
 	}
 
 	@Override
-	public Answer addAnswer(Answer answer) {
-		return answerRepository.save(answer);
+	public AnswerDTO addAnswer(AnswerDTO answerDTO) {
+		return questionService
+				.convertAnswerToAnswerDTO(answerRepository.save(questionService.convertAnswerDTOToAnswer(answerDTO)));
 	}
 
 	@Override
-	public Answer updateAnswer(Answer answer) {
-		return answerRepository.save(answer);
+	public AnswerDTO updateAnswer(AnswerDTO answerDTO) {
+		return questionService
+				.convertAnswerToAnswerDTO(answerRepository.save(questionService.convertAnswerDTOToAnswer(answerDTO)));
 	}
 
 	@Override
-	public Optional<Answer> getAnswerById(int id) {
-		return answerRepository.findById(id);
+	public AnswerDTO getAnswerById(int id) {
+		return questionService.convertAnswerToAnswerDTO(answerRepository.findById(id).get());
 	}
 
 	@Override
@@ -40,18 +50,30 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersFalse() {
-		return answerRepository.findByStatus(false);
+	public List<AnswerDTO> getAllAnswersFalse() {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findByStatus(false).forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
 	}
 
 	@Override
-	public List<Answer> getAllAnswersById(int id) {
-		return answerRepository.findAllById(id);
+	public List<AnswerDTO> getAllAnswersById(int id) {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findAllById(id).forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
 	}
 
 	@Override
-	public List<Answer> getAnswersByQuestionId(int questionId) {
-		return answerRepository.findByQuestionId(questionId);
+	public List<AnswerDTO> getAnswersByQuestionId(int questionId) {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findByQuestionId(questionId).forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
 	}
 
 }

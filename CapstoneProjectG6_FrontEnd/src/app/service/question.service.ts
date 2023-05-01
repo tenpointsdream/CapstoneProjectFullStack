@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Question } from '../entity/question.entity';
 import { CookieService } from 'ngx-cookie-service';
+import { Answer } from '../entity/answer.entity';
 @Injectable({
   providedIn: 'root'
 })
@@ -45,8 +46,9 @@ export class QuestionService {
     const url = `${this.baseUrl}/deletequestionbyid/${id}`;
     return this.httpClient.delete(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
-  
-  addAnswerToQuestion(id: number){
-    
+
+  addAnswerToQuestion(question_id: number, answer: Answer):Observable<any> {
+    const url = `http://localhost:8080/question/addanswertoquestion/${question_id}`;
+    return this.httpClient.post(url, answer, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
 }

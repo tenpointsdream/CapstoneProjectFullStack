@@ -104,4 +104,8 @@ public class Answer {
 		this.created_by = created_by;
 	}
 
+	@Override
+	public String toString() {
+		return "Answer description: " + this.description_answer + " and datetime: " + this.datetime;
+	}
 }
