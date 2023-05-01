@@ -49,4 +49,9 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerRepository.findAllById(id);
 	}
 
+	@Override
+	public List<Answer> getAnswersByQuestionId(int questionId) {
+		return answerRepository.findByQuestionId(questionId);
+	}
+
 }

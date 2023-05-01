@@ -19,7 +19,8 @@ export class PendingAnswerComponent implements OnInit {
   constructor(
     private answerService: AnswerService,
     private cookieService: CookieService,
-    private userService: UserService) {
+    private userService: UserService,
+    private questionService: QuestionService) {
     this.pendingAnswers = []
   }
   ngOnInit(): void {

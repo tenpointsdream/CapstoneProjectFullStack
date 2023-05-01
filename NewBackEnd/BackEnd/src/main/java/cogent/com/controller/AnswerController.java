@@ -40,6 +40,13 @@ public class AnswerController {
 		List<Answer> answers = answerService.getAllAnswersFalse();
 		return answers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(answers, HttpStatus.OK);
 	}
+	
+	@GetMapping("/getanswersbyquestionid/{questionId}")
+	public ResponseEntity<List<Answer>> getAnswersByQuestionId(@PathVariable int questionId) {
+		List<Answer> answers = answerService.getAnswersByQuestionId(questionId);
+		return answers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(answers, HttpStatus.OK);
+	}
+	
 	@PutMapping("/updateanswer/{id}")
 	public ResponseEntity<Answer> updateAnswer(@PathVariable("id") int id, @RequestBody Answer answer) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);

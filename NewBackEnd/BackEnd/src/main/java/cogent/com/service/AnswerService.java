@@ -21,5 +21,5 @@ public interface AnswerService {
 
 	public List<Answer> getAllAnswersById(int id);
 
-
+	public List<Answer> getAnswersByQuestionId(int questionId);
 }
