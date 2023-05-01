@@ -13,8 +13,8 @@ export class QuestionService {
 
 
   addQuestion(questionform: Question) {
-    const addUrl = `${this.baseUrl}/addquestion`;
-    return this.httpClient.post(addUrl, questionform, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+    const addUrl = `http://localhost:8080/customer/question/addquestion`;
+    return this.httpClient.post<Question>(addUrl, questionform, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
 
     //return this.httpClient.post(addUrl,{} { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
