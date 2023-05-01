@@ -30,10 +30,12 @@ export class QuestionService {
     const url = `${this.baseUrl}/getquestionbyid/${id}`;
     return this.httpClient.get<Question>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
+
   getPendingQuestion(): Observable<Question[]> {
     const url = `${this.baseUrl}/getquestionbystatus/false`;
     return this.httpClient.get<Question[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
+
   updateQuestion(id: number, question: Question): Observable<Question> {
     const url = `${this.baseUrl}/updatequestion/${id}`;
     return this.httpClient.put<Question>(url, question, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
@@ -42,5 +44,9 @@ export class QuestionService {
   deleteQuestion(id: number) {
     const url = `${this.baseUrl}/deletequestionbyid/${id}`;
     return this.httpClient.delete(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+  }
+  
+  addAnswerToQuestion(id: number){
+    
   }
 }
