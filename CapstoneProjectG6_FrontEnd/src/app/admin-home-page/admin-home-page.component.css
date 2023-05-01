@@ -47,6 +47,10 @@ body {
     color: rgb(235, 231, 231);
 }
 
+.body-container{
+    height: 650px;
+}
+
 /* body */
 h1 {
     font-size: 36px;

@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <label for="password">Password</label><br>
-                    <input type="password" [(ngModel)]='model.password' name="password" required><br>
+                    <input type="password" [(ngModel)]='model.password' name="password" minlength="8" required><br>
                 </div>
                 <button [disabled]="adminform.invalid" type="submit">Log In</button>
             </form>

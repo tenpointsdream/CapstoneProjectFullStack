@@ -29,12 +29,17 @@ public class AnswerController {
 		return new ResponseEntity<>(addedAnswer, HttpStatus.OK);
 	}
 
-	@GetMapping("getanswerbyid/{id}")
+	@GetMapping("/getanswerbyid/{id}")
 	public ResponseEntity<Answer> getAnswerById(@PathVariable("id") int id) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);
 		return optionalAnswer.map(answer -> new ResponseEntity<>(answer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/getpendinganswers")
+	public ResponseEntity<List<Answer>> getPendingAnswers() {
+		List<Answer> answers = answerService.getAllAnswersFalse();
+		return answers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(answers, HttpStatus.OK);
+	}
 	@PutMapping("/updateanswer/{id}")
 	public ResponseEntity<Answer> updateAnswer(@PathVariable("id") int id, @RequestBody Answer answer) {
 		Optional<Answer> optionalAnswer = answerService.getAnswerById(id);

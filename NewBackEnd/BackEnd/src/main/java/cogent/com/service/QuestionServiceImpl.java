@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import cogent.com.entity.Question;
 import cogent.com.repository.QuestionRepository;
@@ -47,7 +48,7 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<Question> getAllQuestionsByStatus(boolean status) {
+	public List<Question> getAllQuestionsByStatus(@PathVariable boolean status) {
 		return questionRepository.findByStatus(status);
 	}
 
