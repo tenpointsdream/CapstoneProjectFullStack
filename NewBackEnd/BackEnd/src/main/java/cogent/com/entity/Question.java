@@ -19,7 +19,7 @@ public class Question {
 	private String topic;
 	private String title;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnore
 	private List<Answer> answers;
 	@OneToOne

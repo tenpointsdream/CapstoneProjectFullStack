@@ -12,10 +12,9 @@ export class QuestionService {
   constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
 
-  addQuestion(questionform: Question) {
-    const addUrl = `${this.baseUrl}/addquestion`;
-    return this.httpClient.post(addUrl, questionform, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
-
+  addQuestion(question: Question):Observable<Question> {
+    const url = `http://localhost:8080/question/add`;
+    return this.httpClient.post<Question>(url, question, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
     //return this.httpClient.post(addUrl,{} { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   searchQuestion(topic: string, title: string): Observable<Question[]> {
