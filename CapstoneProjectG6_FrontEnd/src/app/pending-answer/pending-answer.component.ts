@@ -48,18 +48,13 @@ export class PendingAnswerComponent implements OnInit {
           this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
             console.log(updatedAnswer);
             //this.refresh();
-            this.questionService.getQuestionById(questionId).subscribe((existingQuestion: Question) => {
-              this.currentQuestion = existingQuestion;
-              this.currentQuestion.answers.push(updatedAnswer);
-              this.questionService.updateQuestion(questionId, this.currentQuestion).subscribe((updatedQuestion: Question) => {
-                console.log(updatedQuestion);
-              })
+            this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
+              console.log(updatedQuestion);
+              console.log("This is a list of answers: ", updatedQuestion.answers);
             })
-          });
+          })
         });
-
-      })
-
+      });
     }
   }
 
