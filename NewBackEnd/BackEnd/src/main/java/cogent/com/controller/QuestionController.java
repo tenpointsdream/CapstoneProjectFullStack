@@ -24,7 +24,7 @@ import cogent.com.repository.QuestionRepository;
 import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionServiceImpl;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
@@ -43,6 +43,11 @@ public class QuestionController {
 	public ResponseEntity<QuestionDTO> addQuestion(@RequestBody QuestionDTO questionDTO) {
 		QuestionDTO addedQuestion = questionService.addQuestion(questionDTO);
 		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/add")
+	public ResponseEntity<Question> add(@RequestBody Question question){
+		return new ResponseEntity<>(questionRepository.save(question), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/updatequestionbyid/{id}")

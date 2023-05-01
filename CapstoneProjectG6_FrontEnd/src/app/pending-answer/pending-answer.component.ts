@@ -47,10 +47,10 @@ export class PendingAnswerComponent implements OnInit {
           console.log("Question before to approve: ", this.answerToUpdate);
           this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
             console.log(updatedAnswer);
-            //this.refresh();
             this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
               console.log(updatedQuestion);
               console.log("This is a list of answers: ", updatedQuestion.answers);
+              this.refresh();
             })
           })
         });

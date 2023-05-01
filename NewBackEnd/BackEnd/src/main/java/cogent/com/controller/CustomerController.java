@@ -125,7 +125,14 @@ public class CustomerController {
 		for (QuestionDTO question : questionsByTopic)
 			if (question.getTitle().toLowerCase().contains(title.toLowerCase()))
 				questionsByTitle.add(question);
-		return new ResponseEntity<>(questionsByTitle, HttpStatus.OK);
+
+		List<QuestionDTO> questionFiltered = new ArrayList<>();
+		for (QuestionDTO questionByTitle : questionsByTitle) {
+			if (questionByTitle.isStatus() == true) {
+				questionFiltered.add(questionByTitle);
+			}
+		}
+		return new ResponseEntity<>(questionFiltered, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbytopic/{topic}")

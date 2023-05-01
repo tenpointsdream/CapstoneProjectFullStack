@@ -16,33 +16,46 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./create-new-question.component.css']
 })
 export class CreateNewQuestionComponent {
-  questionForm !: Question;
-  model !: Question;
+  questionForm = {} as Question;
+  model = {} as Question;
+  currentUser = {} as User;
   constructor(
     private questionService: QuestionService,
     private httpClient: HttpClient,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private userService: UserService) {
+  }
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      console.log(event.target.files[0].name);
+      this.questionForm.imageSrc = event.target.files[0].name;
+    }
   }
   onSubmit(questionform: any) {
+    this.questionForm.id = 1;
     this.questionForm.title = questionform.value.title;
     this.questionForm.topic = questionform.value.topic;
     this.questionForm.descriptionQuestion = questionform.value.descriptionQuestion;
-    this.questionForm.imageSrc = questionform.value.imageSrc;
     this.questionForm.status = false;
     this.questionForm.answers = [];
-    this.questionForm.qapproved_by = new User();
-    this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.cookieService.get('username')}`,
-      {
-        headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` }
-        //withCredentials: true
-      })
-      .subscribe((userProfile: UserProfile) => {
-        this.questionForm.qcreated_by = userProfile;
-
+    //this.questionForm.datetime = Date.now().toString();
+    this.questionForm.datetime = "05/01/2023, 4:42";
+    console.log(this.cookieService.get('username'));
+    console.log(this.questionForm);
+    this.questionForm.qapproved_by = {} as User;
+    this.userService.getUser(this.cookieService.get('username'))
+      .subscribe((user: UserProfile) => {
+        console.log(user);
+        this.questionForm.qcreated_by = user;
+        console.log("Question form: ", this.questionForm);
+        console.log("Current user: " + this.questionForm.qcreated_by);
+        this.questionService.addQuestion(this.questionForm).subscribe((createdQuestion: Question)=>{
+          console.log("Created Question: ", createdQuestion);
+        });
       });
     // todo
-    this.questionService.addQuestion(this.questionForm).subscribe();
-    this.refresh();
+    
+    //this.refresh();
   }
   refresh() {
     window.location.reload();

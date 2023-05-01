@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'adminhomepage/pendinganswer', component: PendingAnswerComponent },
   // chat
   { path: 'userhomepage/usertouserchat', component: UserToUserChatComponent },
+  { path: 'adminhomepage/usertouserchat', component: UserToUserChatComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
