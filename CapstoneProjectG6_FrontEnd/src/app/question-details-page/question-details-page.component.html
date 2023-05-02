@@ -19,37 +19,21 @@
         </div>
     </div>
     <!-- form -->
-    <div>
+    <div class="details" [(ngModel)] ="question">
+        <div><img [src]="question.imageSrc" alt=""></div>
+        <div><strong>Question ID: </strong>{{question.id}}</div>
+        <div><strong>Topic: </strong>{{question.topic}}</div>
+        <div><strong>Title: </strong>{{question.title}}</div>
+        <div><strong>Date & Time Created: </strong>{{question.datetime}}</div>
+        <div><strong>Created by: </strong>{{question.qcreated_by}}</div>
         <div>
-            <h2>Search Question</h2>
+            <div><strong>List of answers:</strong></div>
+            <ul *ngFor="let a of question.answers">
+                <li>- {{a}}</li>
+            </ul>
         </div>
-        <div class="container">
-            <form novalidate #searchform='ngForm' (ngSubmit)="onSubmit()">
-                <label for="topic">Search the question: </label>
-                <select name="topic" id="topic" [(ngModel)]="topic" required>
-                    <option value="" disabled selected>Pick a Topic</option>
-                    <option value="Java">Java</option>
-                    <option value="C">C</option>
-                    <option value="C#">C#</option>
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="Angular">Angular</option>
-                    <option value="SpringBoot">SpringBoot</option>
-                </select>
-                <input type="text" placeholder="What is the title?" name="title" [(ngModel)]="title" required>
-                <button [disabled]="searchform.invalid" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-    <div *ngIf="onVisible">
-        <table class="table">
-            <thead>
-                <th>ID</th>
-                <th>Topic</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Action</th>
-            </thead>
-            <tbody *ngFor="let question of searchedQuestions">
+        <div><button (click)="showForm()">Add Answer</button></div>
+            <!-- <tbody *ngFor="let question of searchedQuestions">
                 <tr>
                     <td>{{question.id}}</td>
                     <td>{{question.topic}}</td>
@@ -59,8 +43,24 @@
                         <button (click)="showDetails(question.id)">Show details</button>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+            </tbody> -->
+        
+    </div>
+    <div *ngIf="onVisible">
+        <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
+            <div class="register-form">
+                <label for="description_answer">Solution: </label><br>
+                <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
+            </div>
+
+            <div>
+                <!-- todo -->
+                <label for="imageSrc">ImageSrc</label>
+                <input type="file" (change)="onFileSelected($event)" alt="image.jpg" required> 
+            </div>
+            <button [disabled]="answerform.invalid" type="submit">Submit</button>
+            <button (click)="closeForm()" type="button">Cancel</button>
+        </form>
     </div>
     <footer class="footer-div">
         <ul class="footer">

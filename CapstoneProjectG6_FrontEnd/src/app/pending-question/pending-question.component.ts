@@ -52,7 +52,6 @@ export class PendingQuestionComponent implements OnInit {
 
     }
   }
-
   removeQuestion(id: number) {
     if (confirm('Are you sure you want to delete this question?')) {
       this.questionService.deleteQuestion(id).subscribe(() => {

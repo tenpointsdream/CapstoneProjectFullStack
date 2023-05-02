@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Question } from '../entity/question.entity';
 import { QuestionService } from '../service/question.service';
 import { User } from '../entity/user.entity';
 import { Answer } from '../entity/answer.entity';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class SearchQuestionComponent {
   searchedQuestions: Question[];
   constructor(
     private questionService: QuestionService,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private router: Router) {
     this.searchedQuestions = [];
   }
   onSubmit() {
@@ -41,10 +43,15 @@ export class SearchQuestionComponent {
         'title': 'None',
         'datetime': 'None',
         'answers': [],
-        'qcreated_by': '',
-        'qapproved_by': ''
+        'qcreated_by': 'None',
+        'qapproved_by': 'None'
       }]
     }
+  }
+
+  showDetails(id: number) {
+    this.router.navigate(['userhomepage/searchquestion/details']);
+    localStorage.setItem('questionId', id.toString());
   }
   refresh() {
     window.location.reload();

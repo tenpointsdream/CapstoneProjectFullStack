@@ -24,67 +24,36 @@
         </div>
         <div class="container">
             <ul>
-                <li>
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <img src="assets/images/java.png" height="150" alt="Image">
+                <li *ngFor="let question of questions">
+                    <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
+                    <img [src]="question.imageSrc" alt="Question Image">
                     <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
+                       {{ question.title }}
                     </p>
                     <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
+                      {{ question.topic }}
                     </p>
                     <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
+                    {{ question.descriptionQuestion }}
                     </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
-                </li>
-                <li>
-                    <img src="assets/images/java.png" height="150" alt="Image">
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
-                    </p>
-                    <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
-                    </p>
-                    <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
-                    </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
-                </li>
-                <li>
-                    <img src="assets/images/java.png" height="150" alt="Image">
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
-                    </p>
-                    <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
-                    </p>
-                    <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
-                    </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
-                </li>
-                <li>
-                    <img src="assets/images/java.png" height="150" alt="Image">
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
-                    </p>
-                    <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
-                    </p>
-                    <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
-                    </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
+                    <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
+                    <button (click)="listOfAnswer(question.id)">Answers</button>
+                    <button>Add Answer</button>
                 </li>
             </ul>
+        </div>
+        <div *ngIf="showForm" class="answer-form-container">
+            <form novalidate #answerform="ngForm" (ngSubmit)="onSubmit(answerform)">
+                <div class="answer-form">
+                    <label for="description_answer">Answer:</label>
+                    <textarea name="description_answer" [(ngModel)]="model.description_answer" required></textarea>
+                </div>
+                <div>
+                    <label for="img_src">Image:</label>
+                    <input type="file" (change)="onFileSelected($event)" required>
+                </div>
+                <button [disabled]="answerform.invalid" type="submit">Submit</button>
+            </form>
         </div>
     </div>
     <footer class="footer-div">
