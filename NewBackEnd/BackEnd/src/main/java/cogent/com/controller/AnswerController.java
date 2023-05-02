@@ -55,8 +55,14 @@ public class AnswerController {
 	@GetMapping("/getanswersbyquestionid/{questionId}")
 	public ResponseEntity<List<AnswerDTO>> getAnswersByQuestionId(@PathVariable int questionId) {
 		List<AnswerDTO> answers = answerService.getAnswersByQuestionId(questionId);
-		return answers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-				: new ResponseEntity<>(answers, HttpStatus.OK);
+		List<AnswerDTO> filteredAnswers = new ArrayList<AnswerDTO>();
+		for (AnswerDTO answer : answers) {
+			if (answer.isStatus() == true) {
+				filteredAnswers.add(answer);
+			}
+		}
+		return filteredAnswers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+				: new ResponseEntity<>(filteredAnswers, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateanswer/{id}")
