@@ -1,5 +1,4 @@
 import { Answer } from "./answer.entity";
-import { User } from "./user.entity";
 
 export interface Question {
     id: number;

@@ -35,12 +35,14 @@ public class AnswerController {
 
 	@PostMapping(value = "/addanswer", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	public ResponseEntity<String> addAnswer(@RequestParam("desc") String desc,
+											   @RequestParam("createdBy") String createdBy,
 											   @RequestPart("file") MultipartFile file) {
 		AnswerDTO answerDTO = new AnswerDTO();
 		answerDTO.setStatus(false);
 		answerDTO.setDatetime(LocalDateTime.now().toString());
 		answerDTO.setDescription_answer(desc);
-		answerDTO.setImg_src(file.getName());
+		answerDTO.setCreated_by(createdBy);
+		answerDTO.setImg_src(file.getOriginalFilename());
 		answerService.addAnswer(answerDTO);
 		Path filepath = Paths.get("answer_files", file.getOriginalFilename());
 		try (OutputStream os = Files.newOutputStream(filepath)) {

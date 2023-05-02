@@ -51,7 +51,7 @@
                                 <div>
                                     <!-- todo -->
                                     <label for="imageSrc">Upload Image</label>
-                                    <input type="file" (change)="onFileSelected($event)" alt="image.jpg" required> <br>
+                                    <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required> <br>
                                 </div>
                                 <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
                                 <button (click)="closeForm()" type="button" class="cancel">Cancel</button>

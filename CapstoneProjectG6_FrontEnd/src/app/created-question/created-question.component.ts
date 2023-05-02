@@ -19,8 +19,7 @@ export class CreatedQuestionComponent implements OnInit {
   // model = {} as Answer;
   // question = {} as Question;
   onVisible: boolean;
-  constructor(private questionService : QuestionService, private answerService : AnswerService,
-    ){
+  constructor(private questionService : QuestionService){
       this.onVisible = false;
     }
   ngOnInit(): void {

@@ -43,14 +43,16 @@ public class QuestionController {
 	public ResponseEntity<String> addQuestion(@RequestParam("topic") String topic,
 											  @RequestParam("title") String title,
 											  @RequestParam("desc") String desc,
+											  @RequestParam("createdBy") String createdBy,
 											  @RequestPart("file") MultipartFile file) {
 		QuestionDTO questionDTO = new QuestionDTO();
 		questionDTO.setTopic(topic);
 		questionDTO.setTitle(title);
 		questionDTO.setDescriptionQuestion(desc);
 		questionDTO.setStatus(false);
+		questionDTO.setQcreated_by(createdBy);
 		questionDTO.setDatetime(LocalDateTime.now().toString());
-		questionDTO.setImageSrc(file.getName());
+		questionDTO.setImageSrc(file.getOriginalFilename());
 		questionService.addQuestion(questionDTO);
 		Path filepath = Paths.get("question_files", file.getOriginalFilename());
 		try (OutputStream os = Files.newOutputStream(filepath)) {
@@ -59,7 +61,7 @@ public class QuestionController {
 			e.printStackTrace();
 			return new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<>("file uploaded", HttpStatus.CREATED);
+		return new ResponseEntity<>("file uploaded successfully", HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/add")
