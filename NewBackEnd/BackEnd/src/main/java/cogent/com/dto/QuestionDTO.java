@@ -1,5 +1,6 @@
 package cogent.com.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import cogent.com.entity.Answer;
@@ -24,4 +25,12 @@ public class QuestionDTO {
 	private List<Answer> answers;
 	private String qcreated_by;
 	private String qapproved_by;
+
+	public QuestionDTO(String descriptionQuestion, String topic, String title) {
+		this.descriptionQuestion = descriptionQuestion;
+		this.topic = topic;
+		this.title = title;
+		this.status = false;
+		this.datetime = LocalDateTime.now().toString();
+	}
 }
