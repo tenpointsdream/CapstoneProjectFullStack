@@ -3,7 +3,6 @@ import { Answer } from "../entity/answer.entity";
 import { QuestionService } from "../service/question.service";
 import { AnswerService } from "../service/answer.service";
 import { Question } from "../entity/question.entity";
-import { UserProfile } from '../entity/userprofile.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../service/user.service';
 
@@ -15,8 +14,6 @@ import { UserService } from '../service/user.service';
 export class PendingAnswerComponent implements OnInit {
   pendingAnswers: Answer[];
   answerToUpdate = {} as Answer;
-  currentUser = {} as UserProfile;
-  currentQuestion = {} as Question;
   constructor(
     private answerService: AnswerService,
     private cookieService: CookieService,
