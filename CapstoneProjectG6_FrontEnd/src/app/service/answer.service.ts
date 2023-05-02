@@ -12,6 +12,10 @@ export class AnswerService {
   constructor(private httpClient: HttpClient,
     private cookieService: CookieService) { }
 
+  addAnswer(answer: Answer):Observable<Answer>{
+    const url = `${this.baseUrl}/addanswer`;
+    return this.httpClient.post<Answer>(url, answer, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+  }
   getAnswers(): Observable<Answer[]> {
     return this.httpClient.get<Answer[]>(`${this.baseUrl}/getallanswers`, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
@@ -24,7 +28,7 @@ export class AnswerService {
     return this.httpClient.get<Answer>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   getAnswerByQuestionId(id:number): Observable<Answer[]> {
-    const url =`http://localhost:8080/answer/getanswersbyquestionid/${id}`;
+    const url =`${this.baseUrl}/getanswersbyquestionid/${id}`;
     return this.httpClient.get<Answer[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
 
@@ -37,4 +41,5 @@ export class AnswerService {
     const url = `${this.baseUrl}/deleteanswerbyid/${id}`;
     return this.httpClient.delete(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
+
 }

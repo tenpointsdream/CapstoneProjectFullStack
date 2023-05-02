@@ -1,9 +1,5 @@
 package cogent.com.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +7,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
@@ -19,7 +23,6 @@ import cogent.com.entity.Question;
 import cogent.com.repository.QuestionRepository;
 import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionServiceImpl;
-import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -37,24 +40,9 @@ public class QuestionController {
 	private QuestionRepository questionRepository;
 
 	@PostMapping("/addquestion")
-	public ResponseEntity<String> addQuestion(@RequestParam("topic") String topic,
-											  @RequestParam("title") String title,
-											  @RequestParam("desc") String desc,
-											  @RequestParam("file") MultipartFile file) {
-
-		String filename = file.getOriginalFilename();
-		QuestionDTO questionDTO = new QuestionDTO(desc, topic, title);
-		questionDTO.setImageSrc(filename);
+	public ResponseEntity<QuestionDTO> addQuestion(@RequestBody QuestionDTO questionDTO) {
 		QuestionDTO addedQuestion = questionService.addQuestion(questionDTO);
-		byte[] bytes;
-		try {
-			bytes = file.getBytes();
-			Path path = Paths.get("question_files/" + filename);
-			Files.write(path, bytes);
-		} catch (IOException e) {
-			return new ResponseEntity<>("file not saved", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<>("question added successfully", HttpStatus.CREATED);
+		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/add")

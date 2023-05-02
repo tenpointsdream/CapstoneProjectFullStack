@@ -8,6 +8,8 @@ public interface AnswerService {
 
 	public List<AnswerDTO> getAllAnswers();
 
+	public List<AnswerDTO> getAllAnswersByQId(int questionID);
+
 	public AnswerDTO addAnswer(AnswerDTO answerDTO);
 
 	public AnswerDTO updateAnswer(AnswerDTO answerDTO);
