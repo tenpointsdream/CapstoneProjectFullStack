@@ -38,10 +38,10 @@ public class AnswerController {
 											   @RequestParam("createdBy") String createdBy,
 											   @RequestPart("file") MultipartFile file) {
 		AnswerDTO answerDTO = new AnswerDTO();
-		answerDTO.setStatus(false);
-		answerDTO.setDatetime(LocalDateTime.now().toString());
 		answerDTO.setDescription_answer(desc);
+		answerDTO.setStatus(false);
 		answerDTO.setCreated_by(createdBy);
+		answerDTO.setDatetime(LocalDateTime.now().toString());
 		answerDTO.setImg_src(file.getOriginalFilename());
 		answerService.addAnswer(answerDTO);
 		Path filepath = Paths.get("answer_files", file.getOriginalFilename());
