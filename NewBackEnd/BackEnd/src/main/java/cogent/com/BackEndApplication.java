@@ -16,6 +16,11 @@ import cogent.com.service.QuestionService;
 import cogent.com.service.UserService;
 import cogent.com.util.UserType;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static cogent.com.util.AppUtil.sha256;
+
 @SpringBootApplication
 public class BackEndApplication {
 //	@Autowired
@@ -31,9 +36,9 @@ public class BackEndApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(BackEndApplication.class, args);
 		UserService userService = ctx.getBean(UserService.class);
-		userService.addUser(new User("Khoa Ho", "user1", "password", "user1@gmail.com", UserType.ADMIN));
-		userService.addUser(new User("Prajesh Sharma", "user2", "password", "user2@gmail.com", UserType.USER));
-		userService.addUser(new User("Abdulkerim Mohammed", "user3", "password", "user3@gmail.com", UserType.USER));
+		userService.addUser(new User("Khoa Ho", "user1", sha256("password"), "user1@gmail.com", UserType.ADMIN));
+		userService.addUser(new User("Prajesh Sharma", "user2", sha256("password"), "user2@gmail.com", UserType.USER));
+		userService.addUser(new User("Abdulkerim Mohammed", "user3", sha256("password"), "user3@gmail.com", UserType.USER));
 		QuestionService questionService = ctx.getBean(QuestionService.class);
 		//List<User> users = userService.getAllUsers();
 		questionService.addQuestion(new QuestionDTO(0, "Test description", "test.jpg", "04-26-2023, 12:36", false,

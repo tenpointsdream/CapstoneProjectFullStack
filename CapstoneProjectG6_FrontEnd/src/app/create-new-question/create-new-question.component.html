@@ -52,7 +52,7 @@
                 <div>
                     <!-- todo -->
                     <label for="imageSrc">Upload Image</label>
-                    <input type="file" (change)="onFileSelected($event)" alt="image.jpg" required>
+                    <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
                 </div>
                 <button [disabled]="adminform.invalid" type="submit">Submit</button>
             </form>

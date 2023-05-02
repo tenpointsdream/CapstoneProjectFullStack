@@ -14,7 +14,6 @@ import { UserService } from '../service/user.service';
 export class PendingQuestionComponent implements OnInit {
   pendingQuestions: Question[];
   questionToUpdate = {} as Question;
-  currentUser = {} as UserProfile;
   constructor(
     private questionService: QuestionService,
     private http: HttpClient,
@@ -31,8 +30,7 @@ export class PendingQuestionComponent implements OnInit {
   }
 
   approveQuestion(id: number) {
-
-    if (confirm('Are you sure you want to approve this question?')) {
+    if (confirm('Are you sure you want to approve this question?'))
       this.questionService.getQuestionById(id).subscribe((question: Question) => {
         console.log(question);
         this.questionToUpdate = question;
@@ -47,18 +45,13 @@ export class PendingQuestionComponent implements OnInit {
             //this.refresh();
           });
         });
-
       })
-
-    }
   }
   removeQuestion(id: number) {
-    if (confirm('Are you sure you want to delete this question?')) {
+    if (confirm('Are you sure you want to delete this question?'))
       this.questionService.deleteQuestion(id).subscribe(() => {
         console.log("Question is deleted, ID: ", id);
-      },
-      );
-    }
+      });
   }
 
   refresh(): void {

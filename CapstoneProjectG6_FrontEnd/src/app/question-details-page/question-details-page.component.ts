@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Question } from '../entity/question.entity';
-import { QuestionService } from '../service/question.service';
-import { Answer } from '../entity/answer.entity';
-import { AnswerService } from '../service/answer.service';
-import { EmailService } from '../service/email.service';
-import { Email } from '../entity/email.entity';
-import { UserService } from '../service/user.service';
-import { User } from '../entity/user.entity';
-import { UserType } from '../entity/UserSubmit';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Question} from '../entity/question.entity';
+import {QuestionService} from '../service/question.service';
+import {Answer} from '../entity/answer.entity';
+import {AnswerService} from '../service/answer.service';
+import {EmailService} from '../service/email.service';
+import {Email} from '../entity/email.entity';
+import {UserService} from '../service/user.service';
+import {User} from '../entity/user.entity';
 
 @Component({
   selector: 'app-question-details-page',
@@ -74,8 +73,7 @@ export class QuestionDetailsPageComponent implements OnInit {
       minute: 'numeric',
       second: 'numeric'
     };
-    const dateTimeString: string = now.toLocaleString('en-US', options);
-    this.answerForm.datetime = dateTimeString;
+    this.answerForm.datetime = now.toLocaleString('en-US', options);
     this.answerService.addAnswer(this.answerForm).subscribe((returnAnswer: any) => {
       console.log(returnAnswer);
       alert("You answer has been added! Waiting for admin approval...");
