@@ -24,7 +24,7 @@ import cogent.com.repository.QuestionRepository;
 import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionServiceImpl;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/question")
 public class QuestionController {

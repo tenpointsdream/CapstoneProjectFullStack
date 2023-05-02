@@ -7,8 +7,13 @@ import { UserProfile } from '../entity/userprofile.entity';
   providedIn: 'root'
 })
 export class UserService {
-  login(userForm: User) {
-    throw new Error('Method not implemented.');
+
+  private user: any;
+  setUser(user: any) {
+    this.user = user;
+  }
+  optainUser() {
+    return this.user;
   }
 
   private baseUrl = 'http://localhost:8080/user';

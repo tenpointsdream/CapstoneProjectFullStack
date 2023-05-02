@@ -3,7 +3,6 @@ package cogent.com.dto;
 import java.util.List;
 
 import cogent.com.entity.Answer;
-import cogent.com.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +22,6 @@ public class QuestionDTO {
 	private String topic;
 	private String title;
 	private List<Answer> answers;
-	private User qcreated_by;
-	private User qapproved_by;
+	private String qcreated_by;
+	private String qapproved_by;
 }

@@ -41,19 +41,16 @@ export class PendingAnswerComponent implements OnInit {
         console.log(this.answerToUpdate);
         questionId = this.answerToUpdate.question.id;
         console.log("Answer adding to question id: ", questionId);
-        this.userService.getUser(this.cookieService.get('username')).subscribe((user: UserProfile) => {
-          console.log(user);
-          this.answerToUpdate.approved_by = user;  
-          console.log("Question before to approve: ", this.answerToUpdate);
-          this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
-            console.log(updatedAnswer);
-            this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
-              console.log(updatedQuestion);
-              console.log("This is a list of answers: ", updatedQuestion.answers);
-              this.refresh();
-            })
+        this.answerToUpdate.approved_by = this.cookieService.get('username');
+        console.log("Question before to approve: ", this.answerToUpdate);
+        this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
+          console.log(updatedAnswer);
+          this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
+            console.log(updatedQuestion);
+            console.log("This is a list of answers: ", updatedQuestion.answers);
+            this.refresh();
           })
-        });
+        })
       });
     }
   }
@@ -62,8 +59,7 @@ export class PendingAnswerComponent implements OnInit {
     if (confirm('Are you sure you want to delete this question?')) {
       this.answerService.deleteAnswer(id).subscribe(() => {
         console.log("Answer is deleted, ID: ", id);
-      },
-      );
+      });
     }
   }
 

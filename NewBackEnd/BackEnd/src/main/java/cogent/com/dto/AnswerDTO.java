@@ -1,7 +1,6 @@
 package cogent.com.dto;
 
 import cogent.com.entity.Question;
-import cogent.com.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +18,7 @@ public class AnswerDTO {
 	private boolean status;
 	private String datetime;
 	private Question question;
-	private User approved_by;
-	private User created_by;
+	private String approved_by;
+	private String created_by;
 
 }

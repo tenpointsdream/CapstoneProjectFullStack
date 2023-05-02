@@ -17,11 +17,9 @@ public class Answer {
 	@ManyToOne
 	private Question question;
 
-	@OneToOne
-	private User approved_by;
-
-	@OneToOne
-	private User created_by;
+	private String approved_by;
+	
+	private String created_by;
 
 	public Answer() {
 		super();
@@ -29,7 +27,7 @@ public class Answer {
 	}
 
 	public Answer(String description_answer, String img_src, boolean status, String datetime, Question question,
-			User approved_by, User created_by) {
+			String approved_by, String created_by) {
 		super();
 		this.description_answer = description_answer;
 		this.img_src = img_src;
@@ -88,24 +86,20 @@ public class Answer {
 		this.question = question;
 	}
 
-	public User getApproved_by() {
+	public String getApproved_by() {
 		return approved_by;
 	}
 
-	public void setApproved_by(User approved_by) {
+	public void setApproved_by(String approved_by) {
 		this.approved_by = approved_by;
 	}
 
-	public User getCreated_by() {
+	public String getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(User created_by) {
+	public void setCreated_by(String created_by) {
 		this.created_by = created_by;
 	}
 
-	@Override
-	public String toString() {
-		return "Answer description: " + this.description_answer + " and datetime: " + this.datetime;
-	}
 }
