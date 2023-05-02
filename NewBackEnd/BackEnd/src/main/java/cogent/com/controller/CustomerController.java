@@ -16,6 +16,8 @@ import cogent.com.entity.*;
 import cogent.com.service.*;
 import cogent.com.util.UserType;
 
+import static cogent.com.util.AppUtil.sha256;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/customer")
@@ -40,6 +42,7 @@ public class CustomerController {
 	@PostMapping("/user/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User newUser = userService.addNewUser(user);
+		newUser.setPassword(sha256(user.getPassword()));
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
 
@@ -127,11 +130,9 @@ public class CustomerController {
 				questionsByTitle.add(question);
 
 		List<QuestionDTO> questionFiltered = new ArrayList<>();
-		for (QuestionDTO questionByTitle : questionsByTitle) {
-			if (questionByTitle.isStatus() == true) {
+		for (QuestionDTO questionByTitle : questionsByTitle)
+			if (questionByTitle.isStatus())
 				questionFiltered.add(questionByTitle);
-			}
-		}
 		return new ResponseEntity<>(questionFiltered, HttpStatus.OK);
 	}
 

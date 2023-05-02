@@ -47,14 +47,11 @@ public class AnswerController {
 	@GetMapping("/getanswersbyquestionid/{questionId}")
 	public ResponseEntity<List<AnswerDTO>> getAnswersByQuestionId(@PathVariable int questionId) {
 		List<AnswerDTO> answers = answerService.getAnswersByQuestionId(questionId);
-		List<AnswerDTO> filteredAnswers = new ArrayList<AnswerDTO>();
-		for (AnswerDTO answer : answers) {
-			if (answer.isStatus() == true) {
+		List<AnswerDTO> filteredAnswers = new ArrayList<>();
+		for (AnswerDTO answer : answers)
+			if (answer.isStatus())
 				filteredAnswers.add(answer);
-			}
-		}
-		return filteredAnswers == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-				: new ResponseEntity<>(filteredAnswers, HttpStatus.OK);
+		return new ResponseEntity<>(filteredAnswers, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateanswer/{id}")
