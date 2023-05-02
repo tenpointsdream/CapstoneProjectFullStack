@@ -1,18 +1,19 @@
 package cogent.com;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import cogent.com.dto.AnswerDTO;
+import cogent.com.dto.QuestionDTO;
+import cogent.com.entity.Answer;
+import cogent.com.entity.User;
+import cogent.com.service.AnswerService;
+import cogent.com.service.QuestionService;
+import cogent.com.service.UserService;
+import cogent.com.util.UserType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import cogent.com.dto.QuestionDTO;
-import cogent.com.entity.Answer;
-import cogent.com.entity.User;
-import cogent.com.service.QuestionService;
-import cogent.com.service.UserService;
-import cogent.com.util.UserType;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class BackEndApplication {
