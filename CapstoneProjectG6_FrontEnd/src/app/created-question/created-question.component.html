@@ -24,65 +24,21 @@
         </div>
         <div class="container">
             <ul>
-                <li>
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <img src="assets/images/java.png" height="150" alt="Image">
+                <li *ngFor="let question of questions">
+                    <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
+                    <img [src]="question.imageSrc" alt="Question Image">
                     <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
+                       {{ question.title }}
                     </p>
                     <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
+                      {{ question.topic }}
                     </p>
                     <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
+                    {{ question.descriptionQuestion }}
                     </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
-                </li>
-                <li>
-                    <img src="assets/images/java.png" height="150" alt="Image">
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
-                    </p>
-                    <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
-                    </p>
-                    <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
-                    </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
-                </li>
-                <li>
-                    <img src="assets/images/java.png" height="150" alt="Image">
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
-                    </p>
-                    <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
-                    </p>
-                    <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
-                    </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
-                </li>
-                <li>
-                    <img src="assets/images/java.png" height="150" alt="Image">
-                    <!-- <li *ngFor="let question of questions" </li> -->
-                    <p><strong>Title: </strong>
-                        <!--{{ question.title }}-->java
-                    </p>
-                    <p><strong>Topic: </strong>
-                        <!--{{ question.topic }}-->sample
-                    </p>
-                    <p><strong>Description: </strong>
-                        <!--{{ question.description }}-->sample
-                    </p>
-                    <p><strong>Created By: </strong><!-- {{ question.createdBy }}-->sample</p>
-                    <!-- <img [src]="question.imageSrc" alt="Question Image"> -->
+                    <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
+                    <button>Answers</button>
+                    <button>Add Answer</button>
                 </li>
             </ul>
         </div>
