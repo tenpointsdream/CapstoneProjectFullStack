@@ -1,8 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Question } from '../entity/question.entity';
 import { QuestionService } from '../service/question.service';
-import { User } from '../entity/user.entity';
-import { Answer } from '../entity/answer.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 

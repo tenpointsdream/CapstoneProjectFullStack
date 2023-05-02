@@ -51,6 +51,7 @@ export class QuestionDetailsPageComponent implements OnInit {
     if (event.target.files.length > 0) {
       console.log(event.target.files[0].name);
       this.answerForm.img_src = event.target.files[0].name;
+      this.answerForm.imageFile = event.target.files[0];
     }
   }
   closeForm() {
@@ -61,7 +62,6 @@ export class QuestionDetailsPageComponent implements OnInit {
   }
   onSubmit(answerform: any) {
     this.answerForm.id = 1;
-    this.answerForm.created_by = this.cookieService.get('username')
     this.answerForm.description_answer = answerform.value.description_answer;
     this.answerForm.approved_by = '';
     this.answerForm.question = this.question;
@@ -76,8 +76,9 @@ export class QuestionDetailsPageComponent implements OnInit {
       second: 'numeric'
     };
     this.answerForm.datetime = now.toLocaleString('en-US', options);
+    this.answerForm.created_by = this.cookieService.get('username');
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username')).subscribe((returnAnswer: Answer) => {
-      console.log(returnAnswer);
+      console.log("Created Answer: ",returnAnswer);
       alert("You answer has been added! Waiting for admin approval...");
       this.email.msgBody = 'You have new pending question to approve';
       this.email.subject = this.question.title;
@@ -93,9 +94,9 @@ export class QuestionDetailsPageComponent implements OnInit {
         });
       });
     });
-
+    this.refresh();
   }
-  logout() {
-    localStorage.clear();
+  refresh() {
+    window.location.reload();
   }
 }
