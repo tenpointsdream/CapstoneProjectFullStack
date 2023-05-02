@@ -2,7 +2,6 @@ import { UserService } from './../service/user.service';
 import { Component } from '@angular/core';
 import { User } from '../entity/user.entity';
 import { UserType } from '../entity/UserSubmit';
-import { AuthenticationService } from '../service/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -25,7 +24,6 @@ export class AdminLoginComponent {
   userForm: User;
   model: User;
   constructor(
-    private authenticationService: AuthenticationService,
     private httpClient: HttpClient,
     private router: Router,
     private cookieService: CookieService) {

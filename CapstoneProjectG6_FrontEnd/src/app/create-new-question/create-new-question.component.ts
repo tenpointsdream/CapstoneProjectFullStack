@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserProfile } from '../entity/userprofile.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
+import { Email } from '../entity/email.entity';
+import { EmailService } from '../service/email.service';
 
 
 @Component({
@@ -20,9 +22,11 @@ export class CreateNewQuestionComponent {
   questionForm = {} as Question;
   model = {} as Question;
   currentUser = {} as User;
+  admin = [] as User[];
+  email = {} as Email;
   constructor(
     private questionService: QuestionService,
-    private httpClient: HttpClient,
+    private emailService: EmailService,
     private cookieService: CookieService,
     private userService: UserService) {
     const now: Date = new Date();
@@ -73,6 +77,19 @@ export class CreateNewQuestionComponent {
     this.questionService.addQuestion(this.questionForm).subscribe((createdQuestion: Question) => {
       console.log("Created Question: ", createdQuestion);
       alert("Your answer has been added! Waiting for admin to approve...");
+      this.email.msgBody = 'You have new pending question to approve';
+      this.email.subject = this.questionForm.title;
+      this.userService.getUserByType(UserType.ADMIN).subscribe((users: User[]) => {
+        this.admin = users;
+        console.log(users);
+        this.admin.forEach(element => {
+          this.email.recipient = element.email;
+          this.emailService.sendEmail(this.email).subscribe((message: any) => {
+            console.log(message);
+            console.log("Sent to: ", element.name);
+          });
+        });
+      });
     });
     // todo
 

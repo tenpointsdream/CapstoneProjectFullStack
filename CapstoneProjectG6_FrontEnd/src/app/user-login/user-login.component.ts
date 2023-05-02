@@ -1,7 +1,6 @@
 import { User } from './../entity/user.entity';
 import { Component, OnInit } from '@angular/core';
 import { UserType } from '../entity/UserSubmit';
-import { AuthenticationService } from '../service/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -20,7 +19,6 @@ export class UserLoginComponent {
 
   role: string = '';
   constructor(
-    private authenticationService: AuthenticationService,
     private userService: UserService,
     private httpClient: HttpClient,
     private router: Router,

@@ -10,7 +10,6 @@ import { ChatComponent } from './chat/chat.component';
 import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
 import { CreatedAnswerComponent } from './created-answer/created-answer.component';
 import { CreatedQuestionComponent } from './created-question/created-question.component';
-import { AllEntityComponent } from './all-entity/all-entity.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PendingAnswerComponent } from './pending-answer/pending-answer.component';
@@ -38,7 +37,6 @@ import { AdminHomePageComponent } from './admin-home-page/admin-home-page.compon
     CreateNewQuestionComponent,
     CreatedAnswerComponent,
     CreatedQuestionComponent,
-    AllEntityComponent,
     HomeComponent,
     PageNotFoundComponent,
     PendingAnswerComponent,
