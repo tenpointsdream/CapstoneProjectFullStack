@@ -24,6 +24,8 @@ import cogent.com.service.UserService;
 import cogent.com.util.JwtUtil;
 import cogent.com.util.UserType;
 
+import static cogent.com.util.AppUtil.sha256;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/user")
@@ -69,6 +71,7 @@ public class UserController {
 
 	@PostMapping("/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
+		//user.setPassword(sha256(user.getPassword()));
 		User newUser = userService.addNewUser(user);
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
