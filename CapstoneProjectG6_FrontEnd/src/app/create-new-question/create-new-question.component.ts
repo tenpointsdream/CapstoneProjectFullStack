@@ -1,14 +1,9 @@
 import { QuestionService } from '../service/question.service';
-import { UserType } from '../entity/UserSubmit';
 import { UserService } from '../service/user.service';
 import { User } from '../entity/user.entity';
 import { Question } from '../entity/question.entity';
 import { Component } from '@angular/core';
-import { Answer } from '../entity/answer.entity';
-import { HttpClient } from '@angular/common/http';
-import { UserProfile } from '../entity/userprofile.entity';
 import { CookieService } from 'ngx-cookie-service';
-import { DatePipe } from '@angular/common';
 import { Email } from '../entity/email.entity';
 import { EmailService } from '../service/email.service';
 
@@ -21,7 +16,6 @@ import { EmailService } from '../service/email.service';
 export class CreateNewQuestionComponent {
   questionForm = {} as Question;
   model = {} as Question;
-  currentUser = {} as User;
   admin = [] as User[];
   email = {} as Email;
   constructor(
