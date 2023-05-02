@@ -14,11 +14,12 @@ export class AnswerService {
 
   addAnswer(answer: Answer):Observable<Answer>{
     const url = `${this.baseUrl}/addanswer`;
-    return this.httpClient.post<Answer>(url, answer, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+    const formData:any = new FormData();
+    formData.append("desc", answer.description_answer);
+    formData.append("file", answer.imageFile);
+    return this.httpClient.post<Answer>(url, formData, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
-  getAnswers(): Observable<Answer[]> {
-    return this.httpClient.get<Answer[]>(`${this.baseUrl}/getallanswers`, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
-  }
+
   getPendingAnswers(): Observable<Answer[]> {
     const url = `${this.baseUrl}/getpendinganswers`;
     return this.httpClient.get<Answer[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
