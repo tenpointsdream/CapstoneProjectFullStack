@@ -75,24 +75,23 @@ export class CreateNewQuestionComponent {
     this.questionForm.qcreated_by = this.cookieService.get('username');
     console.log("Question form: ", this.questionForm);
     console.log("Current user: " + this.questionForm.qcreated_by);
-    this.questionService.addQuestion(this.questionForm);
-    // .subscribe((createdQuestion: Question) => {
-    //   console.log("Created Question: ", createdQuestion);
-    //   alert("Your answer has been added! Waiting for admin to approve...");
-    //   this.email.msgBody = 'You have new pending question to approve';
-    //   this.email.subject = this.questionForm.title;
-    //   this.userService.getUserByType(UserType.ADMIN).subscribe((users: User[]) => {
-    //     this.admin = users;
-    //     console.log(users);
-    //     this.admin.forEach(element => {
-    //       this.email.recipient = element.email;
-    //       this.emailService.sendEmail(this.email).subscribe((message: any) => {
-    //         console.log(message);
-    //         console.log("Sent to: ", element.name);
-    //       });
-    //     });
-    //   });
-    // });
+    this.questionService.addQuestion(this.questionForm).subscribe((createdQuestion: Question) => {
+      console.log("Created Question: ", createdQuestion);
+      alert("Your answer has been added! Waiting for admin to approve...");
+      this.email.msgBody = 'You have new pending question to approve';
+      this.email.subject = this.questionForm.title;
+      this.userService.getUserByType(UserType.ADMIN).subscribe((users: User[]) => {
+        this.admin = users;
+        console.log(users);
+        this.admin.forEach(element => {
+          this.email.recipient = element.email;
+          this.emailService.sendEmail(this.email).subscribe((message: any) => {
+            console.log(message);
+            console.log("Sent to: ", element.name);
+          });
+        });
+      });
+    });
     // todo
 
     //this.refresh();

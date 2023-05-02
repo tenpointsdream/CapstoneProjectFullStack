@@ -13,42 +13,8 @@ export class QuestionService {
 
 
   addQuestion(question: Question):Observable<Question> {
-    console.log("in addQuestion");
-    const url = "http://localhost:8080/question/addquestion";
-
-
-    const formData:any = new FormData();
-    formData.append("topic", question.topic);
-    formData.append("title", question.title);
-    formData.append("desc", question.descriptionQuestion);
-    formData.append("file", question.imageFile);
-
-    const params:any = new HttpParams();
-    params.append("topic", question.topic);
-    params.append("title", question.title);
-    params.append("desc", question.descriptionQuestion);
-    params.append("file", question.imageFile);
-
-
-
-    console.log(question.topic);
-    console.log(question.title);
-    console.log(question.descriptionQuestion);
-    console.log(question.imageFile);
-    console.log("before post");
-    const token = "Bearer " + this.cookieService.get('jwtToken');
-    console.log(token);
-    const headers = new HttpHeaders({"Authorization": token});
-
-    const options = {
-      headers:headers,
-      params:params
-    }
-
-    const response:Observable<string> = this.httpClient.post<string>(url, null, options);
-    console.log("after post");
-    console.log(response);
-    return new Observable<Question>();
+    const url = `http://localhost:8080/question/add`;
+    return this.httpClient.post<Question>(url, question, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
     //return this.httpClient.post(addUrl,{} { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   searchQuestion(topic: string, title: string): Observable<Question[]> {
