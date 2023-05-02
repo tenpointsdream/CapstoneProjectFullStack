@@ -1,15 +1,7 @@
 package cogent.com;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cogent.com.dto.AnswerDTO;
-import cogent.com.service.AnswerService;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
 import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.User;
 import cogent.com.service.AnswerService;

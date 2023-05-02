@@ -45,6 +45,7 @@ export class CreateNewQuestionComponent {
     if (event.target.files.length > 0) {
       console.log(event.target.files[0].name);
       this.questionForm.imageSrc = event.target.files[0].name;
+      this.questionForm.imageFile = event.target.files[0];
     }
   }
   onSubmit(questionform: any) {
