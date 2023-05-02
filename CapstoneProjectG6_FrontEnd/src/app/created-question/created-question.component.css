@@ -62,10 +62,19 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     list-style-type: none;
+    margin: 10px;
 }
 
-.container img {
-    float: left;
+.container_2 {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+        width: 500px;
+        margin-left: 40px;
+        list-style-type: none;
+        /* margin: 10px; */
 }
 
 .footer-div {
@@ -91,7 +100,15 @@ ul li {
 }
 .btn1 {
     background-color: rgb(22, 135, 22);
+    margin: 10px;
 }
 .btn2 {
     background-color: #387cea;
+}
+.submitbtn {
+    margin-right: 10px;
+    border-radius: 3px;
+}
+.cancel {
+    border-radius: 3px;
 }
