@@ -1,9 +1,8 @@
-import { Answer } from './../entity/answer.entity';
-import { AnswerService } from './../service/answer.service';
-import { Question } from './../entity/question.entity';
-import { QuestionService } from './../service/question.service';
+import { Answer } from '../entity/answer.entity';
+import { AnswerService } from '../service/answer.service';
+import { Question } from '../entity/question.entity';
+import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-created-question',
