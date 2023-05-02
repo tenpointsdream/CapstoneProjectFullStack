@@ -52,11 +52,12 @@ public class UserController {
 //	}
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+		String encPassword = sha256(authRequest.getPassword());
 		try {
 			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), encPassword));
 		} catch (Exception ex) {
-			throw new Exception("inavalid username/password");
+			throw new Exception("invalid username/password");
 		}
 		return jwtUtil.generateToken(authRequest.getUsername());
 	}
@@ -71,7 +72,7 @@ public class UserController {
 
 	@PostMapping("/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-		//user.setPassword(sha256(user.getPassword()));
+		user.setPassword(sha256(user.getPassword()));
 		User newUser = userService.addNewUser(user);
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
