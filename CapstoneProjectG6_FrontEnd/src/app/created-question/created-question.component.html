@@ -37,12 +37,31 @@
                     {{ question.descriptionQuestion }}
                     </p>
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
-                    <button (click)="listOfAnswer(question.id)">Answers</button>
-                    <button>Add Answer</button>
+                    <button class="btn1">Answers</button>
+                    <button class="btn2" (click)="showForm()">Add Answer</button>
+                    <div class="container_2">   
+                        <div *ngIf="onVisible">
+                            <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
+                                <div class="register-form">
+                                    <label for="description_answer">Solution: </label><br>
+                                    <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
+                                    <br><br>
+                                </div>
+                    
+                                <div>
+                                    <!-- todo -->
+                                    <label for="imageSrc">ImageSrc</label>
+                                    <input type="file" (change)="onFileSelected($event)" alt="image.jpg" required> <br>
+                                </div>
+                                <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
+                                <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
-        <div *ngIf="showForm" class="answer-form-container">
+        <!-- <div *ngIf="showForm" class="answer-form-container">
             <form novalidate #answerform="ngForm" (ngSubmit)="onSubmit(answerform)">
                 <div class="answer-form">
                     <label for="description_answer">Answer:</label>
@@ -54,12 +73,13 @@
                 </div>
                 <button [disabled]="answerform.invalid" type="submit">Submit</button>
             </form>
+        </div> -->
+        
         </div>
-    </div>
-    <footer class="footer-div">
-        <ul class="footer">
-            <li>Abdulkerim Mohammed</li>
-            <li>Prajesh Sharma</li>
+        <footer class="footer-div">
+            <ul class="footer">
+                <li>Abdulkerim Mohammed</li>
+                <li>Prajesh Sharma</li>
             <li>Khoa Ho</li>
         </ul>
         <p>2023 Copy Right ©</p>

@@ -133,3 +133,7 @@ td{
     border: 2px solid;
     border-collapse: collapse;
 }
+.addbtn {
+    background-color: green;
+    border-radius: 3px;
+}
