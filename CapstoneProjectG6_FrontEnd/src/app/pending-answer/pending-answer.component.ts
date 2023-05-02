@@ -28,6 +28,7 @@ export class PendingAnswerComponent implements OnInit {
     this.answerService.getPendingAnswers().subscribe((data: Answer[]) => {
       console.log(data);
       this.pendingAnswers = data;
+      alert("Question id " + this.pendingAnswers[0].question.id);
     })
   }
   approveAnswer(id: number) {
