@@ -80,7 +80,7 @@ export class CreateNewQuestionComponent {
       alert("Your question has been added! Waiting for admin to approve...");
       this.email.msgBody = 'You have new pending question to approve';
       this.email.subject = this.questionForm.title;
-      this.userService.getUserByType(UserType.ADMIN).subscribe((users: User[]) => {
+      this.userService.getAdmin().subscribe((users: User[]) => {
         this.admin = users;
         console.log(users);
         this.admin.forEach(element => {
