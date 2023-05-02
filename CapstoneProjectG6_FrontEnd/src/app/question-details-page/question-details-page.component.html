@@ -52,7 +52,7 @@
                     </td>
                 </tr>
             </tbody> -->
-        
+
     </div>
     </div>
     <div *ngIf="onVisible">
@@ -64,8 +64,8 @@
 
             <div>
                 <!-- todo -->
-                <label for="imageSrc">ImageSrc</label>
-                <input type="file" (change)="onFileSelected($event)" alt="image.jpg" required> 
+                <label for="imageSrc">Upload Image</label>
+                <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
             </div>
             <button [disabled]="answerform.invalid" type="submit">Submit</button><br><br>
             <button (click)="closeForm()" type="button">Cancel</button>
