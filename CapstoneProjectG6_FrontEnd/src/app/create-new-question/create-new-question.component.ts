@@ -76,7 +76,7 @@ export class CreateNewQuestionComponent {
     console.log("Current user: " + this.questionForm.qcreated_by);
     this.questionService.addQuestion(this.questionForm).subscribe((createdQuestion: Question) => {
       console.log("Created Question: ", createdQuestion);
-      alert("Your answer has been added! Waiting for admin to approve...");
+      alert("Your question has been added! Waiting for admin to approve...");
       this.email.msgBody = 'You have new pending question to approve';
       this.email.subject = this.questionForm.title;
       this.userService.getUserByType(UserType.ADMIN).subscribe((users: User[]) => {

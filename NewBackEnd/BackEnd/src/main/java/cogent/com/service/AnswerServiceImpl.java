@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cogent.com.dto.AnswerDTO;
+import cogent.com.dto.QuestionDTO;
+import cogent.com.entity.Answer;
+import cogent.com.entity.Question;
 import cogent.com.repository.AnswerRepository;
+import cogent.com.repository.QuestionRepository;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -17,6 +21,9 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Autowired
 	private QuestionServiceImpl questionService;
+
+	@Autowired
+	private QuestionRepository questionRepository;
 
 	@Override
 	public List<AnswerDTO> getAllAnswers() {
@@ -74,6 +81,17 @@ public class AnswerServiceImpl implements AnswerService {
 			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
 		});
 		return answersDTO;
+	}
+
+	@Override
+	public List<AnswerDTO> getAllAnswersByQId(int questionId) {
+		List<AnswerDTO> answerDTOs = new ArrayList<AnswerDTO>();
+		Question question = questionRepository.findById(questionId).get();
+		List<Answer> answers = question.getAnswers();
+		answers.forEach((answer) -> {
+			answerDTOs.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answerDTOs;
 	}
 
 }

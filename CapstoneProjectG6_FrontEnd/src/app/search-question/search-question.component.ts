@@ -49,9 +49,10 @@ export class SearchQuestionComponent {
     }
   }
 
-  showDetails(id: number) {
+  showDetails(id: number, username: string) {
     this.router.navigate(['userhomepage/searchquestion/details']);
     localStorage.setItem('questionId', id.toString());
+    localStorage.setItem('username', username);
   }
   refresh() {
     window.location.reload();
