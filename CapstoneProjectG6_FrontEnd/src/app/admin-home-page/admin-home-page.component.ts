@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -7,17 +7,20 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './admin-home-page.component.html',
   styleUrls: ['./admin-home-page.component.css']
 })
-export class AdminHomePageComponent {
-  name: string;
+export class AdminHomePageComponent implements OnInit {
+  name: string = '';
   constructor(
     private router: Router,
     private cookieService: CookieService) {
-    this.name = cookieService.get('name');
+
+  }
+  ngOnInit(): void {
+    this.name = this.cookieService.get('name');
   }
   refresh(): void {
     window.location.reload();
   }
   signout(): void {
-    this.cookieService.deleteAll();
+    this.cookieService.deleteAll('/');
   }
 }

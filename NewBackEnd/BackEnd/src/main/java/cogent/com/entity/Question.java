@@ -19,19 +19,18 @@ public class Question {
 	private String topic;
 	private String title;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "question")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
 	@JsonIgnore
 	private List<Answer> answers;
-	@OneToOne
-	private User qcreated_by;
 
-	@OneToOne
-	private User qapproved_by;
+	private String qcreated_by;
+
+	private String qapproved_by;
 
 	public Question() {}
 
 	public Question(String descriptionQuestion, String imageSrc, String datetime, boolean status, String topic,
-					String title, List<Answer> answers, User qcreated_by, User qapproved_by) {
+					String title, List<Answer> answers, String qcreated_by, String qapproved_by) {
 		this.descriptionQuestion = descriptionQuestion;
 		this.imageSrc = imageSrc;
 		this.datetime = datetime;
@@ -107,19 +106,19 @@ public class Question {
 		this.answers = answers;
 	}
 
-	public User getQcreated_by() {
+	public String getQcreated_by() {
 		return qcreated_by;
 	}
 
-	public void setQcreated_by(User qcreated_by) {
+	public void setQcreated_by(String qcreated_by) {
 		this.qcreated_by = qcreated_by;
 	}
 
-	public User getQapproved_by() {
+	public String getQapproved_by() {
 		return qapproved_by;
 	}
 
-	public void setQapproved_by(User qapproved_by) {
+	public void setQapproved_by(String qapproved_by) {
 		this.qapproved_by = qapproved_by;
 	}
 

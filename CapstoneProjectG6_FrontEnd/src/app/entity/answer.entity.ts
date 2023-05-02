@@ -8,6 +8,6 @@ export interface Answer {
     status: boolean;
     datetime: string;
     question: Question;
-    approved_by: User;
-    created_by: User;
+    approved_by: string;
+    created_by: string;
 }

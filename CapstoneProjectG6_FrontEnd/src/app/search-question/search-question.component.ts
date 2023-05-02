@@ -5,17 +5,6 @@ import { User } from '../entity/user.entity';
 import { Answer } from '../entity/answer.entity';
 import { CookieService } from 'ngx-cookie-service';
 
-// interface questions {
-//   id: number;
-//   descriptionQuestion: string;
-//   imageSrc: string;
-//   status: string;
-//   topic: string;
-//   title: string;
-//   answers: Answer[];
-//   qcreated_by: User;
-//   qapproved_by: User;
-// }
 
 @Component({
   selector: 'app-search-question',
@@ -52,8 +41,8 @@ export class SearchQuestionComponent {
         'title': 'None',
         'datetime': 'None',
         'answers': [],
-        'qcreated_by': new User(),
-        'qapproved_by': new User()
+        'qcreated_by': '',
+        'qapproved_by': ''
       }]
     }
   }

@@ -10,6 +10,6 @@ export interface Question {
     title: string;
     datetime: string;
     answers: Answer[];
-    qcreated_by: User;
-    qapproved_by: User;
+    qcreated_by: string;
+    qapproved_by: string;
 }

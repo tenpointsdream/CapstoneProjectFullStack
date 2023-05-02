@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserProfile } from '../entity/userprofile.entity';
+import { UserService } from '../service/user.service';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -20,6 +21,7 @@ export class UserLoginComponent {
   role: string = '';
   constructor(
     private authenticationService: AuthenticationService,
+    private userService: UserService,
     private httpClient: HttpClient,
     private router: Router,
     private cookieService: CookieService) {
@@ -44,15 +46,14 @@ export class UserLoginComponent {
             .subscribe((response: any) => {
               const token = response;
               this.cookieService.set('jwtToken', token, 1, '/');
+              this.cookieService.set('username', this.userForm.username);
               console.log("Token: " + token);
               this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.userForm.username}`,
                 {
                   headers: { Authorization: `Bearer ${token}` }
-                  //withCredentials: true
                 })
                 .subscribe((userProfile: UserProfile) => {
-                  console.log('Logged in as: ', userProfile.username);
-                  this.cookieService.set('username', userProfile.username);
+                  console.log('Logged in as: ', userProfile.name);
                   this.cookieService.set('name', userProfile.name);
                   console.log('Email: ', userProfile.email);
                   console.log('User type: ' + userProfile.userType);

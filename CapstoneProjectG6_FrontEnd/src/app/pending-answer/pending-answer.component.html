@@ -34,7 +34,7 @@
         <tr>
           <td>{{answer.id}}</td>
           <td>{{answer.description_answer}}</td>
-          <td>{{answer.created_by.name}}</td>
+          <td>{{answer.created_by}}</td>
           <td>{{answer.datetime}}</td>
           <td><button class="approve" (click)="approveAnswer(answer.id)">Approve</button><br>
             <button class="delete" (click)="removeAnswer(answer.id)">Remove</button></td>

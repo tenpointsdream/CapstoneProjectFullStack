@@ -40,7 +40,7 @@ export class PendingQuestionComponent implements OnInit {
         console.log(this.questionToUpdate);
         this.userService.getUser(this.cookieService.get('username')).subscribe((user: UserProfile) => {
           console.log(user);
-          this.questionToUpdate.qapproved_by = user;
+          this.questionToUpdate.qapproved_by = this.cookieService.get('username');
           console.log("Question before to approve: ", this.questionToUpdate);
           this.questionService.updateQuestion(id, this.questionToUpdate).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);

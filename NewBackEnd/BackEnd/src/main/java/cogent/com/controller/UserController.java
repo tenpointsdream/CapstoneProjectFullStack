@@ -59,13 +59,13 @@ public class UserController {
 		return jwtUtil.generateToken(authRequest.getUsername());
 	}
 
-	@GetMapping("/login/{username}/{password}")
-	public ResponseEntity<Boolean> retrieveToken(@PathVariable("username") String username,
-			@PathVariable("password") String password) {
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		String token = jwtUtil.generateToken(username);
-		return new ResponseEntity<>((token.length() > 0), HttpStatus.OK);
-	}
+//	@GetMapping("/login/{username}/{password}")
+//	public ResponseEntity<Boolean> retrieveToken(@PathVariable("username") String username,
+//			@PathVariable("password") String password) {
+//		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//		String token = jwtUtil.generateToken(username);
+//		return new ResponseEntity<>((token.length() > 0), HttpStatus.OK);
+//	}
 
 	@PostMapping("/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {

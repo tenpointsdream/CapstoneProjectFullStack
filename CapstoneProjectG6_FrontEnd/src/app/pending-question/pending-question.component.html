@@ -39,7 +39,7 @@
             <td>{{question.topic}}</td>
             <td>{{question.title}}</td>
             <td>{{question.descriptionQuestion}}</td>
-            <td>{{question.qcreated_by.name}}</td>
+            <td>{{question.qcreated_by}}</td>
             <td>{{question.datetime}}</td>
             <td><button class="approve"  (click)="approveQuestion(question.id)">Approve</button><br>
               <button class="delete" (click)="removeQuestion(question.id)">Remove</button></td>
