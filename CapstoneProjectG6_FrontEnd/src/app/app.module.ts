@@ -26,6 +26,7 @@ import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';import { UserHomePageComponent } from './user-home-page/user-home-page.component';
 import {NgOptimizedImage} from "@angular/common";
 import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
+import { QuestionDetailsPageComponent } from './question-details-page/question-details-page.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AdminHomePageComponent } from './admin-home-page/admin-home-page.compon
     UserRegisterAndLoginComponent,
     AdminRegisterAndLoginComponent,
     UserHomePageComponent,
-    AdminHomePageComponent
+    AdminHomePageComponent,
+    QuestionDetailsPageComponent
   ],
     imports: [
         BrowserModule,
