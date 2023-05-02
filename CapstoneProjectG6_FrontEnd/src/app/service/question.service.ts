@@ -13,8 +13,13 @@ export class QuestionService {
 
 
   addQuestion(question: Question):Observable<Question> {
-    const url = `http://localhost:8080/question/add`;
-    return this.httpClient.post<Question>(url, question, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+    const url = `http://localhost:8080/question/addquestion`;
+    const formData:any = new FormData();
+    formData.append("title", question.title);
+    formData.append("topic", question.topic);
+    formData.append("desc", question.descriptionQuestion);
+    formData.append("file", question.imageFile);
+    return this.httpClient.post<Question>(url, formData, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
     //return this.httpClient.post(addUrl,{} { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   searchQuestion(topic: string, title: string): Observable<Question[]> {

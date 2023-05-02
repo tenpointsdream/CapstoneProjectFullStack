@@ -1,23 +1,23 @@
 package cogent.com.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cogent.com.dto.AnswerDTO;
 import cogent.com.service.AnswerServiceImpl;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -33,10 +33,23 @@ public class AnswerController {
 				: new ResponseEntity<>(answers, HttpStatus.OK);
 	}
 
-	@PostMapping("/addanswer")
-	public ResponseEntity<AnswerDTO> addAnwser(@RequestBody AnswerDTO answerDTO) {
-		AnswerDTO addedAnswer = answerService.addAnswer(answerDTO);
-		return new ResponseEntity<>(addedAnswer, HttpStatus.OK);
+	@PostMapping(value = "/addanswer", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	public ResponseEntity<String> addAnswer(@RequestParam("desc") String desc,
+											   @RequestPart("file") MultipartFile file) {
+		AnswerDTO answerDTO = new AnswerDTO();
+		answerDTO.setStatus(false);
+		answerDTO.setDatetime(LocalDateTime.now().toString());
+		answerDTO.setDescription_answer(desc);
+		answerDTO.setImg_src(file.getName());
+		answerService.addAnswer(answerDTO);
+		Path filepath = Paths.get("answer_files", file.getOriginalFilename());
+		try (OutputStream os = Files.newOutputStream(filepath)) {
+			os.write(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>("file uploaded successfully", HttpStatus.OK);
 	}
 
 	@GetMapping("/getanswerbyid/{id}")

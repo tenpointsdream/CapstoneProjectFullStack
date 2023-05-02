@@ -1,21 +1,20 @@
 package cogent.com.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
@@ -23,6 +22,7 @@ import cogent.com.entity.Question;
 import cogent.com.repository.QuestionRepository;
 import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionServiceImpl;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -39,10 +39,27 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	@PostMapping("/addquestion")
-	public ResponseEntity<QuestionDTO> addQuestion(@RequestBody QuestionDTO questionDTO) {
-		QuestionDTO addedQuestion = questionService.addQuestion(questionDTO);
-		return new ResponseEntity<>(addedQuestion, HttpStatus.CREATED);
+	@PostMapping(value = "/addquestion", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	public ResponseEntity<String> addQuestion(@RequestParam("topic") String topic,
+											  @RequestParam("title") String title,
+											  @RequestParam("desc") String desc,
+											  @RequestPart("file") MultipartFile file) {
+		QuestionDTO questionDTO = new QuestionDTO();
+		questionDTO.setTopic(topic);
+		questionDTO.setTitle(title);
+		questionDTO.setDescriptionQuestion(desc);
+		questionDTO.setStatus(false);
+		questionDTO.setDatetime(LocalDateTime.now().toString());
+		questionDTO.setImageSrc(file.getName());
+		questionService.addQuestion(questionDTO);
+		Path filepath = Paths.get("question_files", file.getOriginalFilename());
+		try (OutputStream os = Files.newOutputStream(filepath)) {
+			os.write(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<>("file uploaded", HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/add")
