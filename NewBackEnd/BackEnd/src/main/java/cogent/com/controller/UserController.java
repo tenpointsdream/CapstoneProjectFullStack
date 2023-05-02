@@ -24,6 +24,8 @@ import cogent.com.service.UserService;
 import cogent.com.util.JwtUtil;
 import cogent.com.util.UserType;
 
+import static cogent.com.util.AppUtil.sha256;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/user")
@@ -50,9 +52,10 @@ public class UserController {
 //	}
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+		String encryptedPassword = sha256(authRequest.getPassword());
 		try {
 			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), encryptedPassword));
 		} catch (Exception ex) {
 			throw new Exception("inavalid username/password");
 		}
@@ -70,6 +73,7 @@ public class UserController {
 	@PostMapping("/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User newUser = userService.addNewUser(user);
+		newUser.setPassword(sha256(newUser.getPassword()));
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
 
@@ -111,10 +115,9 @@ public class UserController {
 
 	@GetMapping("/getbyusername/{username}")
 	public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
-		User user = userService.getUserByUsername(username).get();
-		if (user == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(user);
+		User user = null;
+		if (userService.getUserByUsername(username).isPresent())
+			user = userService.getUserByUsername(username).get();
+		return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
 	}
 }

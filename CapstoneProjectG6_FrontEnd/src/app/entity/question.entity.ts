@@ -5,6 +5,7 @@ export interface Question {
     id: number;
     descriptionQuestion: string;
     imageSrc: string;
+    imageFile: File | null;
     status: boolean;
     topic: string;
     title: string;

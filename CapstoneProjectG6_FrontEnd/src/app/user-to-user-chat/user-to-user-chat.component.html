@@ -1,1 +1,66 @@
-<h1>HELLO THERE</h1>
+<body>
+    <div class="header">
+        <div class="header-left" id="logo">
+            <ul>
+                <li class="logo">DoConnect Message <i class="fa-solid fa-message"></i> </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <ul>
+                <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class="list user-type">user</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div>
+            <h3>List Of User</h3>
+        </div>
+        <div>
+            <ul>
+                <li>User1</li>
+                <button (click)="showForm()">Chat</button>
+                <li>User1</li>
+                <button (click)="showForm()">Chat</button>
+                <li>User1</li>
+                <button (click)="showForm()">Chat</button>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="container2">
+            <div *ngIf="onVisible">
+                <form class="msger" novalidate #chatform='ngForm' (ngSubmit)="onSubmit(chatform)">
+                    <div class="chat-message">
+                        <div class="chat-from">John:</div>
+                        <div class="chat-text">Hey, how are you?</div>
+                        <div class="chat-time">12:30 PM</div>
+                        <div class="chat-btn"></div>
+                        <div class="chat-from">John:</div>
+                        <div class="chat-text">Hey, how are you?</div>
+                        <div class="chat-time">12:30 PM</div>
+                        <div class="chat-from">John:</div>
+                        <div class="chat-text">Hey, how are you?</div>
+                        <div class="chat-time">12:30 PM</div>
+                        <div class="chat-from">John:</div>
+                        <div class="chat-text">Hey, how are you?</div>
+                        <div class="chat-time">12:30 PM</div>
+                    </div>
+                    <form class="msger-inputarea">
+                        <input type="text" class="msger-input" placeholder="Enter your message...">
+                        <button [disabled]="chatform.invalid" type="submit" class="msger-send-btn">Send</button>
+                        <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-div">
+        <ul class="footer">
+            <li>Abdulkerim Mohammed</li>
+            <li>Prajesh Sharma</li>
+            <li>Khoa Ho</li>
+        </ul>
+        <p>2023 Copy Right ©</p>
+    </footer>
+</body>

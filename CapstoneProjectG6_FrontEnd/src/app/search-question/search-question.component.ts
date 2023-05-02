@@ -38,6 +38,7 @@ export class SearchQuestionComponent {
         'id': 0,
         'descriptionQuestion': 'None',
         'imageSrc': 'None',
+        'imageFile' : null,
         'status': false,
         'topic': 'None',
         'title': 'None',
