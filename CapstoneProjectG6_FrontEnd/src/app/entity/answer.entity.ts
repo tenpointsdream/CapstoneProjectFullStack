@@ -1,10 +1,10 @@
 import { Question } from "./question.entity";
 
 export interface Answer {
-  imageFile: File;
   id: number;
   description_answer: string;
   img_src: string;
+  imageFile: File;
   status: boolean;
   datetime: string;
   question: Question;

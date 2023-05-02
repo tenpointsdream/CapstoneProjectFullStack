@@ -9,14 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class AnswerService {
   private baseUrl: string = "http://localhost:8080/answer";
-  constructor(private httpClient: HttpClient,
-    private cookieService: CookieService) { }
+  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
-  addAnswer(answer: Answer):Observable<Answer>{
+  addAnswer(answer: Answer, created_by:string):Observable<Answer>{
     const url = `${this.baseUrl}/addanswer`;
     const formData:any = new FormData();
     formData.append("desc", answer.description_answer);
     formData.append("file", answer.imageFile);
+    formData.append("createdBy", created_by);
     return this.httpClient.post<Answer>(url, formData, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
 

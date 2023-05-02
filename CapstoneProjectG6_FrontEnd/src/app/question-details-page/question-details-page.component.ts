@@ -8,6 +8,7 @@ import {EmailService} from '../service/email.service';
 import {Email} from '../entity/email.entity';
 import {UserService} from '../service/user.service';
 import {User} from '../entity/user.entity';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-question-details-page',
@@ -24,10 +25,11 @@ export class QuestionDetailsPageComponent implements OnInit {
   onVisible: boolean;
   answerForm = {} as Answer;
   constructor(private route: ActivatedRoute,
-    private questionService: QuestionService,
-    private answerService: AnswerService,
-    private emailService: EmailService,
-    private userService: UserService) {
+              private questionService: QuestionService,
+              private answerService: AnswerService,
+              private emailService: EmailService,
+              private userService: UserService,
+              private cookieService: CookieService) {
     this.onVisible = false;
   }
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class QuestionDetailsPageComponent implements OnInit {
   }
   onSubmit(answerform: any) {
     this.answerForm.id = 1;
-    this.answerForm.created_by = localStorage.getItem('username') ?? '';
+    this.answerForm.created_by = this.cookieService.get('username')
     this.answerForm.description_answer = answerform.value.description_answer;
     this.answerForm.approved_by = '';
     this.answerForm.question = this.question;
@@ -74,7 +76,7 @@ export class QuestionDetailsPageComponent implements OnInit {
       second: 'numeric'
     };
     this.answerForm.datetime = now.toLocaleString('en-US', options);
-    this.answerService.addAnswer(this.answerForm).subscribe((returnAnswer: any) => {
+    this.answerService.addAnswer(this.answerForm, this.cookieService.get('username')).subscribe((returnAnswer: Answer) => {
       console.log(returnAnswer);
       alert("You answer has been added! Waiting for admin approval...");
       this.email.msgBody = 'You have new pending question to approve';
