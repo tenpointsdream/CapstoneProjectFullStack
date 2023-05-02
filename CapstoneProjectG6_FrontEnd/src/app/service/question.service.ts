@@ -50,4 +50,8 @@ export class QuestionService {
     const url = `http://localhost:8080/question/addanswertoquestion/${question_id}`;
     return this.httpClient.post(url, answer, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
+  getQuestionByStatus(status: boolean): Observable<Question[]> {
+    const url = `http://localhost:8080/question/getquestionbystatus/${status}`;
+    return this.httpClient.get<Question[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+  }
 }

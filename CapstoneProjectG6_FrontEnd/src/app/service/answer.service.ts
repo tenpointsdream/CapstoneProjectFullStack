@@ -23,6 +23,10 @@ export class AnswerService {
     const url = `${this.baseUrl}/getanswerbyid/${id}`;
     return this.httpClient.get<Answer>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
+  getAnswerByQuestionId(id:number): Observable<Answer[]> {
+    const url =`http://localhost:8080/answer/getanswersbyquestionid/${id}`;
+    return this.httpClient.get<Answer[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+  }
 
   updateAnswer(id: number, answer:Answer): Observable<Answer> {
     const url = `${this.baseUrl}/updateanswer/${id}`;

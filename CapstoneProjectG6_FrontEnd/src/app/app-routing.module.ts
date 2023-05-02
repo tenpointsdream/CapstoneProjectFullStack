@@ -15,6 +15,8 @@ import { PendingAnswerComponent } from './pending-answer/pending-answer.componen
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchQuestionComponent } from './search-question/search-question.component';
 import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
+import { ChatComponent } from './chat/chat.component';
+import { QuestionDetailsPageComponent } from './question-details-page/question-details-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -31,12 +33,15 @@ const routes: Routes = [
   { path: 'userhomepage/createquestion', component: CreateNewQuestionComponent },
   { path: 'userhomepage/createdquestion', component: CreatedQuestionComponent},
   { path: 'userhomepage/approvedquestion', component: ApprovedAnswerComponent},
+  { path: 'userhomepage/searchquestion/details', component: QuestionDetailsPageComponent},
   // admin
   { path: 'adminhomepage', component: AdminHomePageComponent },
   { path: 'adminhomepage/pendingquestion', component: PendingQuestionComponent },
   { path: 'adminhomepage/pendinganswer', component: PendingAnswerComponent },
   // chat
   { path: 'userhomepage/usertouserchat', component: UserToUserChatComponent },
+  { path: 'chat', component: ChatComponent},
+  
   { path: 'adminhomepage/usertouserchat', component: UserToUserChatComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

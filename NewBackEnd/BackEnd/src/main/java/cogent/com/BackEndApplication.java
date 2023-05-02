@@ -1,5 +1,6 @@
 package cogent.com;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,16 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.User;
+import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionService;
 import cogent.com.service.UserService;
 import cogent.com.util.UserType;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static cogent.com.util.AppUtil.sha256;
 
