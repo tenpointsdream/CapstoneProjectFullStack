@@ -75,8 +75,8 @@ export class CreateNewQuestionComponent {
     this.questionForm.qcreated_by = this.cookieService.get('username');
     console.log("Question form: ", this.questionForm);
     console.log("Current user: " + this.questionForm.qcreated_by);
-    this.questionService.addQuestion(this.questionForm, this.cookieService.get('username')).subscribe((createdQuestion: Question) => {
-      console.log("Created Question: ", createdQuestion);
+    this.questionService.addQuestion(this.questionForm, this.cookieService.get('username')).subscribe((response: string) => {
+      console.log("Response: ", response);
       alert("Your question has been added! Waiting for admin to approve...");
       this.email.msgBody = 'You have new pending question to approve';
       this.email.subject = this.questionForm.title;

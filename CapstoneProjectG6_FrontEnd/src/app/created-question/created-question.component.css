@@ -66,12 +66,15 @@ h1 {
 }
 
 .container_2 {
-        border: 1px solid #ccc;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        width: 500px;
-        list-style-type: none;
+    position: fixed;
+    left: 500px;
+    top: 250px;
+    /* border: 1px solid #ccc; */
+    padding: 20px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    width: 500px;
+    list-style-type: none;
 }
 
 .footer-div {
@@ -95,17 +98,27 @@ ul li {
     list-style-type: none;
     font-weight: 500;
 }
+
 .btn1 {
     background-color: rgb(22, 135, 22);
     margin: 10px;
 }
+
 .btn2 {
     background-color: #387cea;
 }
+
 .submitbtn {
     margin-right: 10px;
     border-radius: 3px;
 }
+
 .cancel {
     border-radius: 3px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: scale-down;
 }
