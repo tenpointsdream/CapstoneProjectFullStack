@@ -1,7 +1,10 @@
 package cogent.com;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +21,7 @@ import cogent.com.util.UserType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static cogent.com.util.AppUtil.sha256;
 
@@ -60,26 +64,27 @@ public class BackEndApplication {
 				new AnswerDTO(1, "I doubt it", "smileyface.jpg", true, "05-01-2023, 14:38", null, "user1", "user3"));
 		answerService.addAnswer(
 				new AnswerDTO(1, "Ha ha ha", "smileyface.jpg", false, "05-01-2023, 14:38", null, null, "user3"));
-		/*
-		 * answerService.addAnswer(new AnswerDTO("I don't really know",
-		 * "smileyface.jpg", false, "04-30-2023, 23:14", questions.get(1), null,
-		 * users.get(2))); answerService.addAnswer(new Answer("I doubt it",
-		 * "smileyface.jpg", false, "04-30-2023, 23:14", questions.get(1), null,
-		 * users.get(2))); answerService.addAnswer(new Answer("I know it",
-		 * "smileyface.jpg", true, "04-30-2023, 23:14", questions.get(1), users.get(0),
-		 * users.get(2))); List<Answer> answers = answerService.getAllAnswersFalse();
-		 * questionService.addQuestion(new Question("Test Quetsion", "test.jpg",
-		 * "04-26-2023, 12:36", true, "Angular", "What is in this question?", new
-		 * ArrayList<Answer>(List.of(new Answer("I know it", "smileyface.jpg", true,
-		 * "04-30-2023, 23:14", questions.get(1), users.get(0), users.get(2)))),
-		 * users.get(1), users.get(0))); questions = questionService.getAllQuestion();
-		 */
-		// System.out.println(questions.toArray().length);
-//		System.out.println(answers.get(0).getId());
-//		System.out.println(answers.get(0).getDescription_answer());
-//		System.out.println(answers.get(0).getDatetime());
-//		System.out.println(answers.get(0).getStatus());
-		// System.out.println(questions.toString());
+
+		// create directories for images
+		for (String dir : new String[]{"question_images", "answer_images"}) {
+			Path directory = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/" + dir);
+			if (Files.exists(directory)) try (Stream<Path> pathStream = Files.walk(directory)) {
+				pathStream.sorted(Comparator.reverseOrder()).forEach(path -> {
+							try {
+								Files.delete(path);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+				});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				Files.createDirectories(directory);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

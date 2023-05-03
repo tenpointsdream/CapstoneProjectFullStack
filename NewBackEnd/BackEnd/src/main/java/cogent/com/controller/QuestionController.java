@@ -32,9 +32,9 @@ public class QuestionController {
 	@Autowired
 	private QuestionServiceImpl questionService;
 
-	@SuppressWarnings("unused")
-	@Autowired
-	private AnswerService answerService;
+//	@SuppressWarnings("unused")
+//	@Autowired
+//	private AnswerService answerService;
 
 	@Autowired
 	private QuestionRepository questionRepository;
@@ -54,7 +54,7 @@ public class QuestionController {
 		questionDTO.setDatetime(LocalDateTime.now().toString());
 		questionDTO.setImageSrc(file.getOriginalFilename());
 		questionService.addQuestion(questionDTO);
-		Path filepath = Paths.get("question_files", file.getOriginalFilename());
+		Path filepath = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/question_images", file.getOriginalFilename());
 		try (OutputStream os = Files.newOutputStream(filepath)) {
 			os.write(file.getBytes());
 		} catch (IOException e) {
