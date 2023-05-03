@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static cogent.com.util.AppUtil.uploadFile;
 
@@ -71,9 +72,9 @@ public class AnswerController {
 
 	@PutMapping("/updateanswer/{id}")
 	public ResponseEntity<AnswerDTO> updateAnswer(@PathVariable("id") int id, @RequestBody AnswerDTO answerDTO) {
-		AnswerDTO answer = answerService.getAnswerById(id);
-		if (answer != null) {
-			answer.setId(id);
+		Optional<AnswerDTO> answer = answerService.getAnswerById(id);
+		if (answer.isPresent()) {
+			answerDTO.setId(id);
 			AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
 		}
@@ -82,7 +83,7 @@ public class AnswerController {
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id);
+		AnswerDTO answer = answerService.getAnswerById(id).get();
 		if (answer != null) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
