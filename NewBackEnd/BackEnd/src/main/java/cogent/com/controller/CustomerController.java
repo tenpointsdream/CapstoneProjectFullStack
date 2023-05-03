@@ -166,7 +166,7 @@ public class CustomerController {
 
 	@GetMapping("answer/getanswerbyid/{id}")
 	public ResponseEntity<AnswerDTO> getAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id);
+		AnswerDTO answer = answerService.getAnswerById(id).get();
 		return answer == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
 				: new ResponseEntity<>(answer, HttpStatus.OK);
 	}
@@ -185,7 +185,7 @@ public class CustomerController {
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id);
+		AnswerDTO answer = answerService.getAnswerById(id).get();
 		if (answer != null) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);

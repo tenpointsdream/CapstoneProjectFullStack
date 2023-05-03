@@ -48,9 +48,8 @@ public class AnswerController {
 
 	@GetMapping("/getanswerbyid/{id}")
 	public ResponseEntity<AnswerDTO> getAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id);
-		return answer == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-				: new ResponseEntity<>(answer, HttpStatus.OK);
+		AnswerDTO answer = answerService.getAnswerById(id).get();
+		return new ResponseEntity<>(answer, HttpStatus.OK);
 	}
 
 	@GetMapping("/getpendinganswers")
@@ -75,7 +74,7 @@ public class AnswerController {
 		Optional<AnswerDTO> answer = answerService.getAnswerById(id);
 		if (answer.isPresent()) {
 			answerDTO.setId(id);
-			AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
+			AnswerDTO updatedAnswer = answerService.updateAnswer(answerDTO);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
