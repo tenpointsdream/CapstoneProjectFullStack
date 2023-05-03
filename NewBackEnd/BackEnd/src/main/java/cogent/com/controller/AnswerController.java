@@ -44,7 +44,7 @@ public class AnswerController {
 		answerDTO.setDatetime(LocalDateTime.now().toString());
 		answerDTO.setImg_src(file.getOriginalFilename());
 		answerService.addAnswer(answerDTO);
-		Path filepath = Paths.get("answer_files", file.getOriginalFilename());
+		Path filepath = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/answer_images", file.getOriginalFilename());
 		try (OutputStream os = Files.newOutputStream(filepath)) {
 			os.write(file.getBytes());
 		} catch (IOException e) {
