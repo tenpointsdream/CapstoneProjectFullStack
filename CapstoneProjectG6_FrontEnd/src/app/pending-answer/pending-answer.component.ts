@@ -29,10 +29,9 @@ export class PendingAnswerComponent implements OnInit {
     })
   }
   approveAnswer(id: number) {
-
-    if (confirm('Are you sure you want to approve this question?')) {
-      let questionId = -1;
+    if (confirm('Are you sure you want to approve this question?'))
       this.answerService.getAnswerById(id).subscribe((answer: Answer) => {
+        let questionId = -1;
         console.log(answer);
         this.answerToUpdate = answer;
         this.answerToUpdate.status = true;
@@ -52,15 +51,14 @@ export class PendingAnswerComponent implements OnInit {
           })
         })
       });
-    }
   }
 
   removeAnswer(id: number) {
-    if (confirm('Are you sure you want to delete this question?')) {
+    if (confirm('Are you sure you want to delete this question?'))
       this.answerService.deleteAnswer(id).subscribe(() => {
         console.log("Answer is deleted, ID: ", id);
+        this.refresh();
       });
-    }
   }
 
   refresh(): void {
