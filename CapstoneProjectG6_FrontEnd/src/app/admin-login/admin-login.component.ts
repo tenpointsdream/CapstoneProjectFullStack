@@ -1,4 +1,3 @@
-import { UserService } from './../service/user.service';
 import { Component } from '@angular/core';
 import { User } from '../entity/user.entity';
 import { UserType } from '../entity/UserSubmit';
@@ -20,7 +19,6 @@ interface UserProfile {
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent {
-  private baseUrl: string = "http://localhost:8080/user/login";
   userForm: User;
   model: User;
   constructor(
@@ -36,9 +34,7 @@ export class AdminLoginComponent {
     // this.UserService.login(this.userForm).subscribe();
     this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${adminForm.value.username}`)
       .subscribe((userdetails: UserProfile) => {
-        if (userdetails.userType.toString() === 'USER') {
-          alert("ONLY ADMIN CAN LOGIN HERE!");
-        }
+        if (userdetails.userType.toString() === 'USER') alert("ONLY ADMIN CAN LOGIN HERE!");
         else {
           //alert(`Username: ${this.userForm.username} Password:${this.userForm.password}`);
           this.httpClient.post('http://localhost:8080/user/authenticate',

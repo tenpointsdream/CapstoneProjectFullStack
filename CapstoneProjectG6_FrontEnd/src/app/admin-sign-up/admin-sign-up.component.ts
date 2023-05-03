@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { User } from '../entity/user.entity';
-import { HttpClient } from '@angular/common/http';
 import { UserType } from '../entity/UserSubmit';
 import { UserService } from '../service/user.service';
 @Component({
