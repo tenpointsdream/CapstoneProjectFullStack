@@ -88,7 +88,7 @@ export class CreateNewQuestionComponent {
     });
     // todo
 
-    this.refresh();
+    //this.refresh();
   }
   refresh() {
     window.location.reload();

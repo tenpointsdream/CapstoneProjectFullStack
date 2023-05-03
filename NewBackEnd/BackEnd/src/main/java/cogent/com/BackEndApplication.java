@@ -72,11 +72,12 @@ public class BackEndApplication {
 
 		// create directories for images
 		for (String dir : new String[]{"question_images", "answer_images"}) {
-			Path directory = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/" + dir);
+			Path directory = Paths.get("C:/CapstoneProjectFullStack/CapstoneProjectG6_FrontEnd/src/assets/" + dir);
 			if (Files.exists(directory)) try (Stream<Path> pathStream = Files.walk(directory)) {
 				pathStream.sorted(Comparator.reverseOrder()).forEach(path -> {
 							try {
 								Files.delete(path);
+								System.out.println("Deleted file path");
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -86,6 +87,7 @@ public class BackEndApplication {
 			}
 			try {
 				Files.createDirectories(directory);
+				System.out.println("Created new Path");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
