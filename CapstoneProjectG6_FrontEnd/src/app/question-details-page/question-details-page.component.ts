@@ -79,7 +79,7 @@ export class QuestionDetailsPageComponent implements OnInit {
       second: 'numeric'
     };
     this.answerForm.datetime = now.toLocaleString('en-US', options);
-    
+
     this.answerForm.created_by = this.cookieService.get('username');
     console.log("Answer before submmitting: ", this.answerForm);
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
@@ -99,7 +99,7 @@ export class QuestionDetailsPageComponent implements OnInit {
         });
       });
     });
-    //this.refresh();
+    this.refresh();
   }
   refresh() {
     window.location.reload();

@@ -2,10 +2,11 @@ import { QuestionService } from '../service/question.service';
 import { UserService } from '../service/user.service';
 import { User } from '../entity/user.entity';
 import { Question } from '../entity/question.entity';
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Email } from '../entity/email.entity';
 import { EmailService } from '../service/email.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -18,11 +19,17 @@ export class CreateNewQuestionComponent {
   model = {} as Question;
   admin = [] as User[];
   email = {} as Email;
+  formGroup!: FormGroup;
+  @ViewChild('fileInput') fileInput!: ElementRef;
   constructor(
     private questionService: QuestionService,
     private emailService: EmailService,
     private cookieService: CookieService,
-    private userService: UserService) {
+    private userService: UserService,
+    private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({
+      file: ['']
+    });
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -49,7 +56,6 @@ export class CreateNewQuestionComponent {
     this.questionForm.descriptionQuestion = questionform.value.descriptionQuestion;
     this.questionForm.status = false;
     this.questionForm.answers = [];
-    //this.questionForm.datetime = Date.now().toString();
 
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
@@ -86,11 +92,7 @@ export class CreateNewQuestionComponent {
         });
       });
     });
-    // todo
-
-    //this.refresh();
-  }
-  refresh() {
-    window.location.reload();
+    alert("Your question has been created. Waiting for admin approval.");
+    this.fileInput.nativeElement.value = '';
   }
 }
