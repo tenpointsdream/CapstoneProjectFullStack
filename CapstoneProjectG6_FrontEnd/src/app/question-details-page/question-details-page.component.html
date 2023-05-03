@@ -57,19 +57,18 @@
     </div>
     </div>
     <div *ngIf="onVisible">
-        <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
+        <form id="answerform" novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform);">
             <div class="register-form">
                 <label for="description_answer">Solution: </label><br>
-                <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
+                <input type="text" id="description_answer" [(ngModel)]='model.description_answer' name="description_answer" required>
             </div>
 
             <div>
-                <!-- todo -->
                 <label for="imageSrc">Upload Image</label>
-                <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
+                <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
             </div>
-            <button [disabled]="answerform.invalid" type="submit">Submit</button><br><br>
-            <button (click)="closeForm()" type="button">Cancel</button>
+            <button [disabled]="answerform.invalid" type="submit" >Submit</button><br><br>
+            <button (click)="closeForm()" type="reset">Cancel</button>
         </form>
     </div>
     <footer class="footer-div">

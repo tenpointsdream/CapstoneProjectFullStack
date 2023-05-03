@@ -81,6 +81,37 @@ button[type="submit"] {
     box-sizing: border-box;
 }
 
+button[type=submit]:hover {
+  background-color: #0d47a1;
+}
+
+button[type=submit]:disabled {
+  background-color: #7080d9;
+  color: #9FA8DA;
+}
+
+button[type="reset"] {
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button[type=reset]:hover {
+  background-color: indianred;
+}
+
+button[type=reset]:disabled {
+  background-color: darkred;
+  color: #9FA8DA;
+}
+
 .container {
     border: 1px solid #ccc;
     padding: 20px;

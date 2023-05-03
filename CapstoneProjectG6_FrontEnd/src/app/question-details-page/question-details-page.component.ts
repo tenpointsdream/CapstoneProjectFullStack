@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Question} from '../entity/question.entity';
 import {QuestionService} from '../service/question.service';
@@ -9,6 +9,7 @@ import {Email} from '../entity/email.entity';
 import {UserService} from '../service/user.service';
 import {User} from '../entity/user.entity';
 import {CookieService} from "ngx-cookie-service";
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-question-details-page',
@@ -25,13 +26,19 @@ export class QuestionDetailsPageComponent implements OnInit {
   answers = [] as Answer[];
   onVisible: boolean;
   answerForm = {} as Answer;
+  formGroup!: FormGroup;
+  @ViewChild('fileInput') fileInput!: ElementRef;
   constructor(private route: ActivatedRoute,
               private questionService: QuestionService,
               private answerService: AnswerService,
               private emailService: EmailService,
               private userService: UserService,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private formBuilder: FormBuilder) {
     this.onVisible = false;
+    this.formGroup = this.formBuilder.group({
+      file: ['']
+    });
   }
   ngOnInit(): void {
     const idString = localStorage.getItem('questionId') ?? '0';
@@ -57,6 +64,8 @@ export class QuestionDetailsPageComponent implements OnInit {
   }
   closeForm() {
     this.onVisible = false;
+    this.fileInput.nativeElement.value = '';
+    this.model.description_answer = ''; // supposed to clear the 'solution' field but doesn't work
   }
   showForm(q_id:number) {
     this.onVisible = true;
@@ -81,7 +90,7 @@ export class QuestionDetailsPageComponent implements OnInit {
     this.answerForm.datetime = now.toLocaleString('en-US', options);
 
     this.answerForm.created_by = this.cookieService.get('username');
-    console.log("Answer before submmitting: ", this.answerForm);
+    console.log("Answer before submitting: ", this.answerForm);
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
       console.log("Response: ",response);
       alert("You answer has been added! Waiting for admin approval...");
@@ -99,9 +108,7 @@ export class QuestionDetailsPageComponent implements OnInit {
         });
       });
     });
-    this.refresh();
-  }
-  refresh() {
-    window.location.reload();
+    alert("Your answer has been created. Waiting for admin approval.");
+    this.closeForm();
   }
 }
