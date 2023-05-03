@@ -1,25 +1,25 @@
 package cogent.com;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-
+import cogent.com.dto.AnswerDTO;
+import cogent.com.dto.QuestionDTO;
+import cogent.com.entity.Answer;
+import cogent.com.entity.Chat;
+import cogent.com.entity.User;
+import cogent.com.service.AnswerService;
+import cogent.com.service.ChatService;
+import cogent.com.service.QuestionService;
+import cogent.com.service.UserService;
+import cogent.com.util.UserType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import cogent.com.dto.AnswerDTO;
-import cogent.com.dto.QuestionDTO;
-import cogent.com.entity.Answer;
-import cogent.com.entity.User;
-import cogent.com.service.AnswerService;
-import cogent.com.service.QuestionService;
-import cogent.com.service.UserService;
-import cogent.com.util.UserType;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -64,6 +64,11 @@ public class BackEndApplication {
 				new AnswerDTO(1, "I doubt it", "smileyface.jpg", true, "05-01-2023, 14:38", null, "user1", "user3"));
 		answerService.addAnswer(
 				new AnswerDTO(1, "Ha ha ha", "smileyface.jpg", false, "05-01-2023, 14:38", null, null, "user3"));
+//		creating chats
+		ChatService chatService = ctx.getBean(ChatService.class);
+		chatService.addNewChat(new Chat("user2","user3","Hello","12/29/2023"));
+		chatService.addNewChat(new Chat("user3","user2","how are you","12/29/2023"));
+		chatService.addNewChat(new Chat("user1","user3","good bye","12/29/2023"));
 
 		// create directories for images
 		for (String dir : new String[]{"question_images", "answer_images"}) {

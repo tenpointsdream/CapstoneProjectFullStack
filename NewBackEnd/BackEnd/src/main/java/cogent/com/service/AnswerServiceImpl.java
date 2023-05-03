@@ -2,12 +2,12 @@ package cogent.com.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cogent.com.dto.AnswerDTO;
-import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.Answer;
 import cogent.com.entity.Question;
 import cogent.com.repository.AnswerRepository;
@@ -47,8 +47,8 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public AnswerDTO getAnswerById(int id) {
-		return questionService.convertAnswerToAnswerDTO(answerRepository.findById(id).get());
+	public Optional<AnswerDTO> getAnswerById(int id) {
+		return questionService.convertAnswerToAnswerDTO(answerRepository.findById(id));
 	}
 
 	@Override
