@@ -1,6 +1,7 @@
 package cogent.com.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import cogent.com.dto.AnswerDTO;
 
@@ -14,7 +15,7 @@ public interface AnswerService {
 
 	public AnswerDTO updateAnswer(AnswerDTO answerDTO);
 
-	public AnswerDTO getAnswerById(int id);
+	public Optional<AnswerDTO> getAnswerById(int id);
 
 	public void deleteAnswerById(int id);
 
