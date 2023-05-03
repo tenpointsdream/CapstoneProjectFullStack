@@ -23,8 +23,7 @@ import cogent.com.entity.User;
 import cogent.com.service.UserService;
 import cogent.com.util.JwtUtil;
 import cogent.com.util.UserType;
-
-import static cogent.com.util.AppUtil.sha256;
+import cogent.com.util.AppUtil;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -46,7 +45,7 @@ public class UserController {
 
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
-		String encryptedPassword = sha256(authRequest.getPassword());
+		String encryptedPassword = AppUtil.sha256(authRequest.getPassword());
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), encryptedPassword));
@@ -59,7 +58,7 @@ public class UserController {
 	@PostMapping("/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User newUser = userService.addNewUser(user);
-		newUser.setPassword(sha256(newUser.getPassword()));
+		newUser.setPassword(AppUtil.sha256(newUser.getPassword()));
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
 
