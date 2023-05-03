@@ -1,28 +1,23 @@
 package cogent.com.controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
+import cogent.com.dto.AnswerDTO;
+import cogent.com.dto.QuestionDTO;
+import cogent.com.entity.Question;
+import cogent.com.repository.QuestionRepository;
+import cogent.com.service.QuestionServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import cogent.com.dto.AnswerDTO;
-import cogent.com.dto.QuestionDTO;
-import cogent.com.entity.Question;
-import cogent.com.repository.QuestionRepository;
-import cogent.com.service.AnswerService;
-import cogent.com.service.QuestionServiceImpl;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import static cogent.com.util.AppUtil.uploadFile;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -31,10 +26,6 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionServiceImpl questionService;
-
-//	@SuppressWarnings("unused")
-//	@Autowired
-//	private AnswerService answerService;
 
 	@Autowired
 	private QuestionRepository questionRepository;
@@ -54,16 +45,11 @@ public class QuestionController {
 		questionDTO.setDatetime(LocalDateTime.now().toString());
 		questionDTO.setImageSrc(file.getOriginalFilename());
 		questionService.addQuestion(questionDTO);
-		Path filepath = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/question_images", file.getOriginalFilename());
-		try (OutputStream os = Files.newOutputStream(filepath)) {
-			os.write(file.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<>("file uploaded successfully", HttpStatus.CREATED);
+		return uploadFile("question_images", file) ?
+				new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR) :
+				new ResponseEntity<>("file uploaded successfully", HttpStatus.CREATED);
 	}
-	
+
 	@PostMapping("/add")
 	public ResponseEntity<Question> add(@RequestBody Question question){
 		return new ResponseEntity<>(questionRepository.save(question), HttpStatus.CREATED);

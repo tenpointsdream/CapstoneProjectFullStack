@@ -16,7 +16,11 @@ formUser: User;
     this.formUser = new User();
   }
   onSubmit(registerform: any) {
-
+    if (registerform.value.password < 7) {
+      alert("Password must be at least 8 characters");
+      this.refresh()
+      return;
+    }
     this.formUser.name = registerform.value.name;
     this.formUser.email = registerform.value.email;
     this.formUser.password = registerform.value.password;
@@ -28,5 +32,9 @@ formUser: User;
   }
   goto() {
     window.location.href = '/home/userlogin';
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

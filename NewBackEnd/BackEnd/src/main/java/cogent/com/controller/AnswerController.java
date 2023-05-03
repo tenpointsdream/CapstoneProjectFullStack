@@ -1,23 +1,19 @@
 package cogent.com.controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
+import cogent.com.dto.AnswerDTO;
+import cogent.com.service.AnswerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import cogent.com.dto.AnswerDTO;
-import cogent.com.service.AnswerServiceImpl;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import static cogent.com.util.AppUtil.uploadFile;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -35,8 +31,8 @@ public class AnswerController {
 
 	@PostMapping(value = "/addanswer", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	public ResponseEntity<String> addAnswer(@RequestParam("desc") String desc,
-											   @RequestParam("createdBy") String createdBy,
-											   @RequestPart("file") MultipartFile file) {
+											@RequestParam("createdBy") String createdBy,
+											@RequestPart("file") MultipartFile file) {
 		AnswerDTO answerDTO = new AnswerDTO();
 		answerDTO.setDescription_answer(desc);
 		answerDTO.setStatus(false);
@@ -44,14 +40,9 @@ public class AnswerController {
 		answerDTO.setDatetime(LocalDateTime.now().toString());
 		answerDTO.setImg_src(file.getOriginalFilename());
 		answerService.addAnswer(answerDTO);
-		Path filepath = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/answer_images", file.getOriginalFilename());
-		try (OutputStream os = Files.newOutputStream(filepath)) {
-			os.write(file.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<>("file uploaded successfully", HttpStatus.OK);
+		return uploadFile("answer_images", file) ?
+				new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR) :
+				new ResponseEntity<>("file uploaded successfully", HttpStatus.OK);
 	}
 
 	@GetMapping("/getanswerbyid/{id}")

@@ -42,7 +42,7 @@ export class PendingQuestionComponent implements OnInit {
           console.log("Question before to approve: ", this.questionToUpdate);
           this.questionService.updateQuestion(id, this.questionToUpdate).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);
-            //this.refresh();
+            this.refresh();
           });
         });
       })
@@ -51,6 +51,7 @@ export class PendingQuestionComponent implements OnInit {
     if (confirm('Are you sure you want to delete this question?'))
       this.questionService.deleteQuestion(id).subscribe(() => {
         console.log("Question is deleted, ID: ", id);
+        this.refresh();
       });
   }
 
