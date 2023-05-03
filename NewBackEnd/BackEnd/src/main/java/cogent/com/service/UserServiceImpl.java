@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import cogent.com.entity.User;
 import cogent.com.repository.UserRepository;
 import cogent.com.util.UserType;
-
-import static cogent.com.util.AppUtil.sha256;
+import cogent.com.util.AppUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addNewUser(User user) {
-		user.setPassword(sha256(user.getPassword()));
+		user.setPassword(AppUtil.sha256(user.getPassword()));
 		return userRepository.save(user);
 	}
 

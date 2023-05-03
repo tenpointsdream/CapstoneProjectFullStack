@@ -23,7 +23,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static cogent.com.util.AppUtil.sha256;
+import cogent.com.util.AppUtil;
 
 @SpringBootApplication
 public class BackEndApplication {
@@ -40,15 +40,15 @@ public class BackEndApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(BackEndApplication.class, args);
 		UserService userService = ctx.getBean(UserService.class);
-		userService.addUser(new User("Khoa Ho", "user1", sha256("password"), "user1@gmail.com", UserType.ADMIN));
-		userService.addUser(new User("Prajesh Sharma", "user2", sha256("password"), "user2@gmail.com", UserType.USER));
-		userService.addUser(new User("Abdulkerim Mohammed", "user3", sha256("password"), "user3@gmail.com", UserType.USER));
+		userService.addUser(new User("Khoa Ho", "user1", AppUtil.sha256("password"), "user1@gmail.com", UserType.ADMIN));
+		userService.addUser(new User("Prajesh Sharma", "user2", AppUtil.sha256("password"), "user2@gmail.com", UserType.USER));
+		userService.addUser(new User("Abdulkerim Mohammed", "user3", AppUtil.sha256("password"), "user3@gmail.com", UserType.USER));
 		QuestionService questionService = ctx.getBean(QuestionService.class);
 		//List<User> users = userService.getAllUsers();
 		questionService.addQuestion(new QuestionDTO(0, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"JavaScript", "Getting to know", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(1, "Test description", "test.jpg", "04-26-2023, 12:36", true,
-				"Angular", "What is Angular?", new ArrayList<Answer>(List.of(new Answer())), "user2", "user1"));
+				"Angular", "What is Angular?", new ArrayList<>(List.of(new Answer())), "user2", "user1"));
 		questionService.addQuestion(new QuestionDTO(2, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"Java", "Too many problems with Java", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(3, "Test description", "test.jpg", "04-26-2023, 12:36", false,
@@ -75,12 +75,11 @@ public class BackEndApplication {
 			Path directory = Paths.get("C:/CapstoneProjectFullStack/CapstoneProjectG6_FrontEnd/src/assets/" + dir);
 			if (Files.exists(directory)) try (Stream<Path> pathStream = Files.walk(directory)) {
 				pathStream.sorted(Comparator.reverseOrder()).forEach(path -> {
-							try {
-								Files.delete(path);
-								System.out.println("Deleted file path");
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
+					try {
+						Files.delete(path);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				});
 			} catch (IOException e) {
 				e.printStackTrace();

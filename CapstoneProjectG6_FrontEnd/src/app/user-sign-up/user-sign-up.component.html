@@ -18,7 +18,7 @@
             </div>
         </div>
         <!-- form -->
-        
+
     <div>
         <div>
             <h2>User Register</h2>
@@ -35,14 +35,14 @@
                 </div>
                 <div>
                     <label for="password">Password</label><br>
-                    <input type="password" [(ngModel)]='model.password' name="password" required><br>
+                    <input type="password" [(ngModel)]='model.password' name="password" #passwordInput required><br>
                 </div>
                 <div>
                     <label for="email">Email</label><br>
                     <input type="email" [(ngModel)]='model.email' name="email" required><br>
                 </div>
                 <!-- to do on submit it goes to userlogin page -->
-                <button [disabled]="registerform.invalid" (click)="goto()" type="submit">Submit</button>
+                <button [disabled]="registerform.invalid"  type="submit">Submit</button>
             </form>
         </div>
     </div>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import cogent.com.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,7 @@ import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.*;
 import cogent.com.service.*;
 import cogent.com.util.UserType;
-
-import static cogent.com.util.AppUtil.sha256;
+import cogent.com.util.AppUtil;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -42,7 +42,7 @@ public class CustomerController {
 	@PostMapping("/user/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User newUser = userService.addNewUser(user);
-		newUser.setPassword(sha256(user.getPassword()));
+		newUser.setPassword(AppUtil.sha256(user.getPassword()));
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
 

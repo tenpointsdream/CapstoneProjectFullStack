@@ -16,8 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
-import static cogent.com.util.AppUtil.uploadFile;
+import cogent.com.util.AppUtil;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -45,7 +44,7 @@ public class QuestionController {
 		questionDTO.setDatetime(LocalDateTime.now().toString());
 		questionDTO.setImageSrc(file.getOriginalFilename());
 		questionService.addQuestion(questionDTO);
-		return uploadFile("question_images", file) ?
+		return AppUtil.uploadFile("question_images", file) ?
 				new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR) :
 				new ResponseEntity<>("file uploaded successfully", HttpStatus.CREATED);
 	}

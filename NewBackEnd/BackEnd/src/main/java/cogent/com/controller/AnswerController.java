@@ -13,8 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static cogent.com.util.AppUtil.uploadFile;
+import cogent.com.util.AppUtil;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -41,7 +40,7 @@ public class AnswerController {
 		answerDTO.setDatetime(LocalDateTime.now().toString());
 		answerDTO.setImg_src(file.getOriginalFilename());
 		answerService.addAnswer(answerDTO);
-		return uploadFile("answer_images", file) ?
+		return AppUtil.uploadFile("answer_images", file) ?
 				new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR) :
 				new ResponseEntity<>("file uploaded successfully", HttpStatus.OK);
 	}
