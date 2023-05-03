@@ -173,14 +173,15 @@ public class CustomerController {
 
 	@PutMapping("/answer/updateanswer/{id}")
 	public ResponseEntity<AnswerDTO> updateAnswer(@PathVariable("id") int id, @RequestBody AnswerDTO answerDTO) {
-		AnswerDTO answer = answerService.getAnswerById(id);
+		AnswerDTO answer = answerService.getAnswerById(id).get();
 		if (answer != null) {
-			answer.setId(id);
+			answerDTO.setId(id);
 			AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {

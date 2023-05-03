@@ -170,4 +170,17 @@ public class QuestionServiceImpl implements QuestionService {
 		return answer;
 	}
 
+	public Optional<AnswerDTO> convertAnswerToAnswerDTO(Optional<Answer> answer) {
+		AnswerDTO answerDTO = new AnswerDTO();
+		answerDTO.setId(answer.get().getId());
+		answerDTO.setDescription_answer(answer.get().getDescription_answer());
+		answerDTO.setDatetime(answer.get().getDatetime());
+		answerDTO.setImg_src(answer.get().getImg_src());
+		answerDTO.setQuestion(answer.get().getQuestion());
+		answerDTO.setApproved_by(answer.get().getApproved_by());
+		answerDTO.setCreated_by(answer.get().getCreated_by());
+		answerDTO.setStatus(answer.get().getStatus());
+		return Optional.of(answerDTO);
+	}
+
 }

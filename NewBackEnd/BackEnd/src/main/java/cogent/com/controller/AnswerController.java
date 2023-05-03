@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,11 +34,13 @@ public class AnswerController {
 				: new ResponseEntity<>(answers, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "/addanswer", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-	public ResponseEntity<String> addAnswer(@RequestParam("desc") String desc,
-											   @RequestParam("createdBy") String createdBy,
-											   @RequestPart("file") MultipartFile file) {
+	@PostMapping(value = "/addanswer", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public ResponseEntity<String> addAnswer(@RequestParam("question_id") String question_id,
+			@RequestParam("desc") String desc, @RequestParam("createdBy") String createdBy,
+			@RequestPart("file") MultipartFile file) {
 		AnswerDTO answerDTO = new AnswerDTO();
+		Question question = questionRepository.findById(Integer.parseInt(question_id)).get();
+		answerDTO.setQuestion(question);
 		answerDTO.setDescription_answer(desc);
 		answerDTO.setStatus(false);
 		answerDTO.setCreated_by(createdBy);
@@ -80,10 +83,10 @@ public class AnswerController {
 
 	@PutMapping("/updateanswer/{id}")
 	public ResponseEntity<AnswerDTO> updateAnswer(@PathVariable("id") int id, @RequestBody AnswerDTO answerDTO) {
-		AnswerDTO answer = answerService.getAnswerById(id);
-		if (answer != null) {
-			answer.setId(id);
-			AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
+		Optional<AnswerDTO> answer = answerService.getAnswerById(id);
+		if (answer.isPresent()) {
+			answerDTO.setId(id);
+			AnswerDTO updatedAnswer = answerService.updateAnswer(answerDTO);
 			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -91,12 +94,13 @@ public class AnswerController {
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id);
+		AnswerDTO answer = answerService.getAnswerById(id).get();
 		if (answer != null) {
 			answerService.deleteAnswerById(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
 
 }
