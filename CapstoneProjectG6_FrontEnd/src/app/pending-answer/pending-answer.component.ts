@@ -36,17 +36,19 @@ export class PendingAnswerComponent implements OnInit {
         console.log(answer);
         this.answerToUpdate = answer;
         this.answerToUpdate.status = true;
+        this.answerToUpdate.approved_by = this.cookieService.get('username');
         console.log(this.answerToUpdate);
         questionId = this.answerToUpdate.question.id;
         console.log("Answer adding to question id: ", questionId);
-        this.answerToUpdate.approved_by = this.cookieService.get('username');
-        console.log("Question before to approve: ", this.answerToUpdate);
+        
+        console.log(this.cookieService.get('username'));
+        console.log("Answer before to approve: ", this.answerToUpdate);
         this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
-          console.log(updatedAnswer);
+          console.log("Updated Answer: ", updatedAnswer);
           this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);
             console.log("This is a list of answers: ", updatedQuestion.answers);
-            this.refresh();
+            //this.refresh();
           })
         })
       });
