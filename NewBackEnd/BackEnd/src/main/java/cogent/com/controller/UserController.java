@@ -44,12 +44,6 @@ public class UserController {
 		return "Welcome to Great learning !!";
 	}
 
-//	@PostMapping("/authenticate")
-//	public ResponseEntity<?> generateToken(@RequestBody AuthRequest request) {
-//		authenticationManager
-//				.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-//		return ResponseEntity.ok(jwtUtil.generateToken(request.getUsername()));
-//	}
 	@PostMapping("/authenticate")
 	public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
 		String encryptedPassword = sha256(authRequest.getPassword());
@@ -61,14 +55,6 @@ public class UserController {
 		}
 		return jwtUtil.generateToken(authRequest.getUsername());
 	}
-
-//	@GetMapping("/login/{username}/{password}")
-//	public ResponseEntity<Boolean> retrieveToken(@PathVariable("username") String username,
-//			@PathVariable("password") String password) {
-//		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-//		String token = jwtUtil.generateToken(username);
-//		return new ResponseEntity<>((token.length() > 0), HttpStatus.OK);
-//	}
 
 	@PostMapping("/adduser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {

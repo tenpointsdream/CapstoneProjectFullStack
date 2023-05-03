@@ -1,5 +1,4 @@
 import { Answer } from '../entity/answer.entity';
-import { AnswerService } from '../service/answer.service';
 import { Question } from '../entity/question.entity';
 import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,9 +12,7 @@ export class CreatedQuestionComponent implements OnInit {
   questions: Question[] = [];
   // showForm = false;
   model = {} as Answer;
-  questionForm: any;
   // answerForm : any;
-  questionID!: number;
   // model = {} as Answer;
   // question = {} as Question;
   onVisible: boolean;

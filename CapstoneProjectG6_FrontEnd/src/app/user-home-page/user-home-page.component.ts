@@ -26,7 +26,7 @@ export class UserHomePageComponent implements OnInit {
   refresh(): void {
     window.location.reload();
   }
-  signout(): void {
+  sign_out(): void {
     this.cookieService.deleteAll();
   }
 }
