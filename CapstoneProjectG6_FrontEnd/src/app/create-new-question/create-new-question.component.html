@@ -28,10 +28,10 @@
         </div>
         <div class="container">
             <!-- todo -->
-            <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
+            <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform); adminform.resetForm()" >
                 <div class="register-form">
                     <label for="title">Title</label><br>
-                    <input type="text" [(ngModel)]='model.title' name="title" required>
+                    <input type="text" id="title" [(ngModel)]='model.title' name="title" required>
                 </div>
                 <div>
                     <label for="topic">Choose Topic</label>
@@ -52,7 +52,7 @@
                 <div>
                     <!-- todo -->
                     <label for="imageSrc">Upload Image</label>
-                    <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
+                    <input type="file" id="imageSrc" accept="image/*" #fileInput (change)="onFileSelected($event)" alt="image.jpg" required>
                 </div>
                 <button [disabled]="adminform.invalid" type="submit">Submit</button>
             </form>
