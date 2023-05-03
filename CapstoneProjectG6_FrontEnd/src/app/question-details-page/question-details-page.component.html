@@ -32,10 +32,11 @@
             <ul *ngFor="let answer of answers">
                 <li>
                     <ul>
-                        <li>{{answer.id}}</li>
-                        <li>{{answer.description_answer}}</li>
-                        <li>{{answer.datetime}}</li>
-                        <li>{{answer.created_by}}</li>
+                        <li><img [src]="answer.img_src" alt=""></li>
+                        <li>Answer ID: {{answer.id}}</li>
+                        <li>Solution: {{answer.description_answer}}</li>
+                        <li>Created on: {{answer.datetime}}</li>
+                        <li>Written by: {{answer.created_by}}</li>
                     </ul>
                 </li>
             </ul>
