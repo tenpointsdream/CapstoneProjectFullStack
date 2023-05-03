@@ -28,7 +28,7 @@ public class AppUtil {
     }
 
     public static boolean uploadFile(String fileName, @RequestPart("file") MultipartFile file) {
-        Path filepath = Paths.get("CapstoneProjectG6_FrontEnd/src/assets/" + fileName, file.getOriginalFilename());
+        Path filepath = Paths.get("C:/CapstoneProjectFullStack/CapstoneProjectG6_FrontEnd/src/assets/" + fileName, file.getOriginalFilename());
         try (OutputStream os = Files.newOutputStream(filepath)) {
             os.write(file.getBytes());
         } catch (IOException e) {
