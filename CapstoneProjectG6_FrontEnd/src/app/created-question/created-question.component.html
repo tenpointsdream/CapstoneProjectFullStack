@@ -8,10 +8,13 @@
         <div class="header-right">
             <ul>
                 <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                <li class="list"><a routerLink="/userhomepage/createquestion"><i class="fa-solid fa-question"></i> Ask Question</a></li>
-                <li class="list"><a routerLink="/userhomepage/searchquestion"><i class="fa-solid fa-search"></i> Search Question</a>
+                <li class="list"><a routerLink="/userhomepage/createquestion"><i class="fa-solid fa-question"></i> Ask
+                        Question</a></li>
+                <li class="list"><a routerLink="/userhomepage/searchquestion"><i class="fa-solid fa-search"></i> Search
+                        Question</a>
                 </li>
-                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat with us</a></li>
+                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat
+                        with us</a></li>
                 <li class="list" id="btn"><a routerLink="/home/userlogin">Sign Out</a></li>
                 <!-- todo -->
                 <li class="list user-type">user</li>
@@ -26,38 +29,20 @@
             <ul>
                 <li *ngFor="let question of questions">
                     <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
-                    <img [src]="question.imageSrc" alt="Question Image">
+                    <img src="assets/question_images/{{question.imageSrc}}" alt="Question Image">
                     <p><strong>Title: </strong>
-                       {{ question.title }}
+                        {{ question.title }}
                     </p>
                     <p><strong>Topic: </strong>
-                      {{ question.topic }}
+                        {{ question.topic }}
                     </p>
                     <p><strong>Description: </strong>
-                    {{ question.descriptionQuestion }}
+                        {{ question.descriptionQuestion }}
                     </p>
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
                     <button class="btn1">Answers</button>
                     <button class="btn2" (click)="showForm()">Add Answer</button>
-                    <div class="container_2">
-                        <div *ngIf="onVisible">
-                            <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
-                                <div class="register-form">
-                                    <label for="description_answer">Solution: </label><br>
-                                    <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
-                                    <br><br>
-                                </div>
 
-                                <div>
-                                    <!-- todo -->
-                                    <label for="imageSrc">Upload Image</label>
-                                    <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required> <br>
-                                </div>
-                                <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
-                                <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
-                            </form>
-                        </div>
-                    </div>
                 </li>
             </ul>
         </div>
@@ -74,14 +59,33 @@
                 <button [disabled]="answerform.invalid" type="submit">Submit</button>
             </form>
         </div> -->
-
+        <div class="container_2">
+            <div *ngIf="onVisible">
+                <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
+                    <div class="register-form">
+                        <label for="description_answer">Solution: </label><br>
+                        <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
+                        <br><br>
+                    </div>
+    
+                    <div>
+                        <!-- todo -->
+                        <label for="imageSrc">Upload Image</label>
+                        <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required> <br>
+                    </div>
+                    <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
+                    <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
     </div>
+    
     <footer class="footer-div">
-      <ul class="footer">
-        <li>Abdulkerim Mohammed</li>
-        <li>Prajesh Sharma</li>
-        <li>Khoa Ho</li>
-      </ul>
-      <p>2023 Copy Right ©</p>
+        <ul class="footer">
+            <li>Abdulkerim Mohammed</li>
+            <li>Prajesh Sharma</li>
+            <li>Khoa Ho</li>
+        </ul>
+        <p>2023 Copy Right ©</p>
     </footer>
 </body>

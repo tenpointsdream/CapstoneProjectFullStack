@@ -12,7 +12,7 @@ export class QuestionService {
   constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
 
-  addQuestion(question: Question, created_by:string):Observable<Question> {
+  addQuestion(question: Question, created_by:string):Observable<string> {
     const url = `http://localhost:8080/question/addquestion`;
     const formData:any = new FormData();
     formData.append("title", question.title);
@@ -20,7 +20,7 @@ export class QuestionService {
     formData.append("desc", question.descriptionQuestion);
     formData.append("file", question.imageFile);
     formData.append("createdBy", created_by);
-    return this.httpClient.post<Question>(url, formData, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+    return this.httpClient.post<string>(url, formData, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
   searchQuestion(topic: string, title: string): Observable<Question[]> {
     const url = `${this.baseUrl}/searchquestions/${topic}/${title}`;
