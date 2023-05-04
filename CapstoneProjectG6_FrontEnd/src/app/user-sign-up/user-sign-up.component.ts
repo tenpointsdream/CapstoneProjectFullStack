@@ -33,7 +33,7 @@ export class UserSignUpComponent {
       this.httpClient.get<boolean>(`http://localhost:8080/user/getbyusername/${this.formUser.username}`)
         .subscribe((result: boolean) => {
           console.log("result", result);
-          if (result == null) {
+          if (result != null) {
             alert("Username is taken!");
             this.usernameInput.nativeElement.select();
           } else {
@@ -41,7 +41,6 @@ export class UserSignUpComponent {
             this.goto();
           }
         });
-
     }
   }
   goto() {
