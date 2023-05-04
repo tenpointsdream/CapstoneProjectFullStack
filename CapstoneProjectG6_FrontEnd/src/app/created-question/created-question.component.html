@@ -26,10 +26,10 @@
             <h1>Created Question</h1>
         </div>
         <div class="container">
-            <ul>
-                <li *ngFor="let question of questions">
-                    <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
+            <ul *ngFor="let question of questions">
+                <li >
                     <img src="assets/question_images/{{question.imageSrc}}" alt="Question Image">
+                    <div><strong>Question ID: </strong>{{question.id}}</div>
                     <p><strong>Title: </strong>
                         {{ question.title }}
                     </p>
@@ -41,40 +41,26 @@
                     </p>
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
                     <button class="btn1">Answers</button>
-                    <button class="btn2" (click)="showForm()">Add Answer</button>
+                    <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
 
                 </li>
             </ul>
         </div>
-        <!-- <div *ngIf="showForm" class="answer-form-container">
-            <form novalidate #answerform="ngForm" (ngSubmit)="onSubmit(answerform)">
-                <div class="answer-form">
-                    <label for="description_answer">Answer:</label>
-                    <textarea name="description_answer" [(ngModel)]="model.description_answer" required></textarea>
-                </div>
-                <div>
-                    <label for="img_src">Image:</label>
-                    <input type="file" (change)="onFileSelected($event)" required>
-                </div>
-                <button [disabled]="answerform.invalid" type="submit">Submit</button>
-            </form>
-        </div> -->
         <div class="container_2">
             <div *ngIf="onVisible">
-                <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
+                <form id="answerform" novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform);">
                     <div class="register-form">
                         <label for="description_answer">Solution: </label><br>
-                        <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
-                        <br><br>
+                        <input type="text" id="description_answer" [(ngModel)]='model.description_answer' name="description_answer"
+                            required>
                     </div>
-    
+                
                     <div>
-                        <!-- todo -->
                         <label for="imageSrc">Upload Image</label>
-                        <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required> <br>
+                        <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
                     </div>
-                    <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
-                    <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
+                    <button [disabled]="answerform.invalid" type="submit">Submit</button><br><br>
+                    <button (click)="closeForm()" type="reset">Cancel</button>
                 </form>
             </div>
         </div>

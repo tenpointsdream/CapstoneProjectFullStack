@@ -9,65 +9,60 @@
         <div class="header-right">
             <ul>
                 <li class="list"><a href="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                <li class="list"><a routerLink="/userhomepage/createquestion"><i class="fa-solid fa-question"></i> Ask Question</a></li>
-                <li class="list"><a routerLink="/userhomepage/createdquestion"><i class="fa-solid fa-lightbulb"></i> Created
+                <li class="list"><a routerLink="/userhomepage/createquestion"><i class="fa-solid fa-question"></i> Ask
                         Question</a></li>
-                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat with us</a></li>
+                <li class="list"><a routerLink="/userhomepage/createdquestion"><i class="fa-solid fa-lightbulb"></i>
+                        Created
+                        Question</a></li>
+                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat
+                        with us</a></li>
                 <li class="list" id="btn"><a routerLink="/home/userlogin">Sign Out</a></li>
                 <li class="list user-type">user</li>
             </ul>
         </div>
     </div>
     <div class="container">
-    <!-- form -->
-    <div class="details" [(ngModel)] ="question">
-        <div><img [src]="question.imageSrc" alt=""></div>
-        <div><strong>Question ID: </strong>{{question.id}}</div>
-        <div><strong>Topic: </strong>{{question.topic}}</div>
-        <div><strong>Title: </strong>{{question.title}}</div>
-        <div><strong>Date & Time Created: </strong>{{question.datetime}}</div>
-        <div><strong>Created by: </strong>{{question.qcreated_by}}</div>
-        <div>
-            <div><strong>List of answers:</strong></div>
-            <ul *ngFor="let answer of answers">
-                <li>
-                    <ul>
-                        <li><img [src]="answer.img_src" alt=""></li>
-                        <li>Answer ID: {{answer.id}}</li>
-                        <li>Solution: {{answer.description_answer}}</li>
-                        <li>Created on: {{answer.datetime}}</li>
-                        <li>Written by: {{answer.created_by}}</li>
-                    </ul>
-                </li>
-            </ul>
+        <!-- form -->
+        <div class="details" [(ngModel)]="question">
+            <div><img [src]="question.imageSrc" alt=""></div>
+            <div><strong>Question ID: </strong>{{question.id}}</div>
+            <div><strong>Topic: </strong>{{question.topic}}</div>
+            <div><strong>Title: </strong>{{question.title}}</div>
+            <div><strong>Date & Time Created: </strong>{{question.datetime}}</div>
+            <div><strong>Created by: </strong>{{question.qcreated_by}}</div>
+            <div>
+                <div><strong>List of answers:</strong></div>
+                <ul *ngFor="let answer of answers">
+                    <li>
+                        <ul>
+                            <li><img [src]="answer.img_src" alt=""></li>
+                            <li>Answer ID: {{answer.id}}</li>
+                            <li>Solution: {{answer.description_answer}}</li>
+                            <li>Created on: {{answer.datetime}}</li>
+                            <li>Written by: {{answer.created_by}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <button (click)="showForm(question.id)" class="addbtn">Add Answer</button>
+            </div>
         </div>
-        <div><button (click)="showForm(question.id)" class="addbtn">Add Answer</button></div>
-            <!-- <tbody *ngFor="let question of searchedQuestions">
-                <tr>
-                    <td>{{question.id}}</td>
-                    <td>{{question.topic}}</td>
-                    <td>{{question.title}}</td>
-                    <td>{{question.descriptionQuestion}}</td>
-                    <td>
-                        <button (click)="showDetails(question.id)">Show details</button>
-                    </td>
-                </tr>
-            </tbody> -->
-
-    </div>
     </div>
     <div *ngIf="onVisible">
         <form id="answerform" novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform);">
             <div class="register-form">
                 <label for="description_answer">Solution: </label><br>
-                <input type="text" id="description_answer" [(ngModel)]='model.description_answer' name="description_answer" required>
+                <input type="text" id="description_answer" [(ngModel)]='model.description_answer'
+                    name="description_answer" required>
             </div>
 
             <div>
                 <label for="imageSrc">Upload Image</label>
-                <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
+                <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg"
+                    required>
             </div>
-            <button [disabled]="answerform.invalid" type="submit" >Submit</button><br><br>
+            <button [disabled]="answerform.invalid" type="submit">Submit</button><br><br>
             <button (click)="closeForm()" type="reset">Cancel</button>
         </form>
     </div>
