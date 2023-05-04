@@ -3,7 +3,6 @@ import { User } from '../entity/user.entity';
 import { UserType } from '../entity/UserSubmit';
 import { UserService } from '../service/user.service';
 import { HttpClient } from '@angular/common/http';
-import { UserProfile } from '../entity/userprofile.entity';
 
 @Component({
   selector: 'app-user-sign-up',
@@ -14,6 +13,7 @@ export class UserSignUpComponent {
   formUser: User;
   model: User;
   @ViewChild('passwordInput') passwordInput!: ElementRef;
+  @ViewChild('usernameInput') usernameInput!: ElementRef;
   constructor(private userService: UserService,
     private httpClient: HttpClient) {
     this.model = new User();
@@ -34,9 +34,8 @@ export class UserSignUpComponent {
         .subscribe((user: User) => {
           if (user !== null) {
             alert("Username is taken!");
-            window.location.reload();
-          }
-          else {
+            this.usernameInput.nativeElement.select();
+          } else {
             this.userService.addUser(this.formUser).subscribe();
             this.goto();
           }

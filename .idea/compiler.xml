@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BackEnd (3)" />
         <module name="BackEnd (2)" />
+        <module name="BackEnd (5)" />
         <module name="BackEnd (4)" />
         <module name="BackEnd (1)" />
       </profile>
@@ -25,6 +26,7 @@
       <module name="BackEnd (2)" options="" />
       <module name="BackEnd (3)" options="-parameters" />
       <module name="BackEnd (4)" options="-parameters" />
+      <module name="BackEnd (5)" options="-parameters" />
       <module name="CapstoneProjectGroup6" options="-parameters" />
     </option>
   </component>
