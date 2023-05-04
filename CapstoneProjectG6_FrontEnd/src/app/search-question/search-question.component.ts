@@ -56,4 +56,8 @@ export class SearchQuestionComponent {
   refresh() {
     window.location.reload();
   }
+
+  sign_out(){
+    this.cookieService.deleteAll();
+  }
 }

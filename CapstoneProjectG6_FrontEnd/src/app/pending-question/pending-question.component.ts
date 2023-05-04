@@ -58,6 +58,8 @@ export class PendingQuestionComponent implements OnInit {
   refresh(): void {
     window.location.reload();
   }
+  sign_out() {
+    this.cookieService.deleteAll();
+  }
 }
 
-export { QuestionService };

@@ -1,5 +1,6 @@
 // @ts-ignore
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 // @ts-ignore
 @Component({
@@ -9,4 +10,8 @@ import { Component } from '@angular/core';
 })
 export class PageNotFoundComponent {
 
+  constructor(private cookieService: CookieService) { }
+  sign_out() {
+    this.cookieService.deleteAll();
+  }
 }

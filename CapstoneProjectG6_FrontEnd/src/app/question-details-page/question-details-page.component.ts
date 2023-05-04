@@ -109,7 +109,9 @@ export class QuestionDetailsPageComponent implements OnInit {
         });
       });
     });
-    alert("Your answer has been created. Waiting for admin approval.");
     this.closeForm();
+  }
+  sign_out(){
+    this.cookieService.deleteAll();
   }
 }

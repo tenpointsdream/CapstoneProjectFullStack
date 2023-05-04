@@ -21,7 +21,7 @@ export class PendingAnswerComponent implements OnInit {
     private userService: UserService,
     private questionService: QuestionService,
     private router: Router
-    ) {
+  ) {
     this.pendingAnswers = []
   }
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class PendingAnswerComponent implements OnInit {
         console.log(this.answerToUpdate);
         questionId = this.answerToUpdate.question.id;
         console.log("Answer adding to question id: ", questionId);
-        
+
         console.log(this.cookieService.get('username'));
         console.log("Answer before to approve: ", this.answerToUpdate);
         this.answerService.updateAnswer(id, this.answerToUpdate).subscribe((updatedAnswer: Answer) => {
@@ -56,7 +56,7 @@ export class PendingAnswerComponent implements OnInit {
         })
       });
   }
-  goToPendingAnswer(){
+  goToPendingAnswer() {
     this.router.navigate(['/adminhomepage/pendinganswer'])
   }
 
@@ -67,7 +67,9 @@ export class PendingAnswerComponent implements OnInit {
         this.refresh();
       });
   }
-
+  sign_out() {
+    this.cookieService.deleteAll();
+  }
   refresh(): void {
     window.location.reload();
   }

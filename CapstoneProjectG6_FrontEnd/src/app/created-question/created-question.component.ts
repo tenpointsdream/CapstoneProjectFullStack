@@ -65,7 +65,7 @@ export class CreatedQuestionComponent implements OnInit {
     this.q_id = question_id;
   }
   onFileSelected(event: any) {
-    if(event.target.files.length > 0){
+    if (event.target.files.length > 0) {
       this.answerForm.img_src = event.target.files[0].name;
       this.answerForm.imageFile = event.target.files[0];
     }
@@ -88,7 +88,7 @@ export class CreatedQuestionComponent implements OnInit {
     this.answerForm.datetime = now.toLocaleString('en-US', options);
     this.answerForm.created_by = this.cookieService.get('username');
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
-      console.log("Response: " , response);
+      console.log("Response: ", response);
     });
     alert("Your answer hase been added! waiting for admin approval...");
     this.email.msgBody = "You have new pending question to approve";
@@ -97,7 +97,7 @@ export class CreatedQuestionComponent implements OnInit {
       this.admin = users;
       this.admin.forEach(element => {
         this.email.recipient = element.email;
-        this.emailService.sendEmail(this.email).subscribe((message : any)=> {
+        this.emailService.sendEmail(this.email).subscribe((message: any) => {
           console.log(message);
           console.log("sent to: ", element.name);
         });
@@ -106,5 +106,7 @@ export class CreatedQuestionComponent implements OnInit {
     alert("Your answer has been created. waiting for admin approval.");
     this.closeForm();
   }
-
+  sign_out() {
+    this.cookieService.deleteAll();
+  }
 }

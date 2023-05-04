@@ -95,4 +95,7 @@ export class CreateNewQuestionComponent {
     alert("Your question has been created. Waiting for admin approval.");
     this.fileInput.nativeElement.value = '';
   }
+  sign_out() {
+    this.cookieService.deleteAll();
+  }
 }
