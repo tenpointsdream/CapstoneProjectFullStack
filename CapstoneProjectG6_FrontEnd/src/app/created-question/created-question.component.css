@@ -67,14 +67,15 @@ h1 {
 
 .container_2 {
     position: fixed;
-    left: 500px;
-    top: 250px;
-    /* border: 1px solid #ccc; */
+    top: 40%;
+    margin-left: 20%;
     padding: 20px;
-    border-radius: 10px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
-    width: 500px;
-    list-style-type: none;
+}
+.answer-inner-container {
+    position: fixed;
+    top: 40%;
+    margin-left: 40%;
+    padding: 20px;
 }
 
 .footer-div {

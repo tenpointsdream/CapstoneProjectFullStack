@@ -5,6 +5,7 @@ import { AnswerService } from "../service/answer.service";
 import { Question } from "../entity/question.entity";
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-answer',
@@ -18,7 +19,9 @@ export class PendingAnswerComponent implements OnInit {
     private answerService: AnswerService,
     private cookieService: CookieService,
     private userService: UserService,
-    private questionService: QuestionService) {
+    private questionService: QuestionService,
+    private router: Router
+    ) {
     this.pendingAnswers = []
   }
   ngOnInit(): void {
@@ -47,10 +50,14 @@ export class PendingAnswerComponent implements OnInit {
           this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);
             console.log("This is a list of answers: ", updatedQuestion.answers);
-            //this.refresh();
+            // this.refresh();
+            // this.goToPendingAnswer();
           })
         })
       });
+  }
+  goToPendingAnswer(){
+    this.router.navigate(['/adminhomepage/pendinganswer'])
   }
 
   removeAnswer(id: number) {

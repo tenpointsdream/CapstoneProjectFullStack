@@ -55,6 +55,11 @@ h1 {
     font-weight: normal;
     text-align: center;
 }
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 26px;
+    font-weight: 700;
+}
 
 .container {
     border: 1px solid #ccc;
@@ -63,8 +68,17 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     list-style-type: none;
+    position: relative;
 }
-
+.answer-inner-container {
+    position: fixed;
+    top: 40%;
+    margin-left: 40%;
+    color: yellowgreen;
+    padding: 20px;
+    border-radius: 10px;
+    list-style-type: none;
+}
 
 .footer-div {
     background-color: #d9e5ecd9;
@@ -90,12 +104,8 @@ ul li {
 
 .created-questions{
     position: relative;
-    left: 200px;
 }
 
-.container{
-    height: 650px;
-}
 
 img {
     height: 150px;
@@ -115,7 +125,7 @@ img {
   }
 
   .btn1 {
-    background-color: blue;
+    background-color: rgba(15, 59, 182, 0.722);
     color: white;
     border-radius: 4px;
     padding: 10px 20px;
@@ -123,4 +133,5 @@ img {
     font-weight: 500;
     cursor: pointer;
     border: none;
+    margin: 10px;
   }
