@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from '../entity/question.entity';
 import { QuestionService } from '../service/question.service';
 import { Answer } from '../entity/answer.entity';
@@ -35,7 +35,8 @@ export class QuestionDetailsPageComponent implements OnInit {
     private emailService: EmailService,
     private userService: UserService,
     private cookieService: CookieService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private router: Router) {
     this.onVisible = false;
     this.formGroup = this.formBuilder.group({
       file: ['']
@@ -109,7 +110,11 @@ export class QuestionDetailsPageComponent implements OnInit {
         });
       });
     });
-    alert("Your answer has been created. Waiting for admin approval.");
     this.closeForm();
+  }
+  sign_out() {
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/userlogin"]);
   }
 }

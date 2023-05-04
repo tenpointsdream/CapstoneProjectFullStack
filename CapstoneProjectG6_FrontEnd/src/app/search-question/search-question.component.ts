@@ -56,4 +56,10 @@ export class SearchQuestionComponent {
   refresh() {
     window.location.reload();
   }
+
+  sign_out(){
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/userlogin"]);
+  }
 }
