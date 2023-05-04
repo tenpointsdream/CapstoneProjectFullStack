@@ -14,17 +14,26 @@
     </div>
     <div class="container">
         <div>
-            <h3>List Of User</h3>
+            <h3>All Messages</h3>
         </div>
         <div>
-            <ul>
-                <li>User1</li>
-                <button (click)="showForm()">Chat</button>
-                <li>User1</li>
-                <button (click)="showForm()">Chat</button>
-                <li>User1</li>
-                <button (click)="showForm()">Chat</button>
+            <ul *ngFor="let message of chatToYou">
+                <li><strong>User:</strong> {{message.from_user}}</li>
+                <button (click)="showForm(message.from_user)">Chat</button>
             </ul>
+        </div>
+    </div>
+    <div>
+        <div><button (click)="showNewChat()">New Message</button></div>
+        <div *ngIf="newChatVisible">
+            <form class="msger-inputarea" #newchatform='ngForm' (ngSubmit)="newChatTo(newchatform)">
+                <input type="text" class="msger-name" placeholder="Enter username:" [(ngModel)]="newChat.to_user"
+                    name="to_user" required>
+                <input type="text" class="msger-input" placeholder="Enter your message..." [(ngModel)]="newChat.message"
+                    name="message" required>
+                <button [disabled]="newchatform.invalid" type="submit" class="msger-send-btn">Send</button>
+                <button (click)="closeThisForm()" type="button" class="cancel">Cancel</button>
+            </form>
         </div>
     </div>
     <div>
@@ -32,18 +41,24 @@
             <div *ngIf="onVisible">
                 <form class="msger" novalidate #chatform='ngForm' (ngSubmit)="onSubmit(chatform)">
                     <div class="chat-message">
-                        <div *ngFor="let message of chatToYou">
-                            <div class="chat-from">{{ message.from_user }}:</div>
-                            <div class="chat-text">{{ message.message }}</div>
-                            <div class="chat-time">{{ message.datetime }}</div>
+                        <div *ngFor="let message of conversation">
+                            <ng-container>
+                                <div class="chat-from">{{ message.from_user }}:</div>
+                                <div class="chat-text">{{ message.message }}</div>
+                                <div class="chat-time">{{ message.datetime }}</div>
+                            </ng-container>
+
                         </div>
-                        <div *ngFor="let message of chatYouSent">
-                            <div class="chat-from">{{ message.from_user }}:</div>
-                            <div class="chat-text">{{ message.message }}</div>
-                            <div class="chat-time">{{ message.datetime }}</div>
-                        </div>
+                        <!-- <ng-container>
+                            <div *ngFor="let message of chatToSpecificUser">
+                                <div class="chat-from">{{ message.from_user }}:</div>
+                                <div class="chat-text">{{ message.message }}</div>
+                                <div class="chat-time">{{ message.datetime }}</div>
+                            </div>
+                        </ng-container> -->
+
                     </div>
-                    <form class="msger-inputarea">
+                    <form class="msger-inputarea" #chatform='ngForm' (ngSubmit)="onSubmit(chatform)">
                         <input type="text" class="msger-input" placeholder="Enter your message..."
                             [(ngModel)]="model.message" name="message" required>
                         <button [disabled]="chatform.invalid" type="submit" class="msger-send-btn">Send</button>

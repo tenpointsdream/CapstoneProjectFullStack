@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-import cogent.com.util.AppUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -69,8 +68,12 @@ public class BackEndApplication {
 
 		ChatService chatService = ctx.getBean(ChatService.class);
 		chatService.addNewChat(new Chat("user2", "user3", "Hello", "12/29/2023"));
-		chatService.addNewChat(new Chat("user3", "user2", "how are you", "12/29/2023"));
-		chatService.addNewChat(new Chat("user1", "user3", "good bye", "12/29/2023"));
+		chatService.addNewChat(new Chat("user3", "user2", "How are you?", "12/29/2023"));
+		chatService.addNewChat(new Chat("user4", "user2", "Say hi to me", "12/29/2023"));
+		chatService.addNewChat(new Chat("user5", "user2", "Welcome", "12/29/2023"));
+		chatService.addNewChat(new Chat("user2", "user4", "Do I know you?", "12/29/2023"));
+		chatService.addNewChat(new Chat("user6", "user2", "I am the ADMIN", "12/29/2023"));
+		
 		for (String dir : new String[] { "question_images", "answer_images" }) {
 			Path directory = Paths.get("C:/CapstoneProjectFullStack/CapstoneProjectG6_FrontEnd/src/assets/" + dir);
 			if (Files.exists(directory))
