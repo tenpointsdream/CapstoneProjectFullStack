@@ -30,7 +30,6 @@ export class UserSignUpComponent {
       this.formUser.username = registerform.value.username;
       this.formUser.userType = UserType.USER;
       console.log(registerform.value);
-      this.userService.addUser(this.formUser).subscribe();
       this.httpClient.get<User>(`http://localhost:8080/user/getbyusername/${this.formUser.username}`)
         .subscribe((user: User) => {
           if (user !== null) {
@@ -38,6 +37,7 @@ export class UserSignUpComponent {
             window.location.reload();
           }
           else {
+            this.userService.addUser(this.formUser).subscribe();
             this.goto();
           }
         });
