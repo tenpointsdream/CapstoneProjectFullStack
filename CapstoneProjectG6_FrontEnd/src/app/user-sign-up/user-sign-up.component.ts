@@ -30,9 +30,10 @@ export class UserSignUpComponent {
       this.formUser.username = registerform.value.username;
       this.formUser.userType = UserType.USER;
       console.log(registerform.value);
-      this.httpClient.get<User>(`http://localhost:8080/user/getbyusername/${this.formUser.username}`)
-        .subscribe((user: User) => {
-          if (user !== null) {
+      this.httpClient.get<boolean>(`http://localhost:8080/user/getbyusername/${this.formUser.username}`)
+        .subscribe((result: boolean) => {
+          console.log("result", result);
+          if (result == null) {
             alert("Username is taken!");
             this.usernameInput.nativeElement.select();
           } else {
