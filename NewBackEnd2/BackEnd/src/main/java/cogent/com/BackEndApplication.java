@@ -1,19 +1,5 @@
 package cogent.com;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Stream;
-
-import cogent.com.util.AppUtil;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
 import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.Answer;
@@ -24,6 +10,18 @@ import cogent.com.service.ChatService;
 import cogent.com.service.QuestionService;
 import cogent.com.service.UserService;
 import cogent.com.util.UserType;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class BackEndApplication {
@@ -48,7 +46,7 @@ public class BackEndApplication {
 		questionService.addQuestion(new QuestionDTO(0, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"JavaScript", "Getting to know", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(1, "Test description", "test.jpg", "04-26-2023, 12:36", true,
-				"Angular", "What is Angular?", new ArrayList<Answer>(List.of(new Answer())), "user2", "user1"));
+				"Angular", "What is Angular?", new ArrayList<Answer>(Arrays.asList(new Answer())), "user2", "user1"));
 		questionService.addQuestion(new QuestionDTO(2, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"Java", "Too many problems with Java", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(3, "Test description", "test.jpg", "04-26-2023, 12:36", false,

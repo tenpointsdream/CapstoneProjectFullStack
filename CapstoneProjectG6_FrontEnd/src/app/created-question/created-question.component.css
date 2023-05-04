@@ -112,6 +112,8 @@ ul li {
 .submitbtn {
     margin-right: 10px;
     border-radius: 3px;
+    color: white;
+    background-color: rgb(74, 165, 74);
 }
 
 .cancel {
