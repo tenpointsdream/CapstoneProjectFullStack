@@ -1,5 +1,6 @@
 import { Answer } from '../entity/answer.entity';
 import { Question } from '../entity/question.entity';
+import { AnswerService } from '../service/answer.service';
 import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,24 +12,28 @@ import { Component, OnInit } from '@angular/core';
 export class CreatedQuestionComponent implements OnInit {
   questions: Question[] = [];
   // showForm = false;
+  answerVisible: boolean;
   model = {} as Answer;
   // answerForm : any;
   // model = {} as Answer;
   // question = {} as Question;
+  answers = [] as Answer[];
   onVisible: boolean;
-  constructor(private questionService : QuestionService){
-      this.onVisible = false;
-    }
+  constructor(private questionService: QuestionService,
+    private answerService: AnswerService) {
+    this.onVisible = false;
+    this.answerVisible = false;
+  }
   ngOnInit(): void {
     this.questionService.getQuestionByStatus(true).subscribe((data: Question[]) => {
       this.questions = data;
-    // const idString = localStorage.getItem('questionId') ?? '0';
-    // this.questionID = parseInt(idString);
-    // console.log(this.questionID);
-    // this.questionService.getQuestionById(this.questionID).subscribe((data: any) => {
-    //   console.log("ID: ", this.questionID);
-    //   this.questions = data;
-    //   console.log("Question: ", this.questions);
+      // const idString = localStorage.getItem('questionId') ?? '0';
+      // this.questionID = parseInt(idString);
+      // console.log(this.questionID);
+      // this.questionService.getQuestionById(this.questionID).subscribe((data: any) => {
+      //   console.log("ID: ", this.questionID);
+      //   this.questions = data;
+      //   console.log("Question: ", this.questions);
     })
   }
   // onFileSelected(event: any) {
@@ -58,6 +63,17 @@ export class CreatedQuestionComponent implements OnInit {
   //     second: 'numeric'
   //   };
   // }
+
+  showAnswers(questionId: number) {
+    this.answerVisible = true;
+    this.answerService.getAnswerByQuestionId(questionId).subscribe((data: Answer[]) => {
+      this.answers = data;
+      console.log(this.answers);
+    })
+  }
+  collapseList() {
+    this.answerVisible = false;
+  }
   closeForm() {
     this.onVisible = false;
   }

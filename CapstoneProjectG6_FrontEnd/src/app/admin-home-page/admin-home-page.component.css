@@ -47,9 +47,6 @@ body {
     color: rgb(235, 231, 231);
 }
 
-.body-container{
-    height: 650px;
-}
 
 /* body */
 h1 {
@@ -90,3 +87,40 @@ ul li {
     list-style-type: none;
     font-weight: 500;
 }
+
+.created-questions{
+    position: relative;
+    left: 200px;
+}
+
+.container{
+    height: 650px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+    object-fit: scale-down;
+}
+
+.btn2 {
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn1 {
+    background-color: blue;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+  }
