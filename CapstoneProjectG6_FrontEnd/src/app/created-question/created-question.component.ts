@@ -3,6 +3,12 @@ import { Question } from '../entity/question.entity';
 import { AnswerService } from '../service/answer.service';
 import { QuestionService } from '../service/question.service';
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Email } from '../entity/email.entity';
+import { EmailService } from '../service/email.service';
+import { UserService } from '../service/user.service';
+import { User } from '../entity/user.entity';
+import { elementAt } from 'rxjs';
 
 @Component({
   selector: 'app-created-question',
@@ -11,16 +17,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatedQuestionComponent implements OnInit {
   questions: Question[] = [];
-  // showForm = false;
   answerVisible: boolean;
   model = {} as Answer;
-  // answerForm : any;
-  // model = {} as Answer;
-  // question = {} as Question;
   answers = [] as Answer[];
+  admin = [] as User[];
+  answerForm = {} as Answer;
+  email = {} as Email;
   onVisible: boolean;
+  q_id: number = 0;
+  question = {} as Question;
   constructor(private questionService: QuestionService,
-    private answerService: AnswerService) {
+    private answerService: AnswerService,
+    private cookieService: CookieService,
+    private userService: UserService,
+    private emailService: EmailService) {
     this.onVisible = false;
     this.answerVisible = false;
   }
@@ -36,33 +46,6 @@ export class CreatedQuestionComponent implements OnInit {
       //   console.log("Question: ", this.questions);
     })
   }
-  // onFileSelected(event: any) {
-  //   if (event.target.files.length > 0) {
-  //     console.log(event.target.files[0].name);
-  //     this.questionForm.imageSrc = event.target.files[0].name;
-  //   }
-  // }
-  // listOfAnswer(id: number) {
-  //   this.answerService.getAnswerByQuestionId(id).subscribe((answer: Answer[])=> {
-
-  //   })
-  // }
-  // onSubmit(answerForm: any) {
-  //   this.answerForm.id = 1;
-  //   this.answerForm.description_answer = answerForm.value.description_answer;
-  //   this.answerForm.img_src = answerForm.value.img_src;
-  //   this.answerForm.status = false;
-  //   this.answerForm.answers = [];
-  //   const now: Date = new Date();
-  //   const options: Intl.DateTimeFormatOptions = {
-  //     year: 'numeric',
-  //     month: 'numeric',
-  //     day: 'numeric',
-  //     hour: 'numeric',
-  //     minute: 'numeric',
-  //     second: 'numeric'
-  //   };
-  // }
 
   showAnswers(questionId: number) {
     this.answerVisible = true;
@@ -77,14 +60,51 @@ export class CreatedQuestionComponent implements OnInit {
   closeForm() {
     this.onVisible = false;
   }
-  showForm() {
+  showForm(question_id: number) {
     this.onVisible = true;
+    this.q_id = question_id;
   }
   onFileSelected(event: any) {
-
+    if(event.target.files.length > 0){
+      this.answerForm.img_src = event.target.files[0].name;
+      this.answerForm.imageFile = event.target.files[0];
+    }
   }
   onSubmit(answerform: any) {
-
+    this.answerForm.id = 1;
+    this.answerForm.description_answer = answerform.value.description_answer;
+    this.answerForm.approved_by = '';
+    this.answerForm.question = this.question;
+    this.answerForm.status = false;
+    const now: Date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    this.answerForm.datetime = now.toLocaleString('en-US', options);
+    this.answerForm.created_by = this.cookieService.get('username');
+    this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
+      console.log("Response: " , response);
+    });
+    alert("Your answer hase been added! waiting for admin approval...");
+    this.email.msgBody = "You have new pending question to approve";
+    this.email.subject = this.question.title;
+    this.userService.getAdmin().subscribe((users: User[]) => {
+      this.admin = users;
+      this.admin.forEach(element => {
+        this.email.recipient = element.email;
+        this.emailService.sendEmail(this.email).subscribe((message : any)=> {
+          console.log(message);
+          console.log("sent to: ", element.name);
+        });
+      });
+    });
+    alert("Your answer has been created. waiting for admin approval.");
+    this.closeForm();
   }
 
 }

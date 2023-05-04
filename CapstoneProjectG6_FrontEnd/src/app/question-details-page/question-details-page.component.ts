@@ -95,7 +95,7 @@ export class QuestionDetailsPageComponent implements OnInit {
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
       console.log("Response: ", response);
     });
-    alert("You answer has been added! Waiting for admin approval...");
+    alert("Your answer has been added! Waiting for admin approval...");
     this.email.msgBody = 'You have new pending question to approve';
     this.email.subject = this.question.title;
     this.userService.getAdmin().subscribe((users: User[]) => {
