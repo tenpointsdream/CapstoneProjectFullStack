@@ -21,15 +21,15 @@
             </ul>
         </div>
     </div>
-    <div>
+    <div class="body-container">
         <div>
             <h1>Created Question</h1>
         </div>
         <div class="container">
-            <ul *ngFor="let question of questions">
-                <li >
+            <ul>
+                <li *ngFor="let question of questions">
+                    <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
                     <img src="assets/question_images/{{question.imageSrc}}" alt="Question Image">
-                    <div><strong>Question ID: </strong>{{question.id}}</div>
                     <p><strong>Title: </strong>
                         {{ question.title }}
                     </p>
@@ -40,32 +40,56 @@
                         {{ question.descriptionQuestion }}
                     </p>
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
-                    <button class="btn1">Answers</button>
-                    <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
-
+                    <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
+                    <button class="btn2" (click)="showForm()">Add Answer</button>
+                </li>
+                <li>
+                    <div><strong>List of answers:</strong></div>
+                    <ul *ngFor="let answer of answers">
+                        <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
+                        <li><strong>Answer ID:</strong> {{answer.id}}</li>
+                        <li><strong>Solution:</strong> {{answer.description_answer}}</li>
+                        <li><strong>Created on:</strong> {{answer.datetime}}</li>
+                        <li><strong>Written by:</strong> {{answer.created_by}}</li>
+                    </ul>
                 </li>
             </ul>
         </div>
+        <!-- <div *ngIf="showForm" class="answer-form-container">
+            <form novalidate #answerform="ngForm" (ngSubmit)="onSubmit(answerform)">
+                <div class="answer-form">
+                    <label for="description_answer">Answer:</label>
+                    <textarea name="description_answer" [(ngModel)]="model.description_answer" required></textarea>
+                </div>
+                <div>
+                    <label for="img_src">Image:</label>
+                    <input type="file" (change)="onFileSelected($event)" required>
+                </div>
+                <button [disabled]="answerform.invalid" type="submit">Submit</button>
+            </form>
+        </div> -->
         <div class="container_2">
             <div *ngIf="onVisible">
-                <form id="answerform" novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform);">
+                <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
                     <div class="register-form">
                         <label for="description_answer">Solution: </label><br>
-                        <input type="text" id="description_answer" [(ngModel)]='model.description_answer' name="description_answer"
-                            required>
+                        <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
+                        <br><br>
                     </div>
-                
+
                     <div>
+                        <!-- todo -->
                         <label for="imageSrc">Upload Image</label>
-                        <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
+                        <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
+                        <br>
                     </div>
-                    <button [disabled]="answerform.invalid" type="submit">Submit</button><br><br>
-                    <button (click)="closeForm()" type="reset">Cancel</button>
+                    <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
+                    <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <footer class="footer-div">
         <ul class="footer">
             <li>Abdulkerim Mohammed</li>

@@ -122,3 +122,6 @@ img {
     height: 150px;
     object-fit: scale-down;
 }
+.body-container{
+    height: 700px;
+}

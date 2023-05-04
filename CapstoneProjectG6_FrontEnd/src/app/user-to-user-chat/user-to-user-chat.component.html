@@ -32,12 +32,20 @@
             <div *ngIf="onVisible">
                 <form class="msger" novalidate #chatform='ngForm' (ngSubmit)="onSubmit(chatform)">
                     <div class="chat-message">
-                        <div *ngFor="let message of chat" class="chat-from">{{ message.from_user }}:</div>
-                        <div *ngFor="let message of chat" class="chat-text">{{ message.message }}</div>
-                        <div *ngFor="let message of chat" class="chat-time">{{ message.datetime }}</div>
+                        <div *ngFor="let message of chatToYou">
+                            <div class="chat-from">{{ message.from_user }}:</div>
+                            <div class="chat-text">{{ message.message }}</div>
+                            <div class="chat-time">{{ message.datetime }}</div>
+                        </div>
+                        <div *ngFor="let message of chatYouSent">
+                            <div class="chat-from">{{ message.from_user }}:</div>
+                            <div class="chat-text">{{ message.message }}</div>
+                            <div class="chat-time">{{ message.datetime }}</div>
+                        </div>
                     </div>
                     <form class="msger-inputarea">
-                        <input type="text" class="msger-input" placeholder="Enter your message..." [(ngModel)]="model.message" name="message" required>
+                        <input type="text" class="msger-input" placeholder="Enter your message..."
+                            [(ngModel)]="model.message" name="message" required>
                         <button [disabled]="chatform.invalid" type="submit" class="msger-send-btn">Send</button>
                         <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
                     </form>

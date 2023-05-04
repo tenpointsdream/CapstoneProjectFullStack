@@ -90,7 +90,7 @@ public class AnswerController {
 		List<AnswerDTO> answers = answerService.getAllAnswersByQId(questionId);
 		List<AnswerDTO> filteredAnswers = new ArrayList<AnswerDTO>();
 		for (AnswerDTO answer : answers) {
-			if (answer.isStatus() == true) {
+			if (answer.isStatus()) {
 				filteredAnswers.add(answer);
 			}
 		}
