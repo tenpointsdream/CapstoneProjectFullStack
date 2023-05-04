@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
 import { UserProfile } from '../entity/userprofile.entity';
 import { UserService } from '../service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-question',
@@ -18,7 +19,8 @@ export class PendingQuestionComponent implements OnInit {
     private questionService: QuestionService,
     private http: HttpClient,
     private cookieService: CookieService,
-    private userService: UserService) {
+    private userService: UserService,
+    private router: Router) {
     this.pendingQuestions = [];
   }
   ngOnInit(): void {
@@ -58,6 +60,10 @@ export class PendingQuestionComponent implements OnInit {
   refresh(): void {
     window.location.reload();
   }
+  sign_out() {
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/adminlogin"]);
+  }
 }
 
-export { QuestionService };

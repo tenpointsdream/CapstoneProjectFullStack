@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../entity/user.entity';
 import { UserType } from '../entity/UserSubmit';
 import { UserService } from '../service/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-sign-up',
@@ -9,10 +10,12 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user-sign-up.component.css']
 })
 export class UserSignUpComponent {
-formUser: User;
+  formUser: User;
   model: User;
   @ViewChild('passwordInput') passwordInput!: ElementRef;
-  constructor(private userService: UserService) {
+  @ViewChild('usernameInput') usernameInput!: ElementRef;
+  constructor(private userService: UserService,
+    private httpClient: HttpClient) {
     this.model = new User();
     this.formUser = new User();
   }
@@ -27,8 +30,17 @@ formUser: User;
       this.formUser.username = registerform.value.username;
       this.formUser.userType = UserType.USER;
       console.log(registerform.value);
-      this.userService.addUser(this.formUser).subscribe();
-      this.goto();
+      this.httpClient.get<User>(`http://localhost:8080/user/getbyusername/${this.formUser.username}`)
+        .subscribe((user: User) => {
+          if (user !== null) {
+            alert("Username is taken!");
+            this.usernameInput.nativeElement.select();
+          } else {
+            this.userService.addUser(this.formUser).subscribe();
+            this.goto();
+          }
+        });
+
     }
   }
   goto() {

@@ -27,6 +27,9 @@ export class UserHomePageComponent implements OnInit {
     window.location.reload();
   }
   sign_out(): void {
-    this.cookieService.deleteAll();
+    //this.cookieService.deleteAll();
+    this.router.navigate(["/home/userlogin"]);
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
   }
 }
