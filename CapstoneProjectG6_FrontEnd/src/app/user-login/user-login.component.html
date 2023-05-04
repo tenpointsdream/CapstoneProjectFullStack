@@ -24,10 +24,10 @@
                 <form novalidate #userform='ngForm' (ngSubmit)="onSubmit(userform)">
                     <div class="register-form">
                         <label for="username">Username</label><br>
-                        <input type="text" [(ngModel)]='model.username' name="username" required><br>
+                        <input type="text" id="username" [(ngModel)]='model.username' name="username" required><br>
                         <div>
                             <label for="password">Password</label><br>
-                            <input type="password" [(ngModel)]='model.password' name="password" minlength="8" required><br>
+                            <input type="password" id="password" [(ngModel)]='model.password' name="password" minlength="8" required><br>
                         </div>
                         <button [disabled]="userform.invalid" type="submit">Log In</button>
                     </div>

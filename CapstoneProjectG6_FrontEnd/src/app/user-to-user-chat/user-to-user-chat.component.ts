@@ -1,6 +1,5 @@
-import { Chat } from './../entity/chat.entity';
-import { ActivatedRoute } from '@angular/router';
-import { ChatService } from './../service/chat.service';
+import { Chat } from '../entity/chat.entity';
+import { ChatService } from '../service/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -32,9 +31,7 @@ export class UserToUserChatComponent implements OnInit {
       this.chat.forEach(element => {
         console.log("To user: ", element.to_user);
         console.log("Current user: ", this.cookieService.get('username'));
-        if (element.to_user === this.cookieService.get('username')) {
-          this.chatToYou.push(element);
-        }
+        if (element.to_user === this.cookieService.get('username')) this.chatToYou.push(element);
       });
       this.chat.forEach(element => {
         if (element.from_user === this.cookieService.get('username')) {
@@ -44,7 +41,7 @@ export class UserToUserChatComponent implements OnInit {
         }
       });
     });
-    console.log("Chat you received: ", this.chatToYou);   
+    console.log("Chat you received: ", this.chatToYou);
     console.log("USERs having conversation with you: ", this.chatYouSent);
     console.log("you Sent to " , this.usersYouSent);
   }
@@ -64,10 +61,6 @@ export class UserToUserChatComponent implements OnInit {
 
   showForm() {
     this.onVisible = true;
-  }
-
-  onFileSelected(event: any) {
-
   }
 
   onSubmit(chatform: NgForm) {
