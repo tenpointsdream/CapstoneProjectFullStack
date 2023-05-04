@@ -82,6 +82,9 @@ button {
     flex-direction: column;
     margin-bottom: 10px;
 }
+.newmsg-btn {
+    margin-left: 10px;
+}
 
 .chat-from {
     font-weight: bold;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cogent.com.entity.User;
 import cogent.com.repository.UserRepository;
 import cogent.com.util.UserType;
+import static cogent.com.util.AppUtil.sha256;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addUser(User user) {
+		user.setPassword(sha256(user.getPassword()));
 		return userRepository.save(user);
 	}
 
@@ -33,9 +35,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addNewUser(User user) {
+		user.setPassword(sha256(user.getPassword()));
 		return userRepository.save(user);
 	}
 
+	// Need implementation
 	@Override
 	public boolean userLoginVerify(User user) {
 		return false;
@@ -54,6 +58,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByType(UserType userType) {
 		return userRepository.findByUserType(userType);
+	}
+
+	@Override
+	public String home() {
+		return "Users Home Page";
+	}
+
+	@Override
+	public Optional<User> getUserByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 }

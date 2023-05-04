@@ -159,7 +159,6 @@ export class UserToUserChatComponent implements OnInit {
       }
     });
 
-
   }
   showNewChat() {
     this.newChatVisible = true;
