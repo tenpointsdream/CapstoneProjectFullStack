@@ -70,6 +70,7 @@ export class PendingAnswerComponent implements OnInit {
   sign_out() {
     this.cookieService.delete("username");
     this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/adminlogin"]);
   }
   refresh(): void {
     window.location.reload();

@@ -60,5 +60,6 @@ export class SearchQuestionComponent {
   sign_out(){
     this.cookieService.delete("username");
     this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/userlogin"]);
   }
 }

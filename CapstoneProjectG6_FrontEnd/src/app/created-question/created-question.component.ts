@@ -9,6 +9,7 @@ import { EmailService } from '../service/email.service';
 import { UserService } from '../service/user.service';
 import { User } from '../entity/user.entity';
 import { elementAt } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-created-question',
@@ -30,7 +31,8 @@ export class CreatedQuestionComponent implements OnInit {
     private answerService: AnswerService,
     private cookieService: CookieService,
     private userService: UserService,
-    private emailService: EmailService) {
+    private emailService: EmailService,
+    private router: Router) {
     this.onVisible = false;
     this.answerVisible = false;
   }
@@ -109,5 +111,6 @@ export class CreatedQuestionComponent implements OnInit {
   sign_out() {
     this.cookieService.delete("username");
     this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/userlogin"]);
   }
 }
