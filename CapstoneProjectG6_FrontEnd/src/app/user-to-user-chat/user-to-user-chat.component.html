@@ -47,15 +47,7 @@
                                     <div class="chat-time">{{ message.datetime }}</div>
                                 </ng-container>
                                 
-                            </div>
-                            <!-- <ng-container>
-                                <div *ngFor="let message of chatToSpecificUser">
-                                    <div class="chat-from">{{ message.from_user }}:</div>
-                                    <div class="chat-text">{{ message.message }}</div>
-                                    <div class="chat-time">{{ message.datetime }}</div>
-                                </div>
-                            </ng-container> -->
-                            
+                            </div>          
                         </div>
                         <form class="msger-inputarea" #chatform='ngForm' (ngSubmit)="onSubmit(chatform)">
                             <input type="text" class="msger-input" placeholder="Enter your message..."
@@ -73,7 +65,7 @@
                 <li>Abdulkerim Mohammed</li>
                 <li>Prajesh Sharma</li>
                 <li>Khoa Ho</li>
-        </ul>
+            </ul>
         <p>2023 Copy Right ©</p>
     </footer>
 </body>
