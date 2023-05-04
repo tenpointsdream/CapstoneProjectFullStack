@@ -41,7 +41,7 @@
                     </p>
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
                     <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
-                    <button class="btn2" (click)="showForm()">Add Answer</button>
+                    <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
                 </li>
                 <li>
                     <div class="answer-inner-container">
@@ -57,19 +57,6 @@
                 </li>
             </ul>
         </div>
-        <!-- <div *ngIf="showForm" class="answer-form-container">
-            <form novalidate #answerform="ngForm" (ngSubmit)="onSubmit(answerform)">
-                <div class="answer-form">
-                    <label for="description_answer">Answer:</label>
-                    <textarea name="description_answer" [(ngModel)]="model.description_answer" required></textarea>
-                </div>
-                <div>
-                    <label for="img_src">Image:</label>
-                    <input type="file" (change)="onFileSelected($event)" required>
-                </div>
-                <button [disabled]="answerform.invalid" type="submit">Submit</button>
-            </form>
-        </div> -->
         <div class="container_2">
             <div *ngIf="onVisible">
                 <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
@@ -89,7 +76,6 @@
             </div>
         </div>
     </div>
-
     <footer class="footer-div">
         <ul class="footer">
             <li>Abdulkerim Mohammed</li>
