@@ -8,30 +8,30 @@
         </div>
         <div  class="header-right">
             <ul>
-                <li class="list"><a href=""><i class="fa-solid fa-house"></i> Dashboard</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-question"></i> Pending Question</a></li>
-                <li class="list"><a href=""><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li>
-                <li class="list" id="btn"><a href="">Sign Out</a></li>
-                <li class="list user-type">admin</li>
+                <li class="list"><a href=""><i class="fa-solid fa-house"></i> Home</a></li>
+              <!-- <li class="list"><a href=""><i class="fa-solid fa-question"></i> Pending Question</a></li>
+              <li class="list"><a href=""><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li>
+                <li class="list" id="btn"><a href="">Sign Out</a></li>-->
+                <li class="list user-type">ADMIN</li>
             </ul>
         </div>
     </div>
     <!-- form -->
-    <div> 
+    <div class="body-container">
         <div>
             <h2>Admin Log In</h2>
         </div>
         <div class="container">
             <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform)">
                 <div class="register-form">
-                    <label for="email">Email</label><br>
-                    <input type="email" [(ngModel)]='model.email' name="email" required><br>
+                    <label for="username">Username</label><br>
+                    <input type="text" [(ngModel)]='model.username' name="username" required><br>
                 </div>
                 <div>
                     <label for="password">Password</label><br>
-                    <input type="password" [(ngModel)]='model.password' name="password" required><br>
+                    <input type="password" [(ngModel)]='model.password' name="password" minlength="8" required><br>
                 </div>
-                <button [disabled]="adminform.invalid" (click)="login()" type="submit">Log In</button>
+                <button [disabled]="adminform.invalid" type="submit">Log In</button>
             </form>
         </div>
     </div>

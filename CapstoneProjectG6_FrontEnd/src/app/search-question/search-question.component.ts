@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Question } from '../entity/question.entity';
 import { QuestionService } from '../service/question.service';
-import { User } from '../entity/user.entity';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search-question',
@@ -14,10 +16,14 @@ export class SearchQuestionComponent {
   topic!: string;
   title!: string;
   searchedQuestions: Question[];
-  constructor(private questionService: QuestionService) {
+  constructor(
+    private questionService: QuestionService,
+    private cookieService: CookieService,
+    private router: Router) {
     this.searchedQuestions = [];
   }
   onSubmit() {
+    //alert(this.cookieService.get('jwtToken'));
     this.questionService.searchQuestion(this.topic, this.title).subscribe((data: Question[]) => {
       console.log(data);
       this.searchedQuestions = data;
@@ -27,16 +33,25 @@ export class SearchQuestionComponent {
     }
     else {
       this.searchedQuestions = [{
-        'id': 0, 'descriptionQuestion': 'None',
+        'id': 0,
+        'descriptionQuestion': 'None',
         'imageSrc': 'None',
-        'status': 'None',
+        'imageFile' : null,
+        'status': false,
         'topic': 'None',
         'title': 'None',
+        'datetime': 'None',
         'answers': [],
-        'qcreated_by': new User(),
-        'qapproved_by': new User()
+        'qcreated_by': 'None',
+        'qapproved_by': 'None'
       }]
     }
+  }
+
+  showDetails(id: number, username: string) {
+    this.router.navigate(['userhomepage/searchquestion/details']);
+    localStorage.setItem('questionId', id.toString());
+    localStorage.setItem('username', username);
   }
   refresh() {
     window.location.reload();

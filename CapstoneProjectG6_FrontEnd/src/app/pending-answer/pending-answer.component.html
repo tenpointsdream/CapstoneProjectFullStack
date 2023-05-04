@@ -8,15 +8,15 @@
     </div>
     <div class="header-right">
       <ul>
-        <li class="list"><a href=""><i class="fa-solid fa-house"></i> Dashboard</a></li>
-        <li class="list"><a href=""><i class="fa-solid fa-question"></i> Pending Question</a></li>
-        <li class="list"><a href=""><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li>
+        <li class="list"><a href="" routerLink="/adminhomepage"><i class="fa-solid fa-house"></i> Admin Home</a></li>
+        <li class="list"><a href="" routerLink="/adminhomepage/pendingquestion"><i class="fa-solid fa-question"></i> Pending Question</a></li>
+        <li class="list"><a href="" routerLink="/adminhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Mesage</a></li>
         <li class="list" id="btn"><a href="">Sign Out</a></li>
         <li class="list user-type">admin</li>
       </ul>
     </div>
   </div>
-  <div>
+  <div class="body-container">
     <div>
       <h1>Pending Answer</h1>
     </div>
@@ -24,39 +24,24 @@
       <table style="width:100%">
         <tr>
           <th>ID</th>
+          <th>Image</th>
           <th>Description</th>
           <th>Created By</th>
           <th>Date Time</th>
           <th>Action</th>
         </tr>
+        <tbody *ngFor="let answer of pendingAnswers">
         <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
+          <td>{{answer.id}}</td>
+          <td><img src="assets/answer_images/{{answer.img_src}}" height="200" alt="answer_image"></td>
+          <td>{{answer.description_answer}}</td>
+          <td>{{answer.created_by}}</td>
+          <td>{{answer.datetime}}</td>
+          <td>
+            <button class="approve" (click)="approveAnswer(answer.id)">Approve</button><br>
+            <button class="delete" (click)="removeAnswer(answer.id)">Remove</button></td>
         </tr>
-        <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
-        </tr>
-        <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
-        </tr>
-        <tr>
-          <td>Place holder</td>
-          <td>Chupapi</td>
-          <td>Bicho</td>
-          <td>Taso</td>
-          <td>Munenyo</td>
-        </tr>
+        </tbody>
       </table>
     </div>
   </div>

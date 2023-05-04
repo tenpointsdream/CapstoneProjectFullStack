@@ -40,11 +40,44 @@ body {
   color: #387cea;
 }
 
-#btn a {
-  background-color: rgb(97, 93, 93);
-  border-radius: 3px;
-  padding: 5px;
-  color: rgb(235, 231, 231);
+.delete {
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  margin: 2px;
+}
+
+.delete:hover {
+  background-color: indianred;
+}
+
+.delete:active {
+  background-color: rgb(182, 25, 25);
+}
+
+.approve {
+  background-color: green;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  margin: 2px;
+}
+
+.approve:hover {
+  background-color: rgb(10, 159, 35);
+}
+
+.approve:active {
+  background-color: darkgreen;
 }
 
 /* body */
@@ -94,3 +127,6 @@ ul li {
   font-weight: 500;
 }
 
+.body-container{
+  height: 700px;
+}

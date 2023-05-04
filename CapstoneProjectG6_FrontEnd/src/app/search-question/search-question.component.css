@@ -80,7 +80,9 @@ button[type="submit"] {
     width: 100%;
     box-sizing: border-box;
 }
-
+.body-container {
+    margin: 15px;
+}
 .container {
     border: 1px solid #ccc;
     padding: 20px;
@@ -117,4 +119,19 @@ h2 {
 ul li {
     list-style-type: none;
     font-weight: 500;
+}
+
+.table {
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+thead{
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+}
+td{
+    border: 2px solid;
+    border-collapse: collapse;
 }
