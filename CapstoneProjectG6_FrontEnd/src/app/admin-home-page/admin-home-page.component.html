@@ -25,15 +25,14 @@
             <h1>Admin Home Page</h1>
         </div>
     </div>
-    <div class="body-container2">
+    <div class="container">
         <div class="created-questions">
             <h2>Created Question</h2>
         </div>
-        <div class="container">
+        <div>
             <ul>
                 <li *ngFor="let question of questions">
-                    <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
-                    <img src="assets/question_images/{{question.imageSrc}}" alt="Question Image">
+                    <img src="assets/question_images/{{question.imageSrc}}" height="150" alt="Question Image">
                     <p><strong>Title: </strong>
                         {{ question.title }}
                     </p>
@@ -46,20 +45,23 @@
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
                     <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
                     <button class="btn2" (click)="removeQuestion(question.id)">Delete</button>
-                </li>
-                <li *ngIf="answerVisible">
-                    <div><strong>List of answers:</strong></div>
-                    <ul *ngFor="let answer of answers">
-                        <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
-                        <li><strong>Answer ID:</strong> {{answer.id}}</li>
-                        <li><strong>Solution:</strong> {{answer.description_answer}}</li>
-                        <li><strong>Created on:</strong> {{answer.datetime}}</li>
-                        <li><strong>Written by:</strong> {{answer.created_by}}</li>
-                        <li><button class="btn2" (click) = "removeAnswer(answer.id)">Delete</button></li>
-                    </ul>
-                    <button class="btn1" (click)="collapseList()">Hide</button>
+                    <div class="answer-inner-container">
+                        <li *ngIf="answerVisible">
+                            <div><strong>List of answers:</strong></div>
+                            <ul *ngFor="let answer of answers">
+                                <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
+                                <li><strong>Answer ID:</strong> {{answer.id}}</li>
+                                <li><strong>Solution:</strong> {{answer.description_answer}}</li>
+                                <li><strong>Created on:</strong> {{answer.datetime}}</li>
+                                <li><strong>Written by:</strong> {{answer.created_by}}</li>
+                                <li><button class="btn2" (click) = "removeAnswer(answer.id)">Delete</button></li>
+                            </ul>
+                            <button class="btn1" (click)="collapseList()">Hide</button>
+                        </li>
+                    </div>
                 </li>
             </ul>
+        </div>
         </div>
         <footer class="footer-div">
             <ul class="footer">
@@ -69,3 +71,4 @@
             </ul>
             <p>2023 Copy Right ©</p>
         </footer>
+</body>

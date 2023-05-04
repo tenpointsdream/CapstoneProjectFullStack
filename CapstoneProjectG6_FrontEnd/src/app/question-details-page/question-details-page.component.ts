@@ -1,15 +1,15 @@
 
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Question} from '../entity/question.entity';
-import {QuestionService} from '../service/question.service';
-import {Answer} from '../entity/answer.entity';
-import {AnswerService} from '../service/answer.service';
-import {EmailService} from '../service/email.service';
-import {Email} from '../entity/email.entity';
-import {UserService} from '../service/user.service';
-import {User} from '../entity/user.entity';
-import {CookieService} from "ngx-cookie-service";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Question } from '../entity/question.entity';
+import { QuestionService } from '../service/question.service';
+import { Answer } from '../entity/answer.entity';
+import { AnswerService } from '../service/answer.service';
+import { EmailService } from '../service/email.service';
+import { Email } from '../entity/email.entity';
+import { UserService } from '../service/user.service';
+import { User } from '../entity/user.entity';
+import { CookieService } from "ngx-cookie-service";
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -30,12 +30,12 @@ export class QuestionDetailsPageComponent implements OnInit {
   formGroup!: FormGroup;
   @ViewChild('fileInput') fileInput!: ElementRef;
   constructor(private route: ActivatedRoute,
-              private questionService: QuestionService,
-              private answerService: AnswerService,
-              private emailService: EmailService,
-              private userService: UserService,
-              private cookieService: CookieService,
-              private formBuilder: FormBuilder) {
+    private questionService: QuestionService,
+    private answerService: AnswerService,
+    private emailService: EmailService,
+    private userService: UserService,
+    private cookieService: CookieService,
+    private formBuilder: FormBuilder) {
     this.onVisible = false;
     this.formGroup = this.formBuilder.group({
       file: ['']

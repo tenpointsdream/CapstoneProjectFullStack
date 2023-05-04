@@ -21,7 +21,7 @@
             </ul>
         </div>
     </div>
-    <div class="body-container">
+    <div class="container">
         <div>
             <h1>Created Question</h1>
         </div>
@@ -44,14 +44,16 @@
                     <button class="btn2" (click)="showForm()">Add Answer</button>
                 </li>
                 <li>
-                    <div><strong>List of answers:</strong></div>
-                    <ul *ngFor="let answer of answers">
-                        <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
-                        <li><strong>Answer ID:</strong> {{answer.id}}</li>
-                        <li><strong>Solution:</strong> {{answer.description_answer}}</li>
-                        <li><strong>Created on:</strong> {{answer.datetime}}</li>
-                        <li><strong>Written by:</strong> {{answer.created_by}}</li>
-                    </ul>
+                    <div class="answer-inner-container">
+                        <ul *ngFor="let answer of answers">
+                            <div><strong>List of answers:</strong></div>
+                            <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
+                            <li><strong>Answer ID:</strong> {{answer.id}}</li>
+                            <li><strong>Solution:</strong> {{answer.description_answer}}</li>
+                            <li><strong>Created on:</strong> {{answer.datetime}}</li>
+                            <li><strong>Written by:</strong> {{answer.created_by}}</li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -76,9 +78,7 @@
                         <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
                         <br><br>
                     </div>
-
                     <div>
-                        <!-- todo -->
                         <label for="imageSrc">Upload Image</label>
                         <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
                         <br>

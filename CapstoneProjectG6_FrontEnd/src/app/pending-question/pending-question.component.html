@@ -10,7 +10,7 @@
       <ul>
         <li class="list"><a href="" routerLink="/adminhomepage"><i class="fa-solid fa-house"></i> Admin Home</a></li>
         <li class="list"><a href="" routerLink="/adminhomepage/pendinganswer"><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li>
-        <li class="list"><a href="" routerLink= "/adminhomepage/usertouserchat"><i class="fa-solid fa-question"></i>Message</a></li>
+        <li class="list"><a href="" routerLink= "/adminhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Message</a></li>
         <li class="list" id="btn"><a href="">Sign Out</a></li>
         <li class="list user-type">admin</li>
       </ul>
@@ -36,7 +36,7 @@
           <tr>
             <td>{{question.id}}</td>
             <!--todo make path to question-->
-            <td><img src="/assets/question_images/{{question.imageSrc}}" width="100" alt="question_image"></td>
+            <td><img src="/assets/question_images/{{question.imageSrc}}" width="200" alt="question_image"></td>
             <td>{{question.topic}}</td>
             <td>{{question.title}}</td>
             <td>{{question.descriptionQuestion}}</td>
