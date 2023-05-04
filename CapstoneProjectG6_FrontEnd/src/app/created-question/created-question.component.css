@@ -64,18 +64,19 @@ h1 {
     list-style-type: none;
     margin: 10px;
 }
-
 .container_2 {
-    position: fixed;
+    position: absolute;
     top: 40%;
     margin-left: 20%;
     padding: 20px;
+  
 }
 .answer-inner-container {
-    position: fixed;
+    position: absolute;
     top: 40%;
     margin-left: 40%;
     padding: 20px;
+    overflow-y: auto;
 }
 
 .footer-div {

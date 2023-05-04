@@ -31,4 +31,9 @@ export class UserService {
     const url = `${this.baseUrl}/getbytype/ADMIN`;
     return this.httpClient.get<UserProfile[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
+
+  getUsers(): Observable<UserProfile[]> {
+    const url = `${this.baseUrl}/getbytype/USER`;
+    return this.httpClient.get<UserProfile[]>(url, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+  }
 }

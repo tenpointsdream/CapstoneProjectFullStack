@@ -34,5 +34,5 @@ public class ChatServiceImpl implements ChatService {
 	public Optional<Chat> getChatById(int id) {
 		return chatRepository.findById(id);
 	}
-	
+
 }

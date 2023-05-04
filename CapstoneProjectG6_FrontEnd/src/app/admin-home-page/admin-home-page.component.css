@@ -71,13 +71,13 @@ h2 {
     position: relative;
 }
 .answer-inner-container {
-    position: fixed;
-    top: 40%;
+    position: absolute;
+    top: 10%;
     margin-left: 40%;
     color: yellowgreen;
     padding: 20px;
     border-radius: 10px;
-    list-style-type: none;
+    overflow-y: auto;
 }
 
 .footer-div {
