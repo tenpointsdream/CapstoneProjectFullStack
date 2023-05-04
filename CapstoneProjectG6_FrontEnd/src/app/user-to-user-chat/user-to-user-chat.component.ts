@@ -1,5 +1,6 @@
-import { Chat } from '../entity/chat.entity';
-import { ChatService } from '../service/chat.service';
+import { Chat } from './../entity/chat.entity';
+import { ActivatedRoute } from '@angular/router';
+import { ChatService } from './../service/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -120,10 +121,56 @@ export class UserToUserChatComponent implements OnInit {
     console.log("You are: ", this.cookieService.get('username'));
   }
 
-  onFileSelected(event: any) {
+  newOne(newchatform: NgForm) {
+    this.newChat.from_user = this.cookieService.get('username');
+    const now: Date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
+    this.newChat.datetime = now.toLocaleString('en-US', options);
+    console.log("NEWWWWWWWWWWWW MESSSSSSSSAGE: ", this.newChat);
+    this.userService.getUsers().subscribe((users: User[]) => {
+      this.users = users;
+      console.log("all users in database", this.users);
+      let userExist = false;
+      users.forEach(element => {
+        console.log("Sending to:", this.newChat.to_user);
+
+        if (element.username === this.newChat.to_user) {
+          userExist = true;
+        }
+
+      });
+      if (userExist) {
+        this.chatService.addmsg(this.newChat).subscribe((data: Chat) => {
+          console.log("Message added: ", data);
+          this.getMessages();
+          newchatform.resetForm();
+        });
+        window.location.reload();
+      } else {
+        alert("No user found!");
+        newchatform.resetForm();
+      }
+    });
+
 
   }
+  showNewChat() {
+    this.newChatVisible = true;
+  }
+  closeThisForm() {
+    this.newChatVisible = false;
+  }
 
+  newChatTo(newchatforrm: NgForm) {
+    this.newOne(newchatforrm);
+  }
   onSubmit(chatform: NgForm) {
     this.addMessage(chatform);
   }
