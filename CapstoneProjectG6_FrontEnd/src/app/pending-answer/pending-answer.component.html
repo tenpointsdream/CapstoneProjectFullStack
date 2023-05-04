@@ -11,7 +11,6 @@
         <li class="list"><a href="" routerLink="/adminhomepage"><i class="fa-solid fa-house"></i> Admin Home</a></li>
         <li class="list"><a href="" routerLink="/adminhomepage/pendingquestion"><i class="fa-solid fa-question"></i> Pending Question</a></li>
         <li class="list"><a href="" routerLink="/adminhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Mesage</a></li>
-        <!-- <li class="list"><a href="allquestionsandanswer"><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li> -->
         <li class="list" id="btn"><a href="">Sign Out</a></li>
         <li class="list user-type">admin</li>
       </ul>
@@ -38,7 +37,8 @@
           <td>{{answer.description_answer}}</td>
           <td>{{answer.created_by}}</td>
           <td>{{answer.datetime}}</td>
-          <td><button class="approve" (click)="approveAnswer(answer.id)">Approve</button><br>
+          <td>
+            <button class="approve" (click)="approveAnswer(answer.id)">Approve</button><br>
             <button class="delete" (click)="removeAnswer(answer.id)">Remove</button></td>
         </tr>
         </tbody>
