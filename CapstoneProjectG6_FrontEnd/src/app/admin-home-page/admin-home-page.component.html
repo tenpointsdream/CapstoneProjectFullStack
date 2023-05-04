@@ -32,8 +32,7 @@
         <div class="container">
             <ul>
                 <li *ngFor="let question of questions">
-                    <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
-                    <img src="assets/question_images/{{question.imageSrc}}" alt="Question Image">
+                    <img src="assets/question_images/{{question.imageSrc}}" height="150" alt="Question Image">
                     <p><strong>Title: </strong>
                         {{ question.title }}
                     </p>
@@ -69,3 +68,5 @@
             </ul>
             <p>2023 Copy Right ©</p>
         </footer>
+    </div>
+</body>
