@@ -105,7 +105,7 @@ export class CreatedQuestionComponent implements OnInit {
         });
       });
     });
-    alert("Your answer has been created. waiting for admin approval.");
+    alert("Email notification sent to admin!");
     this.closeForm();
   }
   sign_out() {

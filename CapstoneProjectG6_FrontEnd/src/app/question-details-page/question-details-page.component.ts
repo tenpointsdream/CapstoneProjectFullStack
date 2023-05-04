@@ -110,6 +110,7 @@ export class QuestionDetailsPageComponent implements OnInit {
         });
       });
     });
+    alert("Email notification sent to admin!");
     this.closeForm();
   }
   sign_out() {

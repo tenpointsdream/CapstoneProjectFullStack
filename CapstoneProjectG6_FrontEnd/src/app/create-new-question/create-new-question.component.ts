@@ -78,21 +78,25 @@ export class CreateNewQuestionComponent {
     this.questionService.addQuestion(this.questionForm, this.cookieService.get('username')).subscribe((response: string) => {
       console.log("Response: ", response);
       alert("Your question has been added! Waiting for admin to approve...");
-      this.email.msgBody = 'You have new pending question to approve';
-      this.email.subject = this.questionForm.title;
-      this.userService.getAdmin().subscribe((users: User[]) => {
-        this.admin = users;
-        console.log(users);
-        this.admin.forEach(element => {
-          this.email.recipient = element.email;
-          this.emailService.sendEmail(this.email).subscribe((message: any) => {
-            console.log(message);
-            console.log("Sent to: ", element.name);
-          });
-        });
+    });
+    this.email.msgBody = 'You have new pending question to approve';
+    this.email.subject = this.questionForm.title;
+    this.userService.getAdmin().subscribe((users: User[]) => {
+      this.admin = users;
+      console.log("Admin?", users);
+      this.admin.forEach(element => {
+        this.email.recipient = element.email;
+        console.log("Email to send out", this.email);
+        this.emailService.sendEmail(this.email).subscribe((message: any) => {
+          console.log("This message: ", message);
+          console.log("Sent to: ", element.name);
+        }, (err: any) => {
+          console.log("ERROR: ", err);
+        }
+        );
       });
     });
-    alert("Your question has been created. Waiting for admin approval.");
+    alert("Email notification sent to admin!");
     this.fileInput.nativeElement.value = '';
   }
   sign_out() {
