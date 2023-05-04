@@ -59,7 +59,8 @@ export class PendingQuestionComponent implements OnInit {
     window.location.reload();
   }
   sign_out() {
-    this.cookieService.deleteAll();
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
   }
 }
 

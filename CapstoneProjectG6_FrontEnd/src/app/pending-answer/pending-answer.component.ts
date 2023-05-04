@@ -68,7 +68,8 @@ export class PendingAnswerComponent implements OnInit {
       });
   }
   sign_out() {
-    this.cookieService.deleteAll();
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
   }
   refresh(): void {
     window.location.reload();

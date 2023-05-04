@@ -59,6 +59,7 @@ export class AdminHomePageComponent implements OnInit {
     window.location.reload();
   }
   signout(): void {
-    this.cookieService.deleteAll();
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
   }
 }

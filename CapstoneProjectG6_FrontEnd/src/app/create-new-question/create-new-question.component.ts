@@ -96,6 +96,7 @@ export class CreateNewQuestionComponent {
     this.fileInput.nativeElement.value = '';
   }
   sign_out() {
-    this.cookieService.deleteAll();
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
   }
 }

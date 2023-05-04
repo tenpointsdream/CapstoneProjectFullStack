@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../entity/user.entity';
 import { UserType } from '../entity/UserSubmit';
 import { UserService } from '../service/user.service';
+import { HttpClient } from '@angular/common/http';
+import { UserProfile } from '../entity/userprofile.entity';
 
 @Component({
   selector: 'app-user-sign-up',
@@ -9,10 +11,11 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user-sign-up.component.css']
 })
 export class UserSignUpComponent {
-formUser: User;
+  formUser: User;
   model: User;
   @ViewChild('passwordInput') passwordInput!: ElementRef;
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+    private httpClient: HttpClient) {
     this.model = new User();
     this.formUser = new User();
   }
@@ -28,7 +31,17 @@ formUser: User;
       this.formUser.userType = UserType.USER;
       console.log(registerform.value);
       this.userService.addUser(this.formUser).subscribe();
-      this.goto();
+      this.httpClient.get<User>(`http://localhost:8080/user/getbyusername/${this.formUser.username}`)
+        .subscribe((user: User) => {
+          if (user !== null) {
+            alert("Username is taken!");
+            window.location.reload();
+          }
+          else {
+            this.goto();
+          }
+        });
+
     }
   }
   goto() {

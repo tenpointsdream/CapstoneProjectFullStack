@@ -12,6 +12,7 @@ export class PageNotFoundComponent {
 
   constructor(private cookieService: CookieService) { }
   sign_out() {
-    this.cookieService.deleteAll();
+    this.cookieService.delete("username");
+    this.cookieService.delete('jwtToken');
   }
 }

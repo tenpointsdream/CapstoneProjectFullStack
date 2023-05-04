@@ -14,7 +14,7 @@
                         Answers</a></li>
                 <li class="list"><a href="" routerLink="/adminhomepage/usertouserchat"><i
                             class="fa-solid fa-message"></i> Message</a></li>
-                <li class="list" id="btn" (click)="signout()" routerLink="/adminlogin"><a href="">Sign Out</a></li>
+                <li class="list" id="btn" (click)="signout()" routerLink="/home/adminlogin"><a href="">Sign Out</a></li>
                 <!-- todo -->
                 <li class="list user-type">ADMIN</li>
             </ul>
@@ -46,29 +46,29 @@
                     <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
                     <button class="btn2" (click)="removeQuestion(question.id)">Delete</button>
                     <div class="answer-inner-container">
-                        <li *ngIf="answerVisible">
-                            <div><strong>List of answers:</strong></div>
-                            <ul *ngFor="let answer of answers">
-                                <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
-                                <li><strong>Answer ID:</strong> {{answer.id}}</li>
-                                <li><strong>Solution:</strong> {{answer.description_answer}}</li>
-                                <li><strong>Created on:</strong> {{answer.datetime}}</li>
-                                <li><strong>Written by:</strong> {{answer.created_by}}</li>
-                                <li><button class="btn2" (click) = "removeAnswer(answer.id)">Delete</button></li>
-                            </ul>
-                            <button class="btn1" (click)="collapseList()">Hide</button>
-                        </li>
-                    </div>
+                <li *ngIf="answerVisible">
+                    <div><strong>List of answers:</strong></div>
+                    <ul *ngFor="let answer of answers">
+                        <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
+                        <li><strong>Answer ID:</strong> {{answer.id}}</li>
+                        <li><strong>Solution:</strong> {{answer.description_answer}}</li>
+                        <li><strong>Created on:</strong> {{answer.datetime}}</li>
+                        <li><strong>Written by:</strong> {{answer.created_by}}</li>
+                        <li><button class="btn2" (click)="removeAnswer(answer.id)">Delete</button></li>
+                    </ul>
+                    <button class="btn1" (click)="collapseList()">Hide</button>
                 </li>
-            </ul>
         </div>
-        </div>
-        <footer class="footer-div">
-            <ul class="footer">
-                <li>Abdulkerim Mohammed</li>
-                <li>Prajesh Sharma</li>
-                <li>Khoa Ho</li>
-            </ul>
-            <p>2023 Copy Right ©</p>
-        </footer>
+        </li>
+        </ul>
+    </div>
+    </div>
+    <footer class="footer-div">
+        <ul class="footer">
+            <li>Abdulkerim Mohammed</li>
+            <li>Prajesh Sharma</li>
+            <li>Khoa Ho</li>
+        </ul>
+        <p>2023 Copy Right ©</p>
+    </footer>
 </body>
