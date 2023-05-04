@@ -9,7 +9,9 @@ import java.util.List;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 
-	List<Answer> findByStatus(String aFalse);
+	List<Answer> findByStatus(boolean status);
 
 	List<Answer> findAllById(int id);
+	
+	List<Answer> findByQuestionId(int questionId);
 }

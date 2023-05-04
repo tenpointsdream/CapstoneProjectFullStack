@@ -25,5 +25,7 @@ public interface UserService {
 	public List<User> getUsersByName(String name);
 
 	public List<User> getUsersByType(UserType userType);
+	
+	public Optional<User> getUserByUsername(String username);
 
 }

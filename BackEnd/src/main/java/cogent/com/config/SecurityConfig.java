@@ -1,7 +1,5 @@
 package cogent.com.config;
 
-import cogent.com.filter.JwtFilter;
-import cogent.com.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,41 +14,43 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import cogent.com.filter.JwtFilter;
+import cogent.com.service.CustomUserDetailsService;
+
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+	@Autowired
+	private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    private JwtFilter jwtFilter;
+	@Autowired
+	private JwtFilter jwtFilter;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
-    }
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
 
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception{
-        return super.authenticationManagerBean();
-    }
+	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/user/authenticate").permitAll()
-                .antMatchers("/user/adduser").permitAll()
-                .antMatchers("/customer/user/adduser").permitAll()
-                .antMatchers("/user/login/{username}/{password}").permitAll()
-                .anyRequest().authenticated().and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/user/authenticate").permitAll()
+				.antMatchers("/user/adduser").permitAll().antMatchers("/user/login/{username}/{password}").permitAll()
+				.antMatchers("/user/getbyusername/{username}").permitAll().antMatchers("/customer/user/adduser")
+				.permitAll().anyRequest().authenticated().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+
 }

@@ -1,25 +1,27 @@
 package cogent.com.service;
 
-import cogent.com.entity.Answer;
-
 import java.util.List;
 import java.util.Optional;
 
+import cogent.com.dto.AnswerDTO;
+
 public interface AnswerService {
 
-	public List<Answer> getAllAnswers();
+	public List<AnswerDTO> getAllAnswers();
 
-	public Answer addAnswer(Answer answer);
+	public List<AnswerDTO> getAllAnswersByQId(int questionID);
 
-	public Answer updateAnswer(Answer answer);
+	public AnswerDTO addAnswer(AnswerDTO answerDTO);
 
-	public Optional<Answer> getAnswerById(int id);
+	public AnswerDTO updateAnswer(AnswerDTO answerDTO);
+
+	public Optional<AnswerDTO> getAnswerById(int id);
 
 	public void deleteAnswerById(int id);
 
-	public List<Answer> getAllAnswersFalse();
+	public List<AnswerDTO> getAllAnswersFalse();
 
-	public List<Answer> getAllAnswersById(int id);
+	public List<AnswerDTO> getAllAnswersById(int id);
 
-
+	public List<AnswerDTO> getAnswersByQuestionId(int questionId);
 }

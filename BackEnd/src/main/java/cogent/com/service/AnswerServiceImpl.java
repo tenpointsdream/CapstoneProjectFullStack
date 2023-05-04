@@ -1,12 +1,17 @@
 package cogent.com.service;
 
-import cogent.com.entity.Answer;
-import cogent.com.repository.AnswerRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import cogent.com.dto.AnswerDTO;
+import cogent.com.entity.Answer;
+import cogent.com.entity.Question;
+import cogent.com.repository.AnswerRepository;
+import cogent.com.repository.QuestionRepository;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
@@ -14,24 +19,36 @@ public class AnswerServiceImpl implements AnswerService {
 	@Autowired
 	private AnswerRepository answerRepository;
 
+	@Autowired
+	private QuestionServiceImpl questionService;
+
+	@Autowired
+	private QuestionRepository questionRepository;
+
 	@Override
-	public List<Answer> getAllAnswers() {
-		return answerRepository.findAll();
+	public List<AnswerDTO> getAllAnswers() {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findAll().forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
 	}
 
 	@Override
-	public Answer addAnswer(Answer answer) {
-		return answerRepository.save(answer);
+	public AnswerDTO addAnswer(AnswerDTO answerDTO) {
+		return questionService
+				.convertAnswerToAnswerDTO(answerRepository.save(questionService.convertAnswerDTOToAnswer(answerDTO)));
 	}
 
 	@Override
-	public Answer updateAnswer(Answer answer) {
-		return answerRepository.save(answer);
+	public AnswerDTO updateAnswer(AnswerDTO answerDTO) {
+		return questionService
+				.convertAnswerToAnswerDTO(answerRepository.save(questionService.convertAnswerDTOToAnswer(answerDTO)));
 	}
 
 	@Override
-	public Optional<Answer> getAnswerById(int id) {
-		return answerRepository.findById(id);
+	public Optional<AnswerDTO> getAnswerById(int id) {
+		return questionService.convertAnswerToAnswerDTO(answerRepository.findById(id));
 	}
 
 	@Override
@@ -40,13 +57,41 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<Answer> getAllAnswersFalse() {
-		return answerRepository.findByStatus("False");
+	public List<AnswerDTO> getAllAnswersFalse() {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findByStatus(false).forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
 	}
 
 	@Override
-	public List<Answer> getAllAnswersById(int id) {
-		return answerRepository.findAllById(id);
+	public List<AnswerDTO> getAllAnswersById(int id) {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findAllById(id).forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
+	}
+
+	@Override
+	public List<AnswerDTO> getAnswersByQuestionId(int questionId) {
+		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
+		answerRepository.findByQuestionId(questionId).forEach(answer -> {
+			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answersDTO;
+	}
+
+	@Override
+	public List<AnswerDTO> getAllAnswersByQId(int questionId) {
+		List<AnswerDTO> answerDTOs = new ArrayList<AnswerDTO>();
+		Question question = questionRepository.findById(questionId).get();
+		List<Answer> answers = question.getAnswers();
+		answers.forEach((answer) -> {
+			answerDTOs.add(questionService.convertAnswerToAnswerDTO(answer));
+		});
+		return answerDTOs;
 	}
 
 }

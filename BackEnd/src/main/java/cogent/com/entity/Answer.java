@@ -14,17 +14,12 @@ public class Answer {
 	private boolean status;
 	private String datetime;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "question_id")
+	@ManyToOne
 	private Question question;
 
-	@OneToOne
-	@JoinColumn(name = "approved_by_id")
-	private User approved_by;
-
-	@OneToOne
-	@JoinColumn(name = "created_by_id")
-	private User created_by;
+	private String approved_by;
+	
+	private String created_by;
 
 	public Answer() {
 		super();
@@ -32,7 +27,7 @@ public class Answer {
 	}
 
 	public Answer(String description_answer, String img_src, boolean status, String datetime, Question question,
-			User approved_by, User created_by) {
+			String approved_by, String created_by) {
 		super();
 		this.description_answer = description_answer;
 		this.img_src = img_src;
@@ -67,11 +62,11 @@ public class Answer {
 		this.img_src = img_src;
 	}
 
-	public Boolean getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
@@ -91,19 +86,19 @@ public class Answer {
 		this.question = question;
 	}
 
-	public User getApproved_by() {
+	public String getApproved_by() {
 		return approved_by;
 	}
 
-	public void setApproved_by(User approved_by) {
+	public void setApproved_by(String approved_by) {
 		this.approved_by = approved_by;
 	}
 
-	public User getCreated_by() {
+	public String getCreated_by() {
 		return created_by;
 	}
 
-	public void setCreated_by(User created_by) {
+	public void setCreated_by(String created_by) {
 		this.created_by = created_by;
 	}
 
