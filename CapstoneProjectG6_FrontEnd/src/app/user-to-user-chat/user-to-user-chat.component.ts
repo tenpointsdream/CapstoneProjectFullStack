@@ -91,7 +91,7 @@ export class UserToUserChatComponent implements OnInit {
     this.onVisible = false;
   }
 
-  showForm(from_user: string) {
+  showForm(from_user: any) {
     this.conversation = [];
     this.chatFromSpecificUser = [];
     this.chatToSpecificUser = [];

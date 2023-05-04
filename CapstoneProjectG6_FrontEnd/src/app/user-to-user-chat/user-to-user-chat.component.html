@@ -17,9 +17,9 @@
             <h3>All Messages</h3>
         </div>
         <div>
-            <ul *ngFor="let message of chatToYou">
-                <li><strong>User:</strong> {{message.from_user}}</li>
-                <button (click)="showForm(message.from_user)">Chat</button>
+            <ul *ngFor="let message of messageReceivedFrom">
+                <li><strong>User:</strong> {{message}}</li>
+                <button (click)="showForm(message)">Chat</button>
             </ul>
         </div>
     </div>
