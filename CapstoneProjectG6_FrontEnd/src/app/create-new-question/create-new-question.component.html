@@ -28,7 +28,7 @@
         </div>
         <div class="container">
             <!-- todo -->
-            <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform); adminform.resetForm()" >
+            <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform); adminform.resetForm()">
                 <div class="register-form">
                     <label for="title">Title</label><br>
                     <input type="text" id="title" [(ngModel)]='model.title' name="title" required>
@@ -38,9 +38,11 @@
                     <select name="topic" id="topic" [(ngModel)]="model.topic">
                         <option value="" disabled selected>Pick a Topic</option>
                         <option value="Java">Java</option>
+                        <option value="JavaScript">JavaScript</option>
                         <option value="C#">C#</option>
-                        <option value="Html">Html</option>
+                        <option value="C">C</option>
                         <option value="Angular">Angular</option>
+                        <option value="SpringBoot">SpringBoot</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
@@ -52,7 +54,8 @@
                 <div>
                     <!-- todo -->
                     <label for="imageSrc">Upload Image</label>
-                    <input type="file" id="imageSrc" accept="image/*" #fileInput (change)="onFileSelected($event)" alt="image.jpg" required>
+                    <input type="file" id="imageSrc" accept="image/*" #fileInput (change)="onFileSelected($event)"
+                        alt="image.jpg" required>
                 </div>
                 <button [disabled]="adminform.invalid" type="submit">Submit</button>
             </form>
