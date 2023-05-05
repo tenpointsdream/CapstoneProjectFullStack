@@ -79,6 +79,8 @@ Responsible for:
 ![Admin LogIn](./assets/capstone-project11.jpg)
 ### Admin Pending Question Page
 ![Pending Question](./assets/capstone-project12.jpg)
+### Admin Pending Answer Page
+![Pending Answer](./assets/capstone-project.jpg)
 ### Admin HomePage
 ![Admine HomePage](./assets/capstone-project13.jpg)
 ### User HomePage
