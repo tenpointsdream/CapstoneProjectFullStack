@@ -62,18 +62,17 @@ public class BackEndApplication {
 		// create directories for images
 		for (String dir : new String[] { "question_images", "answer_images" }) {
 			Path directory = Paths.get("frontend/src/assets/" + dir);
-			if (Files.exists(directory))
-				try (Stream<Path> pathStream = Files.walk(directory)) {
-					pathStream.sorted(Comparator.reverseOrder()).forEach(path -> {
-						try {
-							Files.delete(path);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					});
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if (Files.exists(directory)) try (Stream<Path> pathStream = Files.walk(directory)) {
+				pathStream.sorted(Comparator.reverseOrder()).forEach(path -> {
+					try {
+						Files.delete(path);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			try {
 				Files.createDirectories(directory);
 			} catch (IOException e) {

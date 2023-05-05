@@ -1,0 +1,60 @@
+<body>
+  <div class="header">
+    <div class="header-left" id="logo">
+      <ul>
+        <li class="logo">DoConnect <span class="user-type">Admin </span><i class="fa-solid fa-person-circle-question"
+            style="color: #505558;"></i> </li>
+      </ul>
+    </div>
+    <div class="header-right">
+      <ul>
+        <li class="list"><a href="" routerLink="/adminhomepage"><i class="fa-solid fa-house"></i> Admin Home</a></li>
+        <li class="list"><a href="" routerLink="/adminhomepage/pendinganswer"><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li>
+        <li class="list"><a href="" routerLink= "/adminhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Message</a></li>
+        <li class="list" id="btn" (click)="sign_out()"><a>Sign Out</a></li>
+        <li class="list user-type">admin</li>
+      </ul>
+    </div>
+  </div>
+  <div class="body-container">
+    <div>
+      <h1>Pending Question</h1>
+    </div>
+    <div class="container">
+      <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Topic</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Created By</th>
+          <th>Date Time</th>
+          <th>Action</th>
+        </tr>
+        <tbody *ngFor="let question of pendingQuestions">
+          <tr>
+            <td>{{question.id}}</td>
+            <!--todo make path to question-->
+            <td><img src="/assets/question_images/{{question.imageSrc}}" width="200" alt="question_image"></td>
+            <td>{{question.topic}}</td>
+            <td>{{question.title}}</td>
+            <td>{{question.descriptionQuestion}}</td>
+            <td>{{question.qcreated_by}}</td>
+            <td>{{question.datetime}}</td>
+            <td><button class="approve"  (click)="approveQuestion(question.id)">Approve</button><br>
+              <button class="delete" (click)="removeQuestion(question.id)">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <footer class="footer-div">
+    <ul class="footer">
+      <li>Abdulkerim Mohammed</li>
+      <li>Prajesh Sharma</li>
+      <li>Khoa Ho</li>
+    </ul>
+    <p>2023 Copy Right ©</p>
+  </footer>
+</body>

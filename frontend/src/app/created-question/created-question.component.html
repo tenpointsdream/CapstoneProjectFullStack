@@ -1,0 +1,86 @@
+<body>
+    <div class="header">
+        <div class="header-left" id="logo">
+            <ul>
+                <li class="logo">DoConnect <i class="fa-solid fa-badge"></i> </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <ul>
+                <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class="list"><a routerLink="/userhomepage/createquestion"><i class="fa-solid fa-question"></i> Ask
+                        Question</a></li>
+                <li class="list"><a routerLink="/userhomepage/searchquestion"><i class="fa-solid fa-search"></i> Search
+                        Question</a>
+                </li>
+                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat
+                        with us</a></li>
+                <li class="list" id="btn" (click)="sign_out()"><a>Sign Out</a></li>
+                <!-- todo -->
+                <li class="list user-type">user</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div>
+            <h1>Created Question</h1>
+        </div>
+        <div class="container">
+            <ul>
+                <li *ngFor="let question of questions">
+                    <img src="assets/question_images/{{question.imageSrc}}" alt="Question Image">
+                    <p><strong>Title: </strong>
+                        {{ question.title }}
+                    </p>
+                    <p><strong>Topic: </strong>
+                        {{ question.topic }}
+                    </p>
+                    <p><strong>Description: </strong>
+                        {{ question.descriptionQuestion }}
+                    </p>
+                    <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
+                    <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
+                    <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
+                </li>
+                <li>
+                    <div class="answer-inner-container">
+                        <ul *ngFor="let answer of answers">
+                            <div><strong>List of answers:</strong></div>
+                            <li><img src="assets/answer_images/{{answer.img_src}}" alt=""></li>
+                            <li><strong>Answer ID:</strong> {{answer.id}}</li>
+                            <li><strong>Solution:</strong> {{answer.description_answer}}</li>
+                            <li><strong>Created on:</strong> {{answer.datetime}}</li>
+                            <li><strong>Written by:</strong> {{answer.created_by}}</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="container_2">
+            <div *ngIf="onVisible">
+                <form novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform)">
+                    <div class="register-form">
+                        <label for="description_answer">Solution: </label><br>
+                        <input type="text" id="description_answer" [(ngModel)]='model.description_answer' name="description_answer" required>
+                        <br><br>
+                    </div>
+                    <div>
+                        <label for="imageSrc">Upload Image</label>
+                        <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
+                        <br>
+                    </div>
+                    <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
+                    <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-div">
+        <ul class="footer">
+            <li>Abdulkerim Mohammed</li>
+            <li>Prajesh Sharma</li>
+            <li>Khoa Ho</li>
+        </ul>
+        <p>2023 Copy Right ©</p>
+    </footer>
+</body>

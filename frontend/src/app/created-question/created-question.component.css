@@ -1,0 +1,131 @@
+body {
+    background: lightblue;
+    background: linear-gradient(#f6f9fc, lightblue);
+    font-family: Roboto, sans-serif;
+}
+
+/* header */
+.header {
+    background-color: #d9e5ecd9;
+    margin: 20px 25px;
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+    border-radius: 7px;
+    padding: 15px;
+    font-weight: 600;
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header-left li {
+    float: left;
+    display: inline;
+    margin: 0 30px 0 0;
+
+}
+
+.header-right li {
+    display: inline;
+    float: left;
+    margin: 0 0 0 30px;
+}
+
+.list a {
+    text-decoration: none;
+    color: black;
+}
+
+.user-type {
+    color: #387cea;
+}
+
+#btn a {
+    background-color: rgb(97, 93, 93);
+    border-radius: 3px;
+    padding: 5px;
+    color: rgb(235, 231, 231);
+}
+
+/* body */
+h1 {
+    font-size: 36px;
+    margin: 50px 0 0;
+    font-weight: normal;
+    text-align: center;
+}
+
+.container ul {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    list-style-type: none;
+    margin: 10px;
+}
+.container_2 {
+    position: absolute;
+    top: 40%;
+    margin-left: 20%;
+    padding: 20px;
+  
+}
+.answer-inner-container {
+    position: absolute;
+    top: 40%;
+    margin-left: 40%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.footer-div {
+    background-color: #d9e5ecd9;
+    margin: 20px 25px;
+    border-radius: 7px;
+    text-align: center;
+    padding: 0;
+    font-weight: 600;
+    font-size: small;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+ul li {
+    list-style-type: none;
+    font-weight: 500;
+}
+
+.btn1 {
+    background-color: rgb(22, 135, 22);
+    margin: 10px;
+}
+
+.btn2 {
+    background-color: #387cea;
+}
+
+.submitbtn {
+    margin-right: 10px;
+    border-radius: 3px;
+    color: white;
+    background-color: rgb(74, 165, 74);
+}
+
+.cancel {
+    border-radius: 3px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: scale-down;
+}
+.body-container{
+    height: 700px;
+}

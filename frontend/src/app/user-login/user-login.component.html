@@ -1,0 +1,45 @@
+    <body>
+        <!-- header -->
+        <div class="header">
+            <div class="header-left" id="logo">
+                <ul>
+                    <li class="logo">DoConnect <span class="user-type">User </span><i class="fa-solid fa-user"></i> </li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <ul>
+                    <li class="list" routerLinkActive="active"><a routerLink="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class="list" routerLinkActive="active"><a routerLink="/home/userlogin"><i class="fa-solid fa-message"></i> Chat with us</a></li>
+<!--                    <li class="list" id="btn"><a href="">Sign Out</a></li>-->
+                    <li class="list user-type">user</li>
+                </ul>
+            </div>
+        </div>
+        <!-- form -->
+        <div class = "body-container">
+            <div>
+                <h2>User Log In</h2>
+            </div>
+            <div class="container">
+                <form novalidate #userform='ngForm' (ngSubmit)="onSubmit(userform)">
+                    <div class="register-form">
+                        <label for="username">Username</label><br>
+                        <input type="text" id="username" [(ngModel)]='model.username' name="username" required><br>
+                        <div>
+                            <label for="password">Password</label><br>
+                            <input type="password" id="password" [(ngModel)]='model.password' name="password" minlength="8" required><br>
+                        </div>
+                        <button [disabled]="userform.invalid" type="submit">Log In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="footer-div">
+            <ul class="footer">
+                <li>Abdulkerim Mohammed</li>
+                <li>Prajesh Sharma</li>
+                <li>Khoa Ho</li>
+            </ul>
+            <p>2023 Copy Right ©</p>
+        </footer>
+    </body>

@@ -1,0 +1,72 @@
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="header-left" id="logo">
+            <ul>
+                <li class="logo">DoConnect <span class="user-type">User </span><i class="fa-solid fa-user"></i> </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <ul>
+                <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class="list"><a routerLink="/userhomepage/searchquestion"><i class="fa-solid fa-search"></i> Search
+                        Question</a></li>
+                <li class="list"><a routerLink="/userhomepage/createdquestion"><i class="fa-solid fa-lightbulb"></i>
+                        Created
+                        Question</a></li>
+                <li class="list"><a routerLink="/userhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Chat
+                        with us</a></li>
+                <li class="list" id="btn" (click)="sign_out()"><a routerLink="/home/userlogin">Sign Out</a></li>
+                <li class="list user-type">user</li>
+            </ul>
+        </div>
+    </div>
+    <!-- form -->
+    <div class="body-container">
+        <div>
+            <h2>Create New Question</h2>
+        </div>
+        <div class="container">
+            <!-- todo -->
+            <form novalidate #adminform='ngForm' (ngSubmit)="onSubmit(adminform); adminform.resetForm()">
+                <div class="register-form">
+                    <label for="title">Title</label><br>
+                    <input type="text" id="title" [(ngModel)]='model.title' name="title" required>
+                </div>
+                <div>
+                    <label for="topic">Choose Topic</label>
+                    <select name="topic" id="topic" [(ngModel)]="model.topic">
+                        <option value="" disabled selected>Pick a Topic</option>
+                        <option value="Java">Java</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="C#">C#</option>
+                        <option value="C">C</option>
+                        <option value="Angular">Angular</option>
+                        <option value="SpringBoot">SpringBoot</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="descriptionQuestion">Description</label>
+                    <textarea name="descriptionQuestion" [(ngModel)]='model.descriptionQuestion'
+                        id="descriptionQuestion" cols="40" rows="5"></textarea>
+                </div>
+                <div>
+                    <!-- todo -->
+                    <label for="imageSrc">Upload Image</label>
+                    <input type="file" id="imageSrc" accept="image/*" #fileInput (change)="onFileSelected($event)"
+                        alt="image.jpg" required>
+                </div>
+                <button [disabled]="adminform.invalid" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer-div">
+        <ul class="footer">
+            <li>Abdulkerim Mohammed</li>
+            <li>Prajesh Sharma</li>
+            <li>Khoa Ho</li>
+        </ul>
+        <p>2023 Copy Right ©</p>
+    </footer>
+</body>
