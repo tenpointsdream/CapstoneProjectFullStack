@@ -71,5 +71,7 @@ Responsible for:
 ## UI pages
 ### Landing Page
 ![Landing Page](./assets/capstone-project6.jpg)
+### User Registration Page
+![User Registration](./assets/capstone-project8.jpg)
 
 [Project-UI-Pages](./Capstone-project.pdf)
