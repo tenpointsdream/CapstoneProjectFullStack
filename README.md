@@ -83,5 +83,7 @@ Responsible for:
 ![Admine HomePage](./assets/capstone-project13.jpg)
 ### Create Question Page
 ![Create Question](./assets/capstone-project19.jpg)
+### Created Question Page
+![Created Question](./assets/capstone-project16.jpg)
 
 [Project-UI-Pages](./Capstone-project.pdf)
