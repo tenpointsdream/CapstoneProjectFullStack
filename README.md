@@ -11,12 +11,12 @@ DoConnect is an application that enables its users to ask and answer questions, 
 ## Introduction
 
 * DoConnect is a Q&A platform that enables users to ask questions and receive answers from other users. In addition, DoConnect facilitates group chat conversations between users. The platform supports two types of user roles: User and Admin.
-* Whenever a user submits a new question or answer, admins are notified via email. Admins have the authority to approve or delete the newly added content and can also manage other users on the platform. There are no limitations on the number of admins who can be supported.
+* Whenever a user submits a new question or answer, admins are notified via email. Admins have the authority to approve or delete the newly added content and can also manage other users on the platform.
 * The DoConnect platform is built using Angular, Spring Boot, and MySQL.
 
 ## Objectives
 
-* Our platform offers users the freedom to ask and answer questions on a wide range of topics. Users can filter questions based on particular topics or a query string to find relevant content. The platform also has features that allow Admins to monitor user activity and prevent misuse. Admins can approve or delete any question or answer submitted by users, ensuring a safe and respectful community.
+* Our platform offers users the freedom to ask and answer questions on a wide range of topics. Users can filter questions based on particular topics or a query string to find relevant content. Admins can approve or delete any question or answer submitted by users, ensuring a safe and respectful community.
 
 * We prioritize User Experience by designing a simple and intuitive interface that allows users to achieve their objectives with minimal effort. Our platform is responsive and can adapt to different screen sizes, making it easy to use on both desktop and mobile devices. Security is of utmost importance, and we use JWT to provide secure access to the platform.
 
