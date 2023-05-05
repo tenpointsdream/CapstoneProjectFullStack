@@ -49,6 +49,7 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * JWT (for authentication)
 
 ## Use Case Diagram
+![Use Case Diagram](./assets/capstone-project5.jpg)
 
 ## Microservices
 
