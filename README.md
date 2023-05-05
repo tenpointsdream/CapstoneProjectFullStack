@@ -66,7 +66,7 @@ Controllers:
 ### DoConnect Chat Microservice
 
 Responsible for:
-* Storing and retrieving user group chats.
+* Storing and retrieving user chats.
 
 ## UI pages
 ### Landing Page
@@ -81,10 +81,8 @@ Responsible for:
 ![Pending Question](./assets/capstone-project12.jpg)
 ### Admin HomePage
 ![Admine HomePage](./assets/capstone-project13.jpg)
-
 ### User HomePage
 ![User HomePage](./assets/capstone-project14.jpg)
-
 ### Create Question Page
 ![Create Question](./assets/capstone-project19.jpg)
 ### Created Question Page
