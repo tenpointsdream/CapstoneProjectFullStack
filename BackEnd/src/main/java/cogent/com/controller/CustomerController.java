@@ -1,6 +1,5 @@
 package cogent.com.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,21 +119,10 @@ public class CustomerController {
 	@GetMapping("question/searchquestions/{topic}/{title}")
 	public ResponseEntity<List<QuestionDTO>> getQuestionsByTitle(@PathVariable("topic") String topic,
 			@PathVariable("title") String title) {
-		List<QuestionDTO> questionsByTopic = questionService.getQuestionByTopic(topic);
-		if (questionsByTopic == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		List<QuestionDTO> questionsByTitle = new ArrayList<>();
-		for (QuestionDTO question : questionsByTopic)
-			if (question.getTitle().toLowerCase().contains(title.toLowerCase()))
-				questionsByTitle.add(question);
-
-		List<QuestionDTO> questionFiltered = new ArrayList<>();
-		for (QuestionDTO questionByTitle : questionsByTitle) {
-			if (questionByTitle.isStatus() == true) {
-				questionFiltered.add(questionByTitle);
-			}
-		}
-		return new ResponseEntity<>(questionFiltered, HttpStatus.OK);
+		List<QuestionDTO> ApprovedQuestionsByTopic = questionService.getQuestionByTopic(topic);
+		if (ApprovedQuestionsByTopic == null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		ApprovedQuestionsByTopic.removeIf(q -> !q.getTitle().toLowerCase().contains(title) && !q.isStatus());
+		return new ResponseEntity<>(ApprovedQuestionsByTopic, HttpStatus.OK);
 	}
 
 	@GetMapping("/question/getquestionbytopic/{topic}")
@@ -167,30 +155,23 @@ public class CustomerController {
 
 	@GetMapping("answer/getanswerbyid/{id}")
 	public ResponseEntity<AnswerDTO> getAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id).get();
-		return answer == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-				: new ResponseEntity<>(answer, HttpStatus.OK);
+		AnswerDTO answer = answerService.getAnswerById(id).orElse(new AnswerDTO());
+		return new ResponseEntity<>(answer, HttpStatus.OK);
 	}
 
 	@PutMapping("/answer/updateanswer/{id}")
 	public ResponseEntity<AnswerDTO> updateAnswer(@PathVariable("id") int id, @RequestBody AnswerDTO answerDTO) {
-		AnswerDTO answer = answerService.getAnswerById(id).get();
-		if (answer != null) {
-			answerDTO.setId(id);
-			AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
-			return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		AnswerDTO answer = answerService.getAnswerById(id).orElse(new AnswerDTO());
+		answerDTO.setId(id);
+		AnswerDTO updatedAnswer = answerService.updateAnswer(answer);
+		return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deleteanswerbyid/{id}")
 	public ResponseEntity<?> deleteAnswerById(@PathVariable("id") int id) {
-		AnswerDTO answer = answerService.getAnswerById(id).get();
-		if (answer != null) {
-			answerService.deleteAnswerById(id);
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		answerService.getAnswerById(id);
+		answerService.deleteAnswerById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	// Chat Controllers

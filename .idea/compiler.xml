@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BackEnd (3)" />
-        <module name="BackEnd (2)" />
         <module name="BackEnd (5)" />
+        <module name="backend" />
         <module name="BackEnd (4)" />
         <module name="BackEnd (1)" />
       </profile>
@@ -23,11 +23,11 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="BackEnd" options="-parameters" />
       <module name="BackEnd (1)" options="" />
-      <module name="BackEnd (2)" options="-parameters" />
       <module name="BackEnd (3)" options="-parameters" />
       <module name="BackEnd (4)" options="-parameters" />
       <module name="BackEnd (5)" options="-parameters" />
       <module name="CapstoneProjectGroup6" options="-parameters" />
+      <module name="backend" options="-parameters" />
     </option>
   </component>
 </project>

@@ -11,7 +11,6 @@ import cogent.com.repository.ChatRepository;
 
 @Service
 public class ChatServiceImpl implements ChatService {
-
 	@Autowired
 	private ChatRepository chatRepository;
 

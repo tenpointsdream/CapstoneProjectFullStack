@@ -27,10 +27,8 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public List<AnswerDTO> getAllAnswers() {
-		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
-		answerRepository.findAll().forEach(answer -> {
-			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
-		});
+		List<AnswerDTO> answersDTO = new ArrayList<>();
+		answerRepository.findAll().forEach(answer -> answersDTO.add(questionService.convertAnswerToAnswerDTO(answer)));
 		return answersDTO;
 	}
 
@@ -58,39 +56,26 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public List<AnswerDTO> getAllAnswersFalse() {
-		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
-		answerRepository.findByStatus(false).forEach(answer -> {
-			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
-		});
-		return answersDTO;
-	}
-
-	@Override
-	public List<AnswerDTO> getAllAnswersById(int id) {
-		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
-		answerRepository.findAllById(id).forEach(answer -> {
-			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
-		});
+		List<AnswerDTO> answersDTO = new ArrayList<>();
+		answerRepository.findByStatus(false).
+				forEach(answer -> answersDTO.add(questionService.convertAnswerToAnswerDTO(answer)));
 		return answersDTO;
 	}
 
 	@Override
 	public List<AnswerDTO> getAnswersByQuestionId(int questionId) {
-		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
-		answerRepository.findByQuestionId(questionId).forEach(answer -> {
-			answersDTO.add(questionService.convertAnswerToAnswerDTO(answer));
-		});
+		List<AnswerDTO> answersDTO = new ArrayList<>();
+		answerRepository.findByQuestionId(questionId).
+				forEach(answer -> answersDTO.add(questionService.convertAnswerToAnswerDTO(answer)));
 		return answersDTO;
 	}
 
 	@Override
 	public List<AnswerDTO> getAllAnswersByQId(int questionId) {
-		List<AnswerDTO> answerDTOs = new ArrayList<AnswerDTO>();
-		Question question = questionRepository.findById(questionId).get();
+		List<AnswerDTO> answerDTOs = new ArrayList<>();
+		Question question = questionRepository.findById(questionId).orElse(new Question());
 		List<Answer> answers = question.getAnswers();
-		answers.forEach((answer) -> {
-			answerDTOs.add(questionService.convertAnswerToAnswerDTO(answer));
-		});
+		answers.forEach((answer) -> answerDTOs.add(questionService.convertAnswerToAnswerDTO(answer)));
 		return answerDTOs;
 	}
 

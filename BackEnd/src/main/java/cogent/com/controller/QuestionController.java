@@ -1,38 +1,23 @@
 package cogent.com.controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
 import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.Question;
 import cogent.com.repository.QuestionRepository;
 import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionServiceImpl;
+import cogent.com.util.AppUtil;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -41,10 +26,6 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionServiceImpl questionService;
-
-	@SuppressWarnings("unused")
-	@Autowired
-	private AnswerService answerService;
 
 	@Autowired
 	private QuestionRepository questionRepository;
@@ -62,14 +43,9 @@ public class QuestionController {
 		questionDTO.setDatetime(LocalDateTime.now().toString());
 		questionDTO.setImageSrc(file.getOriginalFilename());
 		questionService.addQuestion(questionDTO);
-		Path filepath = Paths.get("C:/CapstoneProjectFullStack/CapstoneProjectG6_FrontEnd/src/assets/question_images", file.getOriginalFilename());
-		try (OutputStream os = Files.newOutputStream(filepath)) {
-			os.write(file.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<>("file uploaded successfully", HttpStatus.CREATED);
+		return AppUtil.uploadFile(file, "question_images") ?
+				new ResponseEntity<>("file not uploaded", HttpStatus.INTERNAL_SERVER_ERROR) :
+				new ResponseEntity<>("file uploaded successfully", HttpStatus.CREATED);
 	}
 
 	@PostMapping("/add")
@@ -98,7 +74,7 @@ public class QuestionController {
 
 	@GetMapping("/getproperties/{id}")
 	public ResponseEntity<QuestionDTO> getProperties(@PathVariable("id") int id) {
-		Question question = questionRepository.findById(id).get();
+		Question question = questionRepository.findById(id).orElse(new Question());
 		QuestionDTO questionDTO = new QuestionDTO();
 		BeanUtils.copyProperties(question, questionDTO);
 		questionDTO.setAnswers(question.getAnswers());

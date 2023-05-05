@@ -37,10 +37,8 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<QuestionDTO> getAllQuestion() {
-		List<QuestionDTO> questionDTOs = new ArrayList<QuestionDTO>();
-		questionRepository.findAll().forEach(question -> {
-			questionDTOs.add(convertQuestionToQuestionDTO(question));
-		});
+		List<QuestionDTO> questionDTOs = new ArrayList<>();
+		questionRepository.findAll().forEach(question -> questionDTOs.add(convertQuestionToQuestionDTO(question)));
 		return questionDTOs;
 	}
 
@@ -60,39 +58,27 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<QuestionDTO> getAllQuestionsByStatus(@PathVariable boolean status) {
-		List<QuestionDTO> questionDTOs = new ArrayList<QuestionDTO>();
-		questionRepository.findByStatus(status).forEach(question -> {
-			questionDTOs.add(convertQuestionToQuestionDTO(question));
-		});
+		List<QuestionDTO> questionDTOs = new ArrayList<>();
+		questionRepository.findByStatus(status).forEach(question -> questionDTOs.add(convertQuestionToQuestionDTO(question)));
 		return questionDTOs;
 	}
 
 	@Override
 	public List<QuestionDTO> getQuestionByTitle(String title) {
-		List<QuestionDTO> allQuestionDTOs = new ArrayList<QuestionDTO>();
-		questionRepository.findAll().forEach(question -> {
-			allQuestionDTOs.add(convertQuestionToQuestionDTO(question));
-		});
-		List<QuestionDTO> allQuestionsByTitle = new ArrayList<QuestionDTO>();
-		for (QuestionDTO question : allQuestionsByTitle) {
-			if (question.getTitle().contains(title))
-				allQuestionsByTitle.add(question);
-		}
-		return allQuestionsByTitle;
+		List<QuestionDTO> allQuestionDTOs = new ArrayList<>();
+		questionRepository.findAll().forEach(question -> allQuestionDTOs.add(convertQuestionToQuestionDTO(question)));
+		allQuestionDTOs.removeIf(question -> !question.getTitle().toLowerCase().contains(title));
+		return allQuestionDTOs;
 	}
 
 	@Override
 	public QuestionDTO addAnswerToQuestion(int question_id, AnswerDTO answerDTO) {
-		QuestionDTO questionDTO = convertQuestionToQuestionDTO(questionRepository.findById(question_id).get());
-		List<AnswerDTO> answersDTO = new ArrayList<AnswerDTO>();
-		questionDTO.getAnswers().forEach(answer -> {
-			answersDTO.add(convertAnswerToAnswerDTO(answer));
-		});
+		QuestionDTO questionDTO = convertQuestionToQuestionDTO(questionRepository.findById(question_id).orElse(new Question()));
+		List<AnswerDTO> answersDTO = new ArrayList<>();
+		questionDTO.getAnswers().forEach(answer -> answersDTO.add(convertAnswerToAnswerDTO(answer)));
 		answersDTO.add(answerDTO);
-		List<Answer> answers = new ArrayList<Answer>();
-		for (AnswerDTO answer : answersDTO) {
-			answers.add(convertAnswerDTOToAnswer(answer));
-		}
+		List<Answer> answers = new ArrayList<>();
+		for (AnswerDTO answer : answersDTO) answers.add(convertAnswerDTOToAnswer(answer));
 		questionDTO.setAnswers(answers);
 		QuestionDTO updatedQuestion = this.updateQuestion(questionDTO);
 		Question newUpdatedQuestion = questionRepository.save(convertQuestionDTOToQuestion(updatedQuestion));
@@ -109,23 +95,25 @@ public class QuestionServiceImpl implements QuestionService {
 		questionDTO.setImageSrc(question.getImageSrc());
 		questionDTO.setQapproved_by(question.getQapproved_by());
 		questionDTO.setQcreated_by(question.getQcreated_by());
-		questionDTO.setStatus(question.getStatus());
+		questionDTO.setStatus(question.isStatus());
 		questionDTO.setTitle(question.getTitle());
 		return questionDTO;
 	}
 
 	Optional<QuestionDTO> convertQuestionToQuestionDTO(Optional<Question> question) {
 		QuestionDTO questionDTO = new QuestionDTO();
-		questionDTO.setId(question.get().getId());
-		questionDTO.setTopic(question.get().getTopic());
-		questionDTO.setAnswers(question.get().getAnswers());
-		questionDTO.setDatetime(question.get().getDatetime());
-		questionDTO.setDescriptionQuestion(question.get().getDescriptionQuestion());
-		questionDTO.setImageSrc(question.get().getImageSrc());
-		questionDTO.setQapproved_by(question.get().getQapproved_by());
-		questionDTO.setQcreated_by(question.get().getQcreated_by());
-		questionDTO.setStatus(question.get().getStatus());
-		questionDTO.setTitle(question.get().getTitle());
+		if (question.isPresent()) {
+			questionDTO.setId(question.get().getId());
+			questionDTO.setTopic(question.get().getTopic());
+			questionDTO.setAnswers(question.get().getAnswers());
+			questionDTO.setDatetime(question.get().getDatetime());
+			questionDTO.setDescriptionQuestion(question.get().getDescriptionQuestion());
+			questionDTO.setImageSrc(question.get().getImageSrc());
+			questionDTO.setQapproved_by(question.get().getQapproved_by());
+			questionDTO.setQcreated_by(question.get().getQcreated_by());
+			questionDTO.setStatus(question.get().isStatus());
+			questionDTO.setTitle(question.get().getTitle());
+		}
 		return Optional.of(questionDTO);
 	}
 
@@ -138,7 +126,7 @@ public class QuestionServiceImpl implements QuestionService {
 		answerDTO.setQuestion(answer.getQuestion());
 		answerDTO.setApproved_by(answer.getApproved_by());
 		answerDTO.setCreated_by(answer.getCreated_by());
-		answerDTO.setStatus(answer.getStatus());
+		answerDTO.setStatus(answer.isStatus());
 		return answerDTO;
 	}
 
@@ -172,14 +160,16 @@ public class QuestionServiceImpl implements QuestionService {
 
 	public Optional<AnswerDTO> convertAnswerToAnswerDTO(Optional<Answer> answer) {
 		AnswerDTO answerDTO = new AnswerDTO();
-		answerDTO.setId(answer.get().getId());
-		answerDTO.setDescription_answer(answer.get().getDescription_answer());
-		answerDTO.setDatetime(answer.get().getDatetime());
-		answerDTO.setImg_src(answer.get().getImg_src());
-		answerDTO.setQuestion(answer.get().getQuestion());
-		answerDTO.setApproved_by(answer.get().getApproved_by());
-		answerDTO.setCreated_by(answer.get().getCreated_by());
-		answerDTO.setStatus(answer.get().getStatus());
+		if (answer.isPresent()) {
+			answerDTO.setId(answer.get().getId());
+			answerDTO.setDescription_answer(answer.get().getDescription_answer());
+			answerDTO.setDatetime(answer.get().getDatetime());
+			answerDTO.setImg_src(answer.get().getImg_src());
+			answerDTO.setQuestion(answer.get().getQuestion());
+			answerDTO.setApproved_by(answer.get().getApproved_by());
+			answerDTO.setCreated_by(answer.get().getCreated_by());
+			answerDTO.setStatus(answer.get().isStatus());
+		}
 		return Optional.of(answerDTO);
 	}
 

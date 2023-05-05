@@ -24,21 +24,11 @@ import cogent.com.util.UserType;
 
 @SpringBootApplication
 public class BackEndApplication {
-//	@Autowired
-//	private UserRepository repository;
-//	@PostConstruct
-//	public void initUsers() {
-//		List<User> users = Stream.of(
-//				new User("user1", "user1", "password", "user1@gmail.com", UserType.ADMIN),
-//				new User("user2", "user2", "password", "user2@gmail.com", UserType.USER)
-//		).collect(Collectors.toList());
-//		repository.saveAll(users);
-//	}
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(BackEndApplication.class, args);
 		UserService userService = ctx.getBean(UserService.class);
-		userService.addUser(new User("Khoa Ho", "user1", "password", "user1@gmail.com", UserType.ADMIN));
-		userService.addUser(new User("Prajesh Sharma", "user2", "password", "user2@gmail.com", UserType.USER));
+		userService.addUser(new User("Prajesh Sharma", "user1", "password", "user1@gmail.com", UserType.ADMIN));
+		userService.addUser(new User("Khoa Ho", "user2", "password", "user2@gmail.com", UserType.USER));
 		userService.addUser(new User("Abdulkerim Mohammed", "user3", "password", "user3@gmail.com", UserType.USER));
 		QuestionService questionService = ctx.getBean(QuestionService.class);
 		// List<User> users = userService.getAllUsers();
@@ -71,7 +61,7 @@ public class BackEndApplication {
 		chatService.addNewChat(new Chat("user6", "user2", "I am the ADMIN", "12/29/2023"));
 		// create directories for images
 		for (String dir : new String[] { "question_images", "answer_images" }) {
-			Path directory = Paths.get("C:/CapstoneProjectFullStack/CapstoneProjectG6_FrontEnd/src/assets/" + dir);
+			Path directory = Paths.get("frontend/src/assets/" + dir);
 			if (Files.exists(directory))
 				try (Stream<Path> pathStream = Files.walk(directory)) {
 					pathStream.sorted(Comparator.reverseOrder()).forEach(path -> {

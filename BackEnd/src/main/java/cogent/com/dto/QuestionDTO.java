@@ -13,7 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionDTO {
-
 	private int id;
 	private String descriptionQuestion;
 	private String imageSrc;

@@ -7,22 +7,13 @@ import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
 
 public interface QuestionService {
-
-	public QuestionDTO addQuestion(QuestionDTO questionDTO);
-
-	public QuestionDTO updateQuestion(QuestionDTO questionDTO);
-
-	public void deleteQuestionById(int id);
-
-	public List<QuestionDTO> getAllQuestion();
-
-	public List<QuestionDTO> getQuestionByTopic(String topic);
-
-	public List<QuestionDTO> getAllQuestionsByStatus(boolean status);
-
-	public Optional<QuestionDTO> getQuestionById(int id);
-
-	public List<QuestionDTO> getQuestionByTitle(String title);
-	
-	public QuestionDTO addAnswerToQuestion(int question_id, AnswerDTO answerDTO);
+	QuestionDTO addQuestion(QuestionDTO questionDTO);
+	QuestionDTO updateQuestion(QuestionDTO questionDTO);
+	void deleteQuestionById(int id);
+	List<QuestionDTO> getAllQuestion();
+	List<QuestionDTO> getQuestionByTopic(String topic);
+	List<QuestionDTO> getAllQuestionsByStatus(boolean status);
+	Optional<QuestionDTO> getQuestionById(int id);
+	List<QuestionDTO> getQuestionByTitle(String title);
+	QuestionDTO addAnswerToQuestion(int question_id, AnswerDTO answerDTO);
 }

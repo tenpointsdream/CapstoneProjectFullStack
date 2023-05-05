@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AnswerDTO {
-
 	private int id;
 	private String description_answer;
 	private String img_src;

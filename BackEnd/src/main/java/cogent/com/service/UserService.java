@@ -7,25 +7,14 @@ import cogent.com.entity.User;
 import cogent.com.util.UserType;
 
 public interface UserService {
-
-	public String home();
-
-	public User addUser(User user);
-
-	public User updateUser(User user);
-
-	public List<User> getAllUsers();
-
-	public User addNewUser(User user);
-
-	public boolean userLoginVerify(User user);
-
-	public Optional<User> getUserById(int id);
-
-	public List<User> getUsersByName(String name);
-
-	public List<User> getUsersByType(UserType userType);
-	
-	public Optional<User> getUserByUsername(String username);
-
+	String home();
+	User addUser(User user);
+	User updateUser(User user);
+	List<User> getAllUsers();
+	User addNewUser(User user);
+	boolean userLoginVerify(User user);
+	Optional<User> getUserById(int id);
+	List<User> getUsersByName(String name);
+	List<User> getUsersByType(UserType userType);
+	Optional<User> getUserByUsername(String username);
 }
