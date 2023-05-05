@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.boot.SpringApplication;
@@ -15,7 +13,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
-import cogent.com.entity.Answer;
 import cogent.com.entity.Chat;
 import cogent.com.entity.User;
 import cogent.com.service.AnswerService;
@@ -47,7 +44,7 @@ public class BackEndApplication {
 		questionService.addQuestion(new QuestionDTO(0, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"JavaScript", "Getting to know", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(1, "Test description", "test.jpg", "04-26-2023, 12:36", true,
-				"Angular", "What is Angular?", new ArrayList<Answer>(List.of(new Answer())), "user2", "user1"));
+				"Angular", "What is Angular?", null, "user2", "user1"));
 		questionService.addQuestion(new QuestionDTO(2, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"Java", "Too many problems with Java", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(3, "Test description", "test.jpg", "04-26-2023, 12:36", false,
@@ -89,7 +86,7 @@ public class BackEndApplication {
 			try {
 				Files.createDirectories(directory);
 			} catch (IOException e) {
-				e.printStackTrace(); 
+				e.printStackTrace();
 			}
 		}
 	}
