@@ -30,10 +30,11 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * Spring Data JPA
 * Spring Boot Starter Mail
 * Maven for managing packages
-* Java JDK
+* Java JDK 1.8
 * Tomcat Server
 * MySQL Database
 * JWT (for authentication and authorization)
+* Postman Client(to create and send API requests)
 
 ### Frontend
 
