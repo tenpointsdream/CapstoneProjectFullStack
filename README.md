@@ -85,5 +85,7 @@ Responsible for:
 ![Create Question](./assets/capstone-project19.jpg)
 ### Created Question Page
 ![Created Question](./assets/capstone-project16.jpg)
+### Search Question Page
+![Search Question](./assets/capstone-project18.jpg)
 
 [Project-UI-Pages](./Capstone-project.pdf)
