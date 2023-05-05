@@ -18,7 +18,7 @@ DoConnect is an application that enables its users to ask and answer questions, 
 
 * Our platform offers users the freedom to ask and answer questions on a wide range of topics. Users can filter questions based on particular topics or a query string to find relevant content. Admins can approve or delete any question or answer submitted by users, ensuring a safe and respectful community.
 
-* We prioritize User Experience by designing a simple and intuitive interface that allows users to achieve their objectives with minimal effort. Our platform is responsive and can adapt to different screen sizes, making it easy to use on both desktop and mobile devices. Security is of utmost importance, and we use JWT to provide secure access to the platform.
+* We prioritize User Experience by designing a simple and intuitive interface that allows users to achieve their objectives with minimal effort. Our platform is responsive and can adapt to different screen sizes. Security is of utmost importance, and we use JWT to provide secure access to the platform.
 
 * Our platform includes a chat feature that allows users to communicate with one another. Users can also add images to their questions and answers, providing additional context and reference for other users. To ensure Admins stay up-to-date on user activity, we send email notifications whenever a new question or answer is added to the platform.
 
