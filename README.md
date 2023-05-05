@@ -69,5 +69,7 @@ Responsible for:
 * Storing and retrieving user group chats.
 
 ## UI pages
+### Landing Page
+![Landing Page] (./assets/capstone-project6.jpg)
 
 [Project-UI-Pages](./Capstone-project.pdf)
