@@ -92,12 +92,11 @@ export class CreateNewQuestionComponent {
         console.log("Email to send:", this.email);
         console.log("Response: ", response);
       })
-    //alert("Email notification sent to admin!");
     this.questionService.addQuestion(this.questionForm, this.cookieService.get('username')).subscribe((response: string) => {
       console.log("Response: ", response);
-      alert("Your question has been added! Waiting for admin to approve...");
+      
     });
-
+    alert("Your question has been added! Waiting for admin to approve...");
 
     this.fileInput.nativeElement.value = '';
   }
