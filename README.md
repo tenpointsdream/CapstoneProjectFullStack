@@ -77,12 +77,11 @@ Responsible for:
 ![User LogIn](./assets/capstone-project7.jpg)
 ### Admin LogIn Page
 ![Admin LogIn](./assets/capstone-project11.jpg)
-### Admin Pending Question Page
-![Pending Question](./assets/capstone-project12.jpg)
 ### User HomePage
 ![User HomePage](./assets/capstone-project14.jpg)
 ### Admin HomePage
 ![Admine HomePage](./assets/capstone-project13.jpg)
+
 ### Create Question Page
 ![Create Question](./assets/capstone-project19.jpg)
 ### Created Question Page
