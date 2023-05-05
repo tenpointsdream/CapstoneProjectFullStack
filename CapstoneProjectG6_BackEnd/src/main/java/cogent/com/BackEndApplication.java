@@ -25,16 +25,6 @@ import java.util.stream.Stream;
 
 @SpringBootApplication
 public class BackEndApplication {
-//	@Autowired
-//	private UserRepository repository;
-//	@PostConstruct
-//	public void initUsers() {
-//		List<User> users = Stream.of(
-//				new User("user1", "user1", "password", "user1@gmail.com", UserType.ADMIN),
-//				new User("user2", "user2", "password", "user2@gmail.com", UserType.USER)
-//		).collect(Collectors.toList());
-//		repository.saveAll(users);
-//	}
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(BackEndApplication.class, args);
 		UserService userService = ctx.getBean(UserService.class);

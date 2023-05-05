@@ -1,20 +1,22 @@
 package cogent.com.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import cogent.com.dto.AnswerDTO;
+import cogent.com.dto.QuestionDTO;
+import cogent.com.entity.Chat;
+import cogent.com.entity.Email;
+import cogent.com.entity.User;
+import cogent.com.service.*;
+import cogent.com.util.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import cogent.com.dto.AnswerDTO;
-import cogent.com.dto.QuestionDTO;
-import cogent.com.entity.*;
-import cogent.com.service.*;
-import cogent.com.util.UserType;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import static cogent.com.util.AppUtil.sha256;
 
 @CrossOrigin(origins = "http://localhost:4200")
