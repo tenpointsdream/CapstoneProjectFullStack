@@ -70,6 +70,6 @@ Responsible for:
 
 ## UI pages
 ### Landing Page
-![Landing Page] (./assets/capstone-project6.jpg)
+![Landing Page] (assets/capstone-project6.jpg)
 
 [Project-UI-Pages](./Capstone-project.pdf)
