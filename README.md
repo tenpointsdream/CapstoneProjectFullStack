@@ -70,4 +70,4 @@ Responsible for:
 
 ## UI pages
 
-[project](./Capstone-project.pdf.pdf)
+[project](./Capstone-project.pdf)
