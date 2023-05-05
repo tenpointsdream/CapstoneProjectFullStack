@@ -38,7 +38,7 @@ public class BackEndApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(BackEndApplication.class, args);
 		UserService userService = ctx.getBean(UserService.class);
-		userService.addUser(new User("Khoa Ho", "user1", "password", "user1@gmail.com", UserType.ADMIN));
+		userService.addUser(new User("Khoa Ho", "user1", "password", "abdu0921@hotmail.com", UserType.ADMIN));
 		userService.addUser(new User("Prajesh Sharma", "user2", "password", "user2@gmail.com", UserType.USER));
 		userService.addUser(new User("Abdulkerim Mohammed", "user3", "password", "user3@gmail.com", UserType.USER));
 		QuestionService questionService = ctx.getBean(QuestionService.class);
