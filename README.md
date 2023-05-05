@@ -69,5 +69,27 @@ Responsible for:
 * Storing and retrieving user group chats.
 
 ## UI pages
+### Landing Page
+![Landing Page](./assets/capstone-project6.jpg)
+### User Registration Page
+![User Registration](./assets/capstone-project8.jpg)
+### User LogIn Page
+![User LogIn](./assets/capstone-project7.jpg)
+### Admin LogIn Page
+![Admin LogIn](./assets/capstone-project11.jpg)
+### Admin Pending Question Page
+![Pending Question](./assets/capstone-project12.jpg)
+### User HomePage
+![User HomePage](./assets/capstone-project14.jpg)
+### Admin HomePage
+![Admine HomePage](./assets/capstone-project13.jpg)
+### Create Question Page
+![Create Question](./assets/capstone-project19.jpg)
+### Created Question Page
+![Created Question](./assets/capstone-project16.jpg)
+### Search Question Page
+![Search Question](./assets/capstone-project18.jpg)
+### User-to-User Chat Page
+![Chat Page](./assets/capstone-project22.jpg)
 
 [Project-UI-Pages](./Capstone-project.pdf)
