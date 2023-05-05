@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Email } from '../entity/email.entity';
 import { EmailService } from '../service/email.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class CreateNewQuestionComponent {
     private emailService: EmailService,
     private cookieService: CookieService,
     private userService: UserService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClient) {
     this.formGroup = this.formBuilder.group({
       file: ['']
     });
@@ -75,28 +77,28 @@ export class CreateNewQuestionComponent {
     this.questionForm.qcreated_by = this.cookieService.get('username');
     console.log("Question form: ", this.questionForm);
     console.log("Current user: " + this.questionForm.qcreated_by);
+    console.log("List of admin:", this.admin);
+    this.userService.getAdmin().subscribe((users: User[]) => {
+      this.admin = users;
+      console.log("Admin?", users);
+    });
+    this.email.recipient = this.admin[0].email;
+    this.email.msgBody = "You have a pending question to approve";
+    this.email.subject = this.questionForm.title;
+    console.log("Email to send: ", this.email);
+    this.httpClient.post("http://localhost:8080/customer/sendemail", this.email, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } })
+      .subscribe((response) => {
+        console.log("Token: ", this.cookieService.get('jwtToken'));
+        console.log("Email to send:", this.email);
+        console.log("Response: ", response);
+      })
+    //alert("Email notification sent to admin!");
     this.questionService.addQuestion(this.questionForm, this.cookieService.get('username')).subscribe((response: string) => {
       console.log("Response: ", response);
       alert("Your question has been added! Waiting for admin to approve...");
     });
-    this.email.msgBody = 'You have new pending question to approve';
-    this.email.subject = this.questionForm.title;
-    this.userService.getAdmin().subscribe((users: User[]) => {
-      this.admin = users;
-      console.log("Admin?", users);
-      this.admin.forEach(element => {
-        this.email.recipient = element.email;
-        console.log("Email to send out", this.email);
-        this.emailService.sendEmail(this.email).subscribe((message: any) => {
-          console.log("This message: ", message);
-          console.log("Sent to: ", element.name);
-        }, (err: any) => {
-          console.log("ERROR: ", err);
-        }
-        );
-      });
-    });
-    alert("Email notification sent to admin!");
+
+
     this.fileInput.nativeElement.value = '';
   }
   sign_out() {

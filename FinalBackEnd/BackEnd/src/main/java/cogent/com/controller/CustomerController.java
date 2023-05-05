@@ -218,7 +218,7 @@ public class CustomerController {
 
 	// Email Controller
 	@PostMapping("/sendemail")
-	public String sendEmail(@RequestBody Email email) {
-		return emailService.sendEmail(email);
+	public ResponseEntity<String> sendEmail(@RequestBody Email email) {
+		return ResponseEntity.ok(emailService.sendEmail(email));
 	}
 }

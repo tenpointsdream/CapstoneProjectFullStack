@@ -14,6 +14,6 @@ export class EmailService {
     private cookieService: CookieService) { }
 
   sendEmail(email: Email): any {
-    this.httpClient.post<any>(this.baseUrl, email, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
+    this.httpClient.post("http://localhost:8080/customer/sendemail", email, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } });
   }
 }
