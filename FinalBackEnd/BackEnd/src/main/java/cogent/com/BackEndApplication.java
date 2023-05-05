@@ -38,7 +38,7 @@ public class BackEndApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(BackEndApplication.class, args);
 		UserService userService = ctx.getBean(UserService.class);
-		userService.addUser(new User("Khoa Ho", "user1", "password", "user1@gmail.com", UserType.ADMIN));
+		userService.addUser(new User("Khoa Ho", "user1", "password", "dangkhoa2207@hotmail.com", UserType.ADMIN));
 		userService.addUser(new User("Prajesh Sharma", "user2", "password", "user2@gmail.com", UserType.USER));
 		userService.addUser(new User("Abdulkerim Mohammed", "user3", "password", "user3@gmail.com", UserType.USER));
 		QuestionService questionService = ctx.getBean(QuestionService.class);
@@ -46,7 +46,9 @@ public class BackEndApplication {
 		questionService.addQuestion(new QuestionDTO(0, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"JavaScript", "Getting to know", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(1, "Test description", "test.jpg", "04-26-2023, 12:36", true,
+
 				"Angular", "What is Angular?", new ArrayList<Answer>(Arrays.asList(new Answer())), "user2", "user1"));
+
 		questionService.addQuestion(new QuestionDTO(2, "Test description", "test.jpg", "04-26-2023, 12:36", false,
 				"Java", "Too many problems with Java", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(3, "Test description", "test.jpg", "04-26-2023, 12:36", false,
@@ -88,7 +90,7 @@ public class BackEndApplication {
 			try {
 				Files.createDirectories(directory);
 			} catch (IOException e) {
-				e.printStackTrace(); 
+				e.printStackTrace();
 			}
 		}
 	}

@@ -10,6 +10,7 @@ import { UserService } from '../service/user.service';
 import { User } from '../entity/user.entity';
 import { elementAt } from 'rxjs';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-created-question',
@@ -32,7 +33,8 @@ export class CreatedQuestionComponent implements OnInit {
     private cookieService: CookieService,
     private userService: UserService,
     private emailService: EmailService,
-    private router: Router) {
+    private router: Router,
+    private httpClient: HttpClient) {
     this.onVisible = false;
     this.answerVisible = false;
   }
@@ -87,25 +89,28 @@ export class CreatedQuestionComponent implements OnInit {
       minute: 'numeric',
       second: 'numeric'
     };
+
+    this.userService.getAdmin().subscribe((users: User[]) => {
+      this.admin = users;
+    });
+    this.email.recipient = this.admin[0].email;
+    this.email.msgBody = "You have a pending question to approve";
+    this.email.subject = this.question.title;
+    console.log("Email to send: ", this.email);
+    this.httpClient.post("http://localhost:8080/customer/sendemail", this.email, { headers: { Authorization: `Bearer ${this.cookieService.get('jwtToken')}` } })
+      .subscribe((response) => {
+        console.log("Token: ", this.cookieService.get('jwtToken'));
+        console.log("Email to send:", this.email);
+        console.log("Response: ", response);
+      });
+    alert("Email notification sent to admin!");
+
     this.answerForm.datetime = now.toLocaleString('en-US', options);
     this.answerForm.created_by = this.cookieService.get('username');
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
       console.log("Response: ", response);
     });
     alert("Your answer hase been added! waiting for admin approval...");
-    this.email.msgBody = "You have new pending question to approve";
-    this.email.subject = this.question.title;
-    this.userService.getAdmin().subscribe((users: User[]) => {
-      this.admin = users;
-      this.admin.forEach(element => {
-        this.email.recipient = element.email;
-        this.emailService.sendEmail(this.email).subscribe((message: any) => {
-          console.log(message);
-          console.log("sent to: ", element.name);
-        });
-      });
-    });
-    alert("Your answer has been created. waiting for admin approval.");
     this.closeForm();
   }
   sign_out() {
