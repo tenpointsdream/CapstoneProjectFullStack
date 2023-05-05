@@ -48,6 +48,8 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * CSS
 * JWT (for authentication)
 
+## Use Case Diagram
+
 ## Microservices
 
 ### DoConnect Main Microservice
