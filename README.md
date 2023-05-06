@@ -36,6 +36,9 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * JWT (for authentication and authorization)
 * Postman Client(to create and send API requests)
 
+### Data Base
+* MySQL
+
 ### Frontend
 
 * Angular
