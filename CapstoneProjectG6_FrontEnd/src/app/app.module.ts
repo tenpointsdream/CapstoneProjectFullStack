@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminSignUpComponent } from './admin-sign-up/admin-sign-up.component';
 import { ApprovedAnswerComponent } from './approved-answer/approved-answer.component';
-import { ChatComponent } from './chat/chat.component';
 import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
 import { CreatedAnswerComponent } from './created-answer/created-answer.component';
 import { CreatedQuestionComponent } from './created-question/created-question.component';
@@ -34,7 +33,6 @@ import { QuestionDetailsPageComponent } from './question-details-page/question-d
     AdminLoginComponent,
     AdminSignUpComponent,
     ApprovedAnswerComponent,
-    ChatComponent,
     CreateNewQuestionComponent,
     CreatedAnswerComponent,
     CreatedQuestionComponent,

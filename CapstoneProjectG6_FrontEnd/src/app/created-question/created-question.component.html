@@ -40,6 +40,7 @@
                         {{ question.descriptionQuestion }}
                     </p>
                     <p><strong>Created By: </strong> {{ question.qcreated_by }}</p>
+                    <p><strong>Date:</strong> {{question.datetime}}</p>
                     <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
                     <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
                 </li>
@@ -76,12 +77,14 @@
             </div>
         </div>
     </div>
-    <footer class="footer-div">
-        <ul class="footer">
-            <li>Abdulkerim Mohammed</li>
-            <li>Prajesh Sharma</li>
-            <li>Khoa Ho</li>
-        </ul>
-        <p>2023 Copy Right ©</p>
-    </footer>
+    <div class="footer-div">
+        <footer>
+            <ul class="footer">
+                <li>Abdulkerim Mohammed</li>
+                <li>Prajesh Sharma</li>
+                <li>Khoa Ho</li>
+            </ul>
+            <p>2023 Copy Right ©</p>
+        </footer>
+    </div>
 </body>

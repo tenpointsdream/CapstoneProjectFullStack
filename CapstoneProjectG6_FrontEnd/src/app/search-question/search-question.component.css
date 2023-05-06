@@ -2,6 +2,8 @@ body {
     background: lightblue;
     background: linear-gradient(#f6f9fc, lightblue);
     font-family: Roboto, sans-serif;
+    position: relative;
+    height: 100vh;
 }
 
 /* header */
@@ -89,6 +91,7 @@ button[type="submit"] {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     max-width: 400px;
+    margin-bottom: 10px;;
     margin: 0 auto;
 }
 
@@ -100,6 +103,9 @@ h2 {
 }
 
 .footer-div {
+    position: absolute;
+    bottom: 0;
+    width: 97%;
     background-color: #d9e5ecd9;
     margin: 20px 25px;
     border-radius: 7px;
@@ -129,6 +135,9 @@ ul li {
 thead{
     background-color: black;
     color: white;
+    border: 2px solid black;
+}
+th{
     border: 2px solid black;
 }
 td{

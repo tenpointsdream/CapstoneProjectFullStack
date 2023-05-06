@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./pending-question.component.css']
 })
 export class PendingQuestionComponent implements OnInit {
-  pendingQuestions: Question[];
+  questionExist: boolean;
+  isQNull: boolean;
+  pendingQuestions = [] as Question[];
   questionToUpdate = {} as Question;
   constructor(
     private questionService: QuestionService,
@@ -22,13 +24,21 @@ export class PendingQuestionComponent implements OnInit {
     private userService: UserService,
     private router: Router) {
     this.pendingQuestions = [];
+    this.questionExist = true;
+    this.isQNull = false;
   }
   ngOnInit(): void {
     console.log(this.cookieService.get('username'));
+    console.log(this.pendingQuestions)
     this.questionService.getPendingQuestion().subscribe((data: Question[]) => {
       console.log(data);
       this.pendingQuestions = data;
-    })
+      if (this.pendingQuestions.length === 0) {
+        console.log("No questions")
+        this.questionExist = false;
+        this.isQNull = true;
+      }
+    });
   }
 
   approveQuestion(id: number) {

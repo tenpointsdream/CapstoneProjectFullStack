@@ -2,6 +2,8 @@ body {
     background: lightblue;
     background: linear-gradient(#f6f9fc, lightblue);
     font-family: Roboto, sans-serif;
+    position: relative;
+    height: 100vh;
 }
 /* header */
 .header {
@@ -105,12 +107,13 @@ h2 {
 }
 .footer-div {
     background-color: #d9e5ecd9;
+    bottom: 0;
     margin: 20px 25px;
     border-radius: 7px;
     text-align: center;
     padding: 0;
     font-weight: 600;
-    font-size: small;
+    font-size: medium;
     font-family: 'Times New Roman', Times, serif;
 }
 

@@ -10,7 +10,7 @@
       <ul>
         <li class="list"><a href="" routerLink="/adminhomepage"><i class="fa-solid fa-house"></i> Admin Home</a></li>
         <li class="list"><a href="" routerLink="/adminhomepage/pendinganswer"><i class="fa-solid fa-lightbulb"></i> Pending Answer</a></li>
-        <li class="list"><a href="" routerLink= "/adminhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Message</a></li>
+        <!-- <li class="list"><a href="" routerLink= "/adminhomepage/usertouserchat"><i class="fa-solid fa-message"></i> Message</a></li> -->
         <li class="list" id="btn" (click)="sign_out()"><a>Sign Out</a></li>
         <li class="list user-type">admin</li>
       </ul>
@@ -19,8 +19,9 @@
   <div class="body-container">
     <div>
       <h1>Pending Question</h1>
+      <h3 *ngIf="isQNull">[No pending questions]</h3>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="questionExist">
       <table style="width:100%">
         <tr>
           <th>ID</th>

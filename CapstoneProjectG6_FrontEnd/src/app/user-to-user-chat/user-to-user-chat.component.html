@@ -7,7 +7,7 @@
         </div>
         <div class="header-right">
             <ul>
-                <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class="list"><a routerLink="/userhomepage"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li class="list user-type">user</li>
             </ul>
         </div>
@@ -16,25 +16,24 @@
         <div>
             <h3>All Messages</h3>
         </div>
+        <div class="newmsg-btn"><button (click)="showNewChat()">New Message</button></div>
+        <div *ngIf="newChatVisible" class="new-msg">
+            <form class="msger-inputarea" #newchatform='ngForm' (ngSubmit)="newChatTo(newchatform)">
+                <input type="text" class="msger-name" placeholder="Enter username:" [(ngModel)]="newChat.to_user"
+                    name="to_user" required>
+                <input type="text" class="msger-input" placeholder="Enter your message..." [(ngModel)]="newChat.message"
+                    name="message" required>
+                <button [disabled]="newchatform.invalid" type="submit" class="msger-send-btn">Send</button>
+                <button (click)="closeThisForm()" type="button" class="cancel">Cancel</button>
+            </form>
+        </div>
         <div>
             <ul *ngFor="let message of messageReceivedFrom">
                 <li><strong>User:</strong> {{message}}</li>
                 <button (click)="showForm(message)">Chat</button>
             </ul>
         </div>
-        <div class="newmsg-btn"><button (click)="showNewChat()">New Message</button></div>
-        <div *ngIf="newChatVisible">
-            <form class="msger-inputarea" #newchatform='ngForm' (ngSubmit)="newChatTo(newchatform)">
-                <input type="text" class="msger-name" placeholder="Enter username:" [(ngModel)]="newChat.to_user"
-                name="to_user" required>
-                <input type="text" class="msger-input" placeholder="Enter your message..." [(ngModel)]="newChat.message"
-                name="message" required>
-                <button [disabled]="newchatform.invalid" type="submit" class="msger-send-btn">Send</button>
-                <button (click)="closeThisForm()" type="button" class="cancel">Cancel</button>
-            </form>
-        </div>
-        <div>
-        </div>
+
         <div>
             <div class="container2">
                 <div *ngIf="onVisible">
@@ -46,12 +45,11 @@
                                     <div class="chat-text">{{ message.message }}</div>
                                     <div class="chat-time">{{ message.datetime }}</div>
                                 </ng-container>
-                                
-                            </div>          
+                            </div>
                         </div>
                         <form class="msger-inputarea" #chatform='ngForm' (ngSubmit)="onSubmit(chatform)">
                             <input type="text" class="msger-input" placeholder="Enter your message..."
-                            [(ngModel)]="model.message" name="message" required>
+                                [(ngModel)]="model.message" name="message" required>
                             <button [disabled]="chatform.invalid" type="submit" class="msger-send-btn">Send</button>
                             <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
                         </form>
@@ -60,12 +58,12 @@
             </div>
         </div>
     </div>
-        <footer class="footer-div">
-            <ul class="footer">
-                <li>Abdulkerim Mohammed</li>
-                <li>Prajesh Sharma</li>
-                <li>Khoa Ho</li>
-            </ul>
+    <footer class="footer-div">
+        <ul class="footer">
+            <li>Abdulkerim Mohammed</li>
+            <li>Prajesh Sharma</li>
+            <li>Khoa Ho</li>
+        </ul>
         <p>2023 Copy Right ©</p>
     </footer>
 </body>

@@ -2,6 +2,8 @@ body {
     background: lightblue;
     background: linear-gradient(#f6f9fc, lightblue);
     font-family: Roboto, sans-serif;
+    position: relative;
+    height: 100vh;
 }
 
 /* header */
@@ -30,19 +32,22 @@ body {
     float: left;
     margin: 0 0 0 30px;
 }
+
 .list a {
     text-decoration: none;
     color: black;
 }
+
 .user-type {
     color: #387cea;
 }
- #btn a {
-     background-color: rgb(97, 93, 93);
-     border-radius: 3px;
-     padding: 5px;
-     color: rgb(235, 231, 231);
- }
+
+#btn a {
+    background-color: rgb(97, 93, 93);
+    border-radius: 3px;
+    padding: 5px;
+    color: rgb(235, 231, 231);
+}
 
 /* form css */
 
@@ -79,12 +84,12 @@ button[type="submit"] {
 }
 
 button[type=submit]:hover {
-  background-color: #0d47a1;
+    background-color: #0d47a1;
 }
 
 button[type=submit]:disabled {
-  background-color: #7080d9;
-  color: #9FA8DA;
+    background-color: #7080d9;
+    color: #9FA8DA;
 }
 
 .container {
@@ -102,28 +107,32 @@ h2 {
     font-weight: normal;
     text-align: center;
 }
-   .footer-div {
-       background-color: #d9e5ecd9;
-       margin: 20px 25px;
-       border-radius: 7px;
-       text-align: center;
-       padding: 0;
-       font-weight: 600;
-       font-size: small;
-       font-family: 'Times New Roman', Times, serif;
-   }
 
-   .footer {
-       display: flex;
-       justify-content: center;
-       gap: 15px;
-   }
+.footer-div {
+    background-color: #d9e5ecd9;
+    bottom: 0;
+    position: absolute;
+    width: 97%;
+    margin: 20px 25px;
+    border-radius: 7px;
+    text-align: center;
+    padding: 0;
+    font-weight: 600;
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+}
 
-   ul li {
-       list-style-type: none;
-       font-weight: 500;
-   }
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-   .body-container{
+ul li {
+    list-style-type: none;
+    font-weight: 500;
+}
+
+.body-container {
     height: 700px;
-   }
+}

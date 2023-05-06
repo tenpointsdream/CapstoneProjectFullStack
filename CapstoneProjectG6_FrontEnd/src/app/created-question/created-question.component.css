@@ -2,6 +2,8 @@ body {
     background: lightblue;
     background: linear-gradient(#f6f9fc, lightblue);
     font-family: Roboto, sans-serif;
+    position: relative;
+    height: 100vh;
 }
 
 /* header */
@@ -80,13 +82,16 @@ h1 {
 }
 
 .footer-div {
+    position: relative;
+    bottom: 20px;
+    width: 97%;
     background-color: #d9e5ecd9;
     margin: 20px 25px;
     border-radius: 7px;
     text-align: center;
     padding: 0;
     font-weight: 600;
-    font-size: small;
+    font-size: medium;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -127,5 +132,9 @@ img {
     object-fit: scale-down;
 }
 .body-container{
-    height: 700px;
+    position: relative;
+    top: 0;
+    bottom: 100px;
+    height: auto;
+    width: auto;
 }

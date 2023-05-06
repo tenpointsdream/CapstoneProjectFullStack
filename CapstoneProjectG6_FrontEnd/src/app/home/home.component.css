@@ -2,6 +2,8 @@ body {
     background: lightblue;
     background: linear-gradient(#f6f9fc, lightblue);
     font-family: Roboto, sans-serif;
+    position: relative;
+    height: 100vh;
 }
 
 /* header */
@@ -83,6 +85,9 @@ body {
 }
 
 .footer-div {
+    position: absolute;
+    bottom: 0;
+    width: 97%;
     background-color: #d9e5ecd9;
     margin: 20px 25px;
     border-radius: 7px;

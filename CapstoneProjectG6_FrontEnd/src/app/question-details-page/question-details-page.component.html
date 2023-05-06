@@ -24,18 +24,21 @@
     <div class="container">
         <!-- form -->
         <div class="details" [(ngModel)]="question">
-            <div><img [src]="question.imageSrc" alt=""></div>
+            <div><img [src]="question.imageSrc" alt="question image"></div>
             <div><strong>Question ID: </strong>{{question.id}}</div>
             <div><strong>Topic: </strong>{{question.topic}}</div>
             <div><strong>Title: </strong>{{question.title}}</div>
             <div><strong>Date & Time Created: </strong>{{question.datetime}}</div>
             <div><strong>Created by: </strong>{{question.qcreated_by}}</div>
             <div>
-                <div><strong>List of answers:</strong></div>
+                <div>
+                    <strong>Answers:</strong>
+                    <p *ngIf="isNull">[No answers]</p>
+                </div>
                 <ul *ngFor="let answer of answers">
                     <li>
                         <ul>
-                            <li><img [src]="answer.img_src" alt=""></li>
+                            <li><img [src]="answer.img_src" alt="question image"></li>
                             <li>Answer ID: {{answer.id}}</li>
                             <li>Solution: {{answer.description_answer}}</li>
                             <li>Created on: {{answer.datetime}}</li>
@@ -52,12 +55,12 @@
     <div *ngIf="onVisible">
         <form id="answerform" novalidate #answerform='ngForm' (ngSubmit)="onSubmit(answerform);">
             <div class="register-form">
-                <label for="description_answer">Solution: </label><br>
+                <label for="description_answer"><strong>Solution: </strong></label><br>
                 <input type="text" id="description_answer" [(ngModel)]='model.description_answer'
                     name="description_answer" required>
             </div>
             <div>
-                <label for="imageSrc">Upload Image</label>
+                <label for="imageSrc"><strong>Upload Image</strong></label>
                 <input type="file" id="imageSrc" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg"
                     required>
             </div>

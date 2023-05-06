@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./pending-answer.component.css']
 })
 export class PendingAnswerComponent implements OnInit {
+  isANull: boolean;
+  answerExist: boolean;
   pendingAnswers: Answer[];
   answerToUpdate = {} as Answer;
   constructor(
@@ -22,13 +24,18 @@ export class PendingAnswerComponent implements OnInit {
     private questionService: QuestionService,
     private router: Router
   ) {
-    this.pendingAnswers = []
+    this.pendingAnswers = [];
+    this.answerExist = true;
+    this.isANull = false;
   }
   ngOnInit(): void {
     this.answerService.getPendingAnswers().subscribe((data: Answer[]) => {
       console.log(data);
       this.pendingAnswers = data;
-      alert("Question id " + this.pendingAnswers[0].question.id);
+      if(this.pendingAnswers.length === 0){
+        this.answerExist = false;
+        this.isANull = true;
+      }
     })
   }
   approveAnswer(id: number) {

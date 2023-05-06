@@ -19,6 +19,7 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
   styleUrls: ['./question-details-page.component.css']
 })
 export class QuestionDetailsPageComponent implements OnInit {
+  isNull: boolean;
   q_id: number = 0;
   email = {} as Email;
   admin = [] as User[];
@@ -39,6 +40,7 @@ export class QuestionDetailsPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private httpClient: HttpClient) {
+    this.isNull = false;
     this.onVisible = false;
     this.formGroup = this.formBuilder.group({
       file: ['']
@@ -56,7 +58,10 @@ export class QuestionDetailsPageComponent implements OnInit {
     this.answerService.getAnswerByQuestionId(this.questionID).subscribe((data: any) => {
       console.log("Answers: ", data);
       this.answers = data;
+      this.isNull = true;
     })
+    if (this.answers.length === 0)
+      this.isNull = false;
   }
 
   onFileSelected(event: any) {

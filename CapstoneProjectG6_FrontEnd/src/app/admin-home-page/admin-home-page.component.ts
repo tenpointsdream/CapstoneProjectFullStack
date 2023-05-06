@@ -12,6 +12,8 @@ import { Answer } from '../entity/answer.entity';
   styleUrls: ['./admin-home-page.component.css']
 })
 export class AdminHomePageComponent implements OnInit {
+  isNullQ: boolean;
+  isNull: boolean;
   questions = [] as Question[];
   answers = [] as Answer[];
   answerVisible: boolean;
@@ -21,13 +23,18 @@ export class AdminHomePageComponent implements OnInit {
     private cookieService: CookieService,
     private questionService: QuestionService,
     private answerService: AnswerService) {
-      this.answerVisible = false;
+    this.answerVisible = false;
+    this.isNull = false;
+    this.isNullQ = false;
   }
   ngOnInit(): void {
     this.name = this.cookieService.get('name');
-    this.questionService.getQuestionByStatus(true).subscribe((data: Question[])=>{
+    this.questionService.getQuestionByStatus(true).subscribe((data: Question[]) => {
       this.questions = data;
       console.log(this.questions);
+      if (this.questions.length === 0) {
+        this.isNullQ = true;
+      }
     });
   }
   showAnswers(questionId: number) {
@@ -35,9 +42,12 @@ export class AdminHomePageComponent implements OnInit {
     this.answerService.getAnswerByQuestionId(questionId).subscribe((data: Answer[]) => {
       this.answers = data;
       console.log(this.answers);
-    })
+      if (this.answers.length === 0) {
+        this.isNull = true;
+      }
+    });
   }
-  removeAnswer(answerId: number){
+  removeAnswer(answerId: number) {
     if (confirm('Are you sure you want to delete this question?'))
       this.answerService.deleteAnswer(answerId).subscribe(() => {
         console.log("Answer is deleted, ID: ", answerId);
