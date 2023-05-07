@@ -21,7 +21,7 @@
             </ul>
         </div>
     </div>
-    <div class="body-container">
+    <div class="container">
         <div>
             <h1>Created Question</h1>
         </div>
@@ -44,8 +44,9 @@
                     <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
                     <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
                 </li>
-                <li>
-                    <div class="answer-inner-container">
+                <li *ngIf="answerVisible">
+                    <div *ngIf="isANull">[No answers]</div>
+                    <div class="answer-inner-container" *ngIf="answerExist">
                         <ul *ngFor="let answer of answers">
                             <div><strong>List of answers:</strong></div>
                             <li><img src="./assets/answer_images/{{answer.img_src}}" alt=""></li>
@@ -54,6 +55,7 @@
                             <li><strong>Created on:</strong> {{answer.datetime}}</li>
                             <li><strong>Written by:</strong> {{answer.created_by}}</li>
                         </ul>
+                        <button class="btn2" (click)="hideAnswers()">Hide</button>
                     </div>
                 </li>
             </ul>

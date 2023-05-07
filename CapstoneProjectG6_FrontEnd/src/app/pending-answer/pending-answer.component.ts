@@ -6,6 +6,7 @@ import { Question } from "../entity/question.entity";
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pending-answer',
@@ -22,7 +23,8 @@ export class PendingAnswerComponent implements OnInit {
     private cookieService: CookieService,
     private userService: UserService,
     private questionService: QuestionService,
-    private router: Router
+    private router: Router,
+    private httpClient: HttpClient
   ) {
     this.pendingAnswers = [];
     this.answerExist = true;
@@ -32,14 +34,14 @@ export class PendingAnswerComponent implements OnInit {
     this.answerService.getPendingAnswers().subscribe((data: Answer[]) => {
       console.log(data);
       this.pendingAnswers = data;
-      if(this.pendingAnswers.length === 0){
+      if (this.pendingAnswers.length === 0) {
         this.answerExist = false;
         this.isANull = true;
       }
     })
   }
   approveAnswer(id: number) {
-    if (confirm('Are you sure you want to approve this question?'))
+    if (confirm('Are you sure you want to approve this question?')) {
       this.answerService.getAnswerById(id).subscribe((answer: Answer) => {
         let questionId = -1;
         console.log(answer);
@@ -57,11 +59,13 @@ export class PendingAnswerComponent implements OnInit {
           this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);
             console.log("This is a list of answers: ", updatedQuestion.answers);
-            // this.refresh();
+
             // this.goToPendingAnswer();
           })
         })
       });
+      this.refresh();
+    }
   }
   goToPendingAnswer() {
     this.router.navigate(['/adminhomepage/pendinganswer'])

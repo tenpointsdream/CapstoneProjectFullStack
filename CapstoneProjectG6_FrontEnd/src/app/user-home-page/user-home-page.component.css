@@ -47,6 +47,7 @@ body {
     border-radius: 3px;
     padding: 5px;
     color: rgb(235, 231, 231);
+    cursor: pointer;
 }
 
 /* body */

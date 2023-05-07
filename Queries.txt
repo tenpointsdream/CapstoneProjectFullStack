@@ -1,0 +1,7 @@
+create database cogent_do_connect;
+use cogent_do_connect;
+show tables;
+select * from user;
+select * from question;
+select * from answer;
+select * from question;

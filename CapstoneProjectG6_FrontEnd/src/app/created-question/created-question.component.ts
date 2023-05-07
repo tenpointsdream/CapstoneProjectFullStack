@@ -18,6 +18,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./created-question.component.css']
 })
 export class CreatedQuestionComponent implements OnInit {
+  isANull: boolean;
+  answerExist: boolean;
   questions: Question[] = [];
   answerVisible: boolean;
   model = {} as Answer;
@@ -37,6 +39,8 @@ export class CreatedQuestionComponent implements OnInit {
     private httpClient: HttpClient) {
     this.onVisible = false;
     this.answerVisible = false;
+    this.answerExist = true;
+    this.isANull = false;
   }
   ngOnInit(): void {
     this.questionService.getQuestionByStatus(true).subscribe((data: Question[]) => {
@@ -50,12 +54,18 @@ export class CreatedQuestionComponent implements OnInit {
       //   console.log("Question: ", this.questions);
     })
   }
-
+  hideAnswers(){
+    this.answerVisible = false;
+  }
   showAnswers(questionId: number) {
     this.answerVisible = true;
     this.answerService.getAnswerByQuestionId(questionId).subscribe((data: Answer[]) => {
       this.answers = data;
       console.log(this.answers);
+      if (data.length === 0) {
+        this.answerExist = false;
+        this.isANull = true;
+      }
     })
   }
   collapseList() {
