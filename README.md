@@ -43,6 +43,7 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * Angular
 * TypeScript
 * Node JS
+* Bootstrap
 * NPM for managing packages
 * Angular CLI
 * HTML5
