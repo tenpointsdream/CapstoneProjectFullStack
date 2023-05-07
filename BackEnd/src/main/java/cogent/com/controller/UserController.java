@@ -3,6 +3,7 @@ package cogent.com.controller;
 import java.util.List;
 import java.util.Optional;
 
+import cogent.com.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,8 @@ public class UserController {
 
 	@Autowired
 	private JwtUtil jwtUtil;
+	@Autowired
+	private QuestionService questionService;
 
 	@GetMapping("/welcome")
 	public String welcome() {
@@ -97,7 +100,12 @@ public class UserController {
 
 	@GetMapping("/getbyusername/{username}")
 	public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
-		User user = userService.getUserByUsername(username).orElse(new User());
+		User user = userService.getUserByUsername(username).orElse(null);
 		return ResponseEntity.ok(user);
+	}
+
+	@GetMapping("getnumberofquestions/{username}")
+	public int getNumberOfQuestions(@PathVariable("username") String username) {
+		return questionService.countByQuestionUsername(username);
 	}
 }

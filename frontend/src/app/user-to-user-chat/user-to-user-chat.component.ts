@@ -140,11 +140,7 @@ export class UserToUserChatComponent implements OnInit {
       let userExist = false;
       users.forEach(element => {
         console.log("Sending to:", this.newChat.to_user);
-
-        if (element.username === this.newChat.to_user) {
-          userExist = true;
-        }
-
+        if (element.username === this.newChat.to_user) userExist = true;
       });
       if (userExist) {
         this.chatService.addmsg(this.newChat).subscribe((data: Chat) => {

@@ -20,7 +20,7 @@ public class User {
 	private int id;
 	private String name;
 	private String username;
-	private String password; //TODO: encrypt password before putting in table
+	private String password;
 	private String email;
 	@Column(name = "usertype")
 	private UserType userType;

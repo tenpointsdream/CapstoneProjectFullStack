@@ -18,12 +18,6 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public User addUser(User user) {
-		user.setPassword(sha256(user.getPassword()));
-		return userRepository.save(user);
-	}
-
-	@Override
 	public User updateUser(User user) {
 		return userRepository.save(user);
 	}
@@ -39,12 +33,6 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
-	// Need implementation
-	@Override
-	public boolean userLoginVerify(User user) {
-		return false;
-	}
-
 	@Override
 	public Optional<User> getUserById(int id) {
 		return userRepository.findById(id);
@@ -58,11 +46,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByType(UserType userType) {
 		return userRepository.findByUserType(userType);
-	}
-
-	@Override
-	public String home() {
-		return "Users Home Page";
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { UserSubmit, UserType } from '../entity/UserSubmit';
+import { UserType } from '../entity/UserSubmit';
 import { UserService } from '../service/user.service';
 import { User } from '../entity/user.entity';
 

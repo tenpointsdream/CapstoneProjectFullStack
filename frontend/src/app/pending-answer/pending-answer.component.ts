@@ -49,16 +49,10 @@ export class PendingAnswerComponent implements OnInit {
           this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);
             console.log("This is a list of answers: ", updatedQuestion.answers);
-            // this.refresh();
-            // this.goToPendingAnswer();
           })
         })
       });
   }
-  goToPendingAnswer() {
-    this.router.navigate(['/adminhomepage/pendinganswer'])
-  }
-
   removeAnswer(id: number) {
     if (confirm('Are you sure you want to delete this question?'))
       this.answerService.deleteAnswer(id).subscribe(() => {

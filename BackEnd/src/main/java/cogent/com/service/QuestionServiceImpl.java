@@ -64,14 +64,6 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<QuestionDTO> getQuestionByTitle(String title) {
-		List<QuestionDTO> allQuestionDTOs = new ArrayList<>();
-		questionRepository.findAll().forEach(question -> allQuestionDTOs.add(convertQuestionToQuestionDTO(question)));
-		allQuestionDTOs.removeIf(question -> !question.getTitle().toLowerCase().contains(title));
-		return allQuestionDTOs;
-	}
-
-	@Override
 	public QuestionDTO addAnswerToQuestion(int question_id, AnswerDTO answerDTO) {
 		QuestionDTO questionDTO = convertQuestionToQuestionDTO(questionRepository.findById(question_id).orElse(new Question()));
 		List<AnswerDTO> answersDTO = new ArrayList<>();
@@ -171,6 +163,11 @@ public class QuestionServiceImpl implements QuestionService {
 			answerDTO.setStatus(answer.get().isStatus());
 		}
 		return Optional.of(answerDTO);
+	}
+
+	@Override
+	public int countByQuestionUsername(String username) {
+		return questionRepository.countByQcreatedBy(username);
 	}
 
 }
