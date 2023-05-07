@@ -1,4 +1,7 @@
-# /.metadata/
-# .DS_Store
+/.metadata/
+.DS_Store
 
-/NewBackEnd/
+NewBackEnd2/
+assets/
+NewBackEnd/
+CapstoneProjectG6_BackEnd

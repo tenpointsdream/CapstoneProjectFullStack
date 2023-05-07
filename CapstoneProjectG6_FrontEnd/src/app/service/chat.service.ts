@@ -22,5 +22,4 @@ export class ChatService {
     const url = `${this.baseUrl}/deletechatbyid/${id}`;
     return this.http.delete(url, { headers: {Authorization: `Bearer ${this.cookieService.get('jwtToken')}`}});
   }
-
 }
