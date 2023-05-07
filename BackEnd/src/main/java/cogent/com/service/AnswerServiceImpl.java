@@ -63,14 +63,6 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
-	public List<AnswerDTO> getAnswersByQuestionId(int questionId) {
-		List<AnswerDTO> answersDTO = new ArrayList<>();
-		answerRepository.findByQuestionId(questionId).
-				forEach(answer -> answersDTO.add(questionService.convertAnswerToAnswerDTO(answer)));
-		return answersDTO;
-	}
-
-	@Override
 	public List<AnswerDTO> getAllAnswersByQId(int questionId) {
 		List<AnswerDTO> answerDTOs = new ArrayList<>();
 		Question question = questionRepository.findById(questionId).orElse(new Question());

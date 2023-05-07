@@ -4,7 +4,6 @@ import cogent.com.dto.AnswerDTO;
 import cogent.com.dto.QuestionDTO;
 import cogent.com.entity.Question;
 import cogent.com.repository.QuestionRepository;
-import cogent.com.service.AnswerService;
 import cogent.com.service.QuestionServiceImpl;
 import cogent.com.util.AppUtil;
 import org.springframework.beans.BeanUtils;

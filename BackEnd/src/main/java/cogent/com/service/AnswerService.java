@@ -13,5 +13,4 @@ public interface AnswerService {
 	Optional<AnswerDTO> getAnswerById(int id);
 	void deleteAnswerById(int id);
 	List<AnswerDTO> getAllAnswersFalse();
-	List<AnswerDTO> getAnswersByQuestionId(int questionId);
 }
