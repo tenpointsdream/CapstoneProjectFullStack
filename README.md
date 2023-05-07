@@ -34,7 +34,6 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * Tomcat Server
 * MySQL Database
 * JWT (for authentication and authorization)
-* Postman Client(to create and send API requests)
 
 ### Data Base
 * MySQL
@@ -45,9 +44,7 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * TypeScript
 * Node JS
 * NPM for managing packages
-* VSCode (IDE)
 * Angular CLI
-* Bootstrap 5 (for styling pages)
 * HTML5
 * CSS
 * JWT (for authentication)
