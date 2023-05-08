@@ -21,8 +21,8 @@ import { AdminRegisterAndLoginComponent } from './admin-register-and-login/admin
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';import { UserHomePageComponent } from './user-home-page/user-home-page.component';
-import {NgOptimizedImage} from "@angular/common";
+import { CookieService } from 'ngx-cookie-service'; import { UserHomePageComponent } from './user-home-page/user-home-page.component';
+import { NgOptimizedImage } from "@angular/common";
 import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
 import { QuestionDetailsPageComponent } from './question-details-page/question-details-page.component';
 
@@ -48,14 +48,14 @@ import { QuestionDetailsPageComponent } from './question-details-page/question-d
     AdminHomePageComponent,
     QuestionDetailsPageComponent
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        RouterModule,
-        NgOptimizedImage,
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule,
+    NgOptimizedImage,
+  ],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })
