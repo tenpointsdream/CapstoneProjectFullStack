@@ -44,15 +44,15 @@ public class BackEndApplication {
 		userService.addUser(new User("Abdulkerim Mohammed", "user3", "password", "user3@gmail.com", UserType.USER));
 		QuestionService questionService = ctx.getBean(QuestionService.class);
 		// List<User> users = userService.getAllUsers();
-		questionService.addQuestion(new QuestionDTO(0, "Test description", "test.jpg", LocalDateTime.now().toString(), false,
+		questionService.addQuestion(new QuestionDTO(0, "Test description", "javascript.jpg", LocalDateTime.now().toString(), false,
 				"JavaScript", "Getting to know", null, "user2", null));
 		questionService.addQuestion(new QuestionDTO(1, "Test description", "angular.jpg", LocalDateTime.now().toString(), true,
 
 				"Angular", "What is Angular?", new ArrayList<Answer>(Arrays.asList(new Answer())), "user2", "user1"));
 
-		questionService.addQuestion(new QuestionDTO(2, "Test description", "test.jpg", LocalDateTime.now().toString(), false,
+		questionService.addQuestion(new QuestionDTO(2, "Test description", "error.jpg", LocalDateTime.now().toString(), false,
 				"Java", "Too many problems with Java", null, "user2", null));
-		questionService.addQuestion(new QuestionDTO(3, "Test description", "test.jpg", LocalDateTime.now().toString(), false,
+		questionService.addQuestion(new QuestionDTO(3, "Test description", "springboot.jpg", LocalDateTime.now().toString(), false,
 				"SpringBoot", "Can't run Maven Project", null, "user2", null));
 		// QuestionServiceImpl questionSer = ctx.getBean(QuestionServiceImpl.class);
 		// List<QuestionDTO> questions = questionService.getAllQuestion();
