@@ -32,7 +32,6 @@ DoConnect is an application that enables its users to ask and answer questions, 
 * Maven for managing packages
 * Java JDK 1.8
 * Tomcat Server
-* MySQL Database
 * JWT (for authentication and authorization)
 
 ### Data Base
