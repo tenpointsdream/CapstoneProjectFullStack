@@ -7,7 +7,6 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminSignUpComponent } from './admin-sign-up/admin-sign-up.component';
 import { ApprovedAnswerComponent } from './approved-answer/approved-answer.component';
 import { CreateNewQuestionComponent } from './create-new-question/create-new-question.component';
-import { CreatedAnswerComponent } from './created-answer/created-answer.component';
 import { CreatedQuestionComponent } from './created-question/created-question.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -34,7 +33,6 @@ import { QuestionDetailsPageComponent } from './question-details-page/question-d
     AdminSignUpComponent,
     ApprovedAnswerComponent,
     CreateNewQuestionComponent,
-    CreatedAnswerComponent,
     CreatedQuestionComponent,
     HomeComponent,
     PageNotFoundComponent,

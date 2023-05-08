@@ -113,14 +113,14 @@ export class CreatedQuestionComponent implements OnInit {
         console.log("Email to send:", this.email);
         console.log("Response: ", response);
       });
-    alert("Email notification sent to admin!");
+    //alert("Email notification sent to admin!");
 
     this.answerForm.datetime = now.toLocaleString('en-US', options);
     this.answerForm.created_by = this.cookieService.get('username');
     this.answerService.addAnswer(this.answerForm, this.cookieService.get('username'), this.q_id).subscribe((response) => {
       console.log("Response: ", response);
     });
-    alert("Your answer hase been added! waiting for admin approval...");
+    alert("Your answer hase been added! Waiting for admin approval...");
     this.closeForm();
   }
   sign_out() {

@@ -72,7 +72,7 @@ h2 {
     margin: 0 auto;
     list-style-type: none;
     position: flex;
-    min-height: 90vh;
+    min-height: 72vh;
 }
 
 .answer-inner-container {

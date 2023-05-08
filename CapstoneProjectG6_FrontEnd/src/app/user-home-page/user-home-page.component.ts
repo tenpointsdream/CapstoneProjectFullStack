@@ -28,8 +28,8 @@ export class UserHomePageComponent implements OnInit {
   }
   sign_out(): void {
     //this.cookieService.deleteAll();
-    this.router.navigate(["/home/userlogin"]);
     this.cookieService.delete("username");
     this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/userlogin"]);
   }
 }

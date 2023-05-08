@@ -44,8 +44,7 @@ export class UserLoginComponent {
             .subscribe((response: any) => {
               const token = response;
               this.cookieService.set('jwtToken', token, 1, '/');
-              this.cookieService.set('username', this.userForm.username);
-              console.log("Token: " + token);
+              // console.log("Token: " + token);
               this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.userForm.username}`,
                 {
                   headers: { Authorization: `Bearer ${token}` }
@@ -54,7 +53,8 @@ export class UserLoginComponent {
                   console.log('Logged in as: ', userProfile.name);
                   this.cookieService.set('name', userProfile.name);
                   console.log('Email: ', userProfile.email);
-                  console.log('User type: ' + userProfile.userType);
+                  this.cookieService.set('username', userProfile.username);
+                  console.log('Username: ', this.cookieService.get('username'));
                 });
               this.router.navigate(['userhomepage']);
             }, (err) => {

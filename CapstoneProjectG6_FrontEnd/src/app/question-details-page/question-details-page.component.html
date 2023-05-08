@@ -24,7 +24,7 @@
     <div class="container">
         <!-- form -->
         <div class="details" [(ngModel)]="question">
-            <div><img [src]="question.imageSrc" alt="question image"></div>
+            <div><img src="/assets/question_images/{{question.imageSrc}}" alt="question image"></div>
             <div><strong>Question ID: </strong>{{question.id}}</div>
             <div><strong>Topic: </strong>{{question.topic}}</div>
             <div><strong>Title: </strong>{{question.title}}</div>
@@ -38,7 +38,7 @@
                 <ul *ngFor="let answer of answers">
                     <li>
                         <ul>
-                            <li><img [src]="answer.img_src" alt="question image"></li>
+                            <li><img src="/assets/answer_images/answer.img_src" alt="question image"></li>
                             <li>Answer ID: {{answer.id}}</li>
                             <li>Solution: {{answer.description_answer}}</li>
                             <li>Created on: {{answer.datetime}}</li>

@@ -118,7 +118,7 @@ export class QuestionDetailsPageComponent implements OnInit {
     });
     alert("Your answer has been added! Waiting for admin approval...");
 
-    alert("Email notification sent to admin!");
+    // alert("Email notification sent to admin!");
     this.closeForm();
   }
   sign_out() {

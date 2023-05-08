@@ -59,12 +59,12 @@ export class PendingAnswerComponent implements OnInit {
           this.questionService.addAnswerToQuestion(questionId, updatedAnswer).subscribe((updatedQuestion: Question) => {
             console.log(updatedQuestion);
             console.log("This is a list of answers: ", updatedQuestion.answers);
-
+            this.refresh();
             // this.goToPendingAnswer();
           })
         })
       });
-      this.refresh();
+      
     }
   }
   goToPendingAnswer() {

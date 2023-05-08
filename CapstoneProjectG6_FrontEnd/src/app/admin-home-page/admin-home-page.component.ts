@@ -71,5 +71,6 @@ export class AdminHomePageComponent implements OnInit {
   signout(): void {
     this.cookieService.delete("username");
     this.cookieService.delete('jwtToken');
+    this.router.navigate(["home/adminlogin"]);
   }
 }

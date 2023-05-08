@@ -27,7 +27,7 @@
         </div>
         <div class="container">
             <ul>
-                <li *ngFor="let question of questions">
+                <li *ngFor="let question of questions" id="question-container">
                     <!-- <img {src}="assets/images/java.png" height="150" alt="Image"> -->
                     <img src="./assets/question_images/{{question.imageSrc}}" alt="Question Image">
                     <p><strong>Title: </strong>
@@ -44,21 +44,23 @@
                     <button class="btn1" (click)="showAnswers(question.id)">Answers</button>
                     <button class="btn2" (click)="showForm(question.id)">Add Answer</button>
                 </li>
-                <li *ngIf="answerVisible">
-                    <div *ngIf="isANull">[No answers]</div>
-                    <div class="answer-inner-container" *ngIf="answerExist">
-                        <ul *ngFor="let answer of answers">
-                            <div><strong>List of answers:</strong></div>
-                            <li><img src="./assets/answer_images/{{answer.img_src}}" alt=""></li>
-                            <li><strong>Answer ID:</strong> {{answer.id}}</li>
-                            <li><strong>Solution:</strong> {{answer.description_answer}}</li>
-                            <li><strong>Created on:</strong> {{answer.datetime}}</li>
-                            <li><strong>Written by:</strong> {{answer.created_by}}</li>
-                        </ul>
-                        <button class="btn2" (click)="hideAnswers()">Hide</button>
-                    </div>
-                </li>
             </ul>
+        </div>
+        <div *ngIf="answerVisible" class="container_2">
+            <div *ngIf="isANull">[No answers]
+                <div><button class="btn2" (click)="hideAnswers()">Hide</button> </div>
+            </div>
+            <div class="answer-inner-container" *ngIf="answerExist">
+                <ul *ngFor="let answer of answers">
+                    <div><strong>List of answers:</strong></div>
+                    <li><img src="./assets/answer_images/{{answer.img_src}}" alt=""></li>
+                    <li><strong>Answer ID:</strong> {{answer.id}}</li>
+                    <li><strong>Solution:</strong> {{answer.description_answer}}</li>
+                    <li><strong>Created on:</strong> {{answer.datetime}}</li>
+                    <li><strong>Written by:</strong> {{answer.created_by}}</li>
+                </ul>
+                <button class="btn2" (click)="hideAnswers()">Hide</button>
+            </div>
         </div>
         <div class="container_2">
             <div *ngIf="onVisible">
@@ -66,13 +68,14 @@
                     <div class="register-form">
                         <label for="description_answer">Solution: </label><br>
                         <input type="text" [(ngModel)]='model.description_answer' name="description_answer" required>
-                        <br><br>
+                        <br>
                     </div>
                     <div>
-                        <label for="imageSrc">Upload Image</label>
+                        <label for="imageSrc">Upload Image </label><br>
                         <input type="file" accept="image/*" (change)="onFileSelected($event)" alt="image.jpg" required>
                         <br>
                     </div>
+                    <br>
                     <button [disabled]="answerform.invalid" type="submit" class="submitbtn">Submit</button>
                     <button (click)="closeForm()" type="button" class="cancel">Cancel</button>
                 </form>

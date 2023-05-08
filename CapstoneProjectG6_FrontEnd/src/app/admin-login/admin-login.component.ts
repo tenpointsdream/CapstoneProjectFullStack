@@ -43,7 +43,7 @@ export class AdminLoginComponent {
             .subscribe((response: any) => {
               const token = response;
               this.cookieService.set('jwtToken', token, 1, '/');
-              console.log("Token: " + token);
+              // console.log("Token: " + token);
               this.httpClient.get<UserProfile>(`http://localhost:8080/user/getbyusername/${this.userForm.username}`,
                 {
                   headers: { Authorization: `Bearer ${token}` }

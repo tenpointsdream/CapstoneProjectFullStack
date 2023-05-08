@@ -3,7 +3,7 @@ body {
     background: linear-gradient(#f6f9fc, lightblue);
     font-family: Roboto, sans-serif;
     position: relative;
-    height: 100vh;
+    height: auto;
 }
 
 /* header */
@@ -83,16 +83,19 @@ button[type="submit"] {
     width: 100%;
     box-sizing: border-box;
 }
+
 .body-container {
     margin: 15px;
+    min-height: 78vh;
 }
+
 .container {
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     max-width: 400px;
-    margin-bottom: 10px;;
+    margin-bottom: 10px;
     margin: 0 auto;
 }
 
@@ -104,7 +107,7 @@ h2 {
 }
 
 .footer-div {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 97%;
     background-color: #d9e5ecd9;
@@ -133,15 +136,17 @@ ul li {
     border-collapse: collapse;
 }
 
-thead{
+thead {
     background-color: black;
     color: white;
     border: 2px solid black;
 }
-th{
+
+th {
     border: 2px solid black;
 }
-td{
+
+td {
     border: 2px solid;
     border-collapse: collapse;
 }

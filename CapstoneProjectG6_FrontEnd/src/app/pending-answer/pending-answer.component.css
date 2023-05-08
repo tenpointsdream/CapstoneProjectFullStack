@@ -3,7 +3,7 @@ body {
   background: linear-gradient(#f6f9fc, lightblue);
   font-family: Roboto, sans-serif;
   position: relative;
-  height: 100vh;
+  height: 100%;
 }
 
 /* header */
@@ -140,7 +140,7 @@ ul li {
 }
 
 .body-container {
-  height: 700px;
+  min-height: 90vh;
 }
 
 #btn a {

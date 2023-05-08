@@ -8,6 +8,7 @@ import { Email } from '../entity/email.entity';
 import { EmailService } from '../service/email.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class CreateNewQuestionComponent {
     private cookieService: CookieService,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    private router: Router) {
     this.formGroup = this.formBuilder.group({
       file: ['']
     });
@@ -103,5 +105,6 @@ export class CreateNewQuestionComponent {
   sign_out() {
     this.cookieService.delete("username");
     this.cookieService.delete('jwtToken');
+    this.router.navigate(["/home/userlogin"]);
   }
 }
