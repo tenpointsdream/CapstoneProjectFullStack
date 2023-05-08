@@ -4,4 +4,4 @@ show tables;
 select * from user;
 select * from question;
 select * from answer;
-select * from question;
+select * from chat;
